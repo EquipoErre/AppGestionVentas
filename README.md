@@ -7,7 +7,7 @@ El proyecto consiste en que se desarrollará una aplicación de ventas para una 
 
 ### Scrum master
 ### Product Owner:
-Soy Daniel Tisoy, tengo 20 años, vivo en Bogotá y Desarrollador web junior.
+Soy Daniel Tisoy, tengo 20 años, vivo en Bogotá y soy Desarrollador web junior.
 
 ### Analista DB
 
