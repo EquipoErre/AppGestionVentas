@@ -12,6 +12,6 @@ Soy Angela Bustos, vivo en Chia, Cundinamarca y soy developer.
 Soy Daniel Tisoy, vivo en Bogotá y soy Desarrollador web junior.
 
 ### Analista DB
-
+Soy John Eider Cardona, vivo en Manizales, soy desarrollador.
 ### 
 
