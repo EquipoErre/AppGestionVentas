@@ -1,14 +1,17 @@
 # proyecto_ciclo_3_R
 proyecto que se realizará en el equipo R durante el ciclo 3 de misionTIC
 
+<<<<<<< HEAD
 El proyecto consiste en que se desarrollará una aplicación de ventas para una tienda virtual y fisica
 
 ## Integrantes del Scrum Team: 
 
 ### Scrum master
+Soy Angela Bustos, vivo en Chia, Cundinamarca y soy developer.
 ### Product Owner:
-Soy Daniel Tisoy, tengo 20 años, vivo en Bogotá y soy Desarrollador web junior.
+Soy Daniel Tisoy, vivo en Bogotá y soy Desarrollador web junior.
 
 ### Analista DB
 
 ### 
+
