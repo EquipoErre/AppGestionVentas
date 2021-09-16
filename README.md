@@ -13,5 +13,7 @@ Soy Daniel Tisoy, vivo en Bogotá y soy Desarrollador web junior.
 
 ### Analista DB
 Soy John Eider Cardona, vivo en Manizales, soy desarrollador.
-### 
+
+### Desarrollador
+Soy Rosmy Gaviria, vivo en Popayán, soy desarrolladora.  
 
