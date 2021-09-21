@@ -1,0 +1,1 @@
+Dentro de esta carpeta va cada plantilla en sus respectivas carpetas
