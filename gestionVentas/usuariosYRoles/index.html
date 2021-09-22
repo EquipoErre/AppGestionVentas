@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios y Roles</title>
+</head>
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="styles.css">
+        <title>layout</title>
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <h1 class="titulo">Gestion de Ventas</h1>
+                <ul class="menu">
+                    <li><a href="#">ventas realizadas</a></li>
+                    <li><a href="#">Vendedores</a></li>
+                    <li><a href="#">Usuarios y roles</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <div class="topnav">
+                <button id="enviar-buscar">Buscar</button>
+                <input type="text" name="buscar" id="buscar" placeholder="buscar ID">
+
+            </div>
+            <section class="usuario-perfil">
+                <h1>Detalles del usuario</h1>
+                <div class="info-usuario">
+                    <!-- identificador -->
+                    <h2>Identificador</h2>
+                    <p>id</p>
+                    <!-- rol  -->
+                    <h2>rol</h2>
+                    <p>Admin XD</p>
+                    <!-- nombre -->
+                    <h2>nombre completo</h2>
+                    <p>Daniel</p>
+
+                </div>
+                <div class="opciones">
+                    <button>Actualizar</button>
+                    <button>Eliminar</button>
+                </div>
+            </section>
+            <section class="todos-usuarios">
+                <table>
+                    <tr>
+                      <th>Id</th>
+                      <th>Rol</th>
+                      <th>Nombre</th>
+                      <th>Opciones</th>
+                    </tr>
+                    <tr>
+                      <td>002</td>
+                      <td>admin</td>
+                      <td>daniel</td>
+                      <td><button>Actualizar</button> | <button>eliminar</button></td>
+                    </tr>
+                  </table>
+            </section>
+
+        </main>
+        <footer>
+            <h3>&COPY; ERRE Team | ltisoy</h3>
+        </footer>
+
+
+    </body>
+
+    </html>
+</body>
+
+</html>
