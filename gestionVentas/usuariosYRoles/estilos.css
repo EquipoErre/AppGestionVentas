@@ -12,6 +12,7 @@ nav {
   justify-content: space-between;
   background: #24303c;
 }
+
 .titulo {
   color: white;
   font-size: 30px;
@@ -39,11 +40,12 @@ a {
   transition: all 0.45s;
 }
 
-/* a:hover {
-  color: white;
-  border-bottom: 2px solid white;
-} */
-main {
-  width: 70%;
+/* tablas */
+main{
+  width: 80%;
   margin: auto;
+}
+.vistas{
+  display: flex;
+  justify-content:space-around;
 }
