@@ -1,16 +1,19 @@
-import React from 'react';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import LoginPage from 'pages/login.page.compontent';
-import { BrowserRouter as Router} from "react-router-dom";
+
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "./styles/App.css";
+import "./styles/UsuariosYRoles.css";
+
+import LoginPage from "pages/login.page.compontent";
+import { BrowserRouter as Router } from "react-router-dom";
+import Modulos from "pages/Succefull.sesion.components";
 
 function App() {
+  let userSesion = 'null';
   return (
     <Router>
-    <div className="App">
-    <LoginPage></LoginPage>
-    </div>
-  </Router>
+      {userSesion === null && <LoginPage />}
+      {userSesion !== null && <Modulos />}
+    </Router>
   );
 }
 
