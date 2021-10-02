@@ -4,7 +4,7 @@ const Tabla = ({datos}) => {
     return (
         <>
             <table class="table">
-                <thead class="table-dark table-edit" >
+                <thead class="table-dark table-head-sticky" >
                     <tr>
                         <td>Codigo</td>
                         <td>fecha</td>
@@ -14,7 +14,7 @@ const Tabla = ({datos}) => {
                         <td>Valor total</td>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="datos-centrados">
                     {
                         datos.map((dato) => {
                             return(
