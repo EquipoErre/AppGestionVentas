@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+// modulosYrutas es una lista de objetos
 export default function Menu(props) {
  
     let paths=props.ModulosYRutas

@@ -1,5 +1,6 @@
-import usuariosJson from "./usuarios.json";
-import RegistrosUsuarios from "./RegistrosUsuarios";
+import usuariosJson from "json/usuarios.json";
+import RegistrosUsuarios from "components/UsuariosYRoles/RegistrosUsuarios";
+import "styles/usuariosYRolesCss/UsuariosYRoles.css"
 
 export default function TablaUsuariosYRoles() {
   return (

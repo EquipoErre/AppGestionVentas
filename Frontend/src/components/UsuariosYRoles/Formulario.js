@@ -1,8 +1,8 @@
 
 import { useParams } from "react-router";
-import "../../styles/FormularioUsuarios.css";
+import "styles/usuariosYRolesCss/FormularioUsuarios.css";
 // normalmente se accederia a la api a traves de useEffect
-import usuariosJson from "./usuarios.json";
+import usuariosJson from "json/usuarios.json";
 export default function Formulario() {
   //   id es el nombre que se le puso en la ruta
   const { id } = useParams();
