@@ -405,24 +405,26 @@ const Formulario = () => {
                                 <button className="button-agreagar">agregar</button>                   
                             </div>
                         </div>
-                        
+
                     {/* ************************************************* */}
                     </div>
+                    <div className='form-registro-venta_section-tres'>
+                        <div className="form-registro-venta-total">
+                            <div className="form-registro-venta_section">
+                                <label htmlFor="totalCompra">Total</label>
+                                <input type="number" disabled placeholder="000000" id="totalCompra" name="totalCompra" />
+                            </div>
+                        </div>
 
-                    <div className="form-registro-venta-total">
-                        <div className="form-registro-venta_section">
-                            <label htmlFor="totalCompra">Total</label>
-                            <input type="number" disabled placeholder="000000" id="totalCompra" name="totalCompra" />
+
+                        <div className="form-registro-venta-buttons">
+                            <div>
+                                <button type="reset">Cancelar</button>
+                                <button type="submit">Finalizar</button>
+                            </div>
                         </div>
                     </div>
 
-
-                    <div className="form-registro-venta-buttons">
-                        <div>
-                            <button type="reset">Cancelar</button>
-                            <button type="submit">Finalizar</button>
-                        </div>
-                    </div>
 
 
 

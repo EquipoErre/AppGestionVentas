@@ -1,16 +1,15 @@
 .contenedor-padre{
     display: flex;
+    /* height: 100%; */
 }
 
 .contenedor-tabla{
-    border:  1px solid black;
     width: 50%;
     overflow-y: auto;
-    height: 100vh;
+    height: 100vh;/*acá 80vh*/
 }
 
-.contenedor-formulario{
-    border: 1px solid black;    
+.contenedor-formulario{ 
     width: 50%;
-    height: 100vh;
+    height: 100vh;/*acá 80vh*/
 }

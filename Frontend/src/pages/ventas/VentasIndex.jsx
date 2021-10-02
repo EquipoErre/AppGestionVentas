@@ -438,7 +438,7 @@ const VentasIndex = () => {
         <div>
             <div className='contenedor-padre'>
                 <section className='contenedor-tabla'>
-                    <div className='search-sticky'>                    
+                    <div className='search search-sticky'>                    
                         <BarraBusqueda/>
                     </div>
                     <Tabla datos={datosSimulados}></Tabla>
