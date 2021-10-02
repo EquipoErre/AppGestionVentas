@@ -7,7 +7,7 @@ const responseGoogle = (response) => {
   console.log(response);
 };
 
-function Login(props) {
+function Login() {
   return (
     <div className="outer">
       <div className="inner">
@@ -25,20 +25,24 @@ function Login(props) {
         <hr />
         <form>
           <div className="form-group">
-            <label>Correo Electrónico</label>
+            <label id="label-email">Correo Electrónico</label>
             <input
+              id="input-email"
               type="email"
               className="form-control"
               placeholder="Ingresar correo electrónico"
+              required
             />
           </div>
 
           <div className="form-group">
-            <label>Contraseña</label>
+            <label id="label-password">Contraseña</label>
             <input
+              id="input-password"
               type="password"
               className="form-control"
               placeholder="Ingresar contraseña"
+              required
             />
           </div>
 
@@ -55,7 +59,7 @@ function Login(props) {
             </div>
           </div>
 
-          <button type="submit" className="btn btn-dark btn-lg btn-block">
+          <button  id="btn-login" type="submit" className="btn btn-dark btn-lg btn-block">
             Ingresar
           </button>
           {/* <p className="forgot-password text-right">

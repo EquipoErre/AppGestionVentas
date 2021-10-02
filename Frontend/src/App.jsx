@@ -7,6 +7,7 @@ import GestionUsuariosPage from "pages/usuarios/GestionUsuariosPage";
 import FormularioActualizarUsuario from "components/UsuariosYRoles/Formulario";
 import Layout from "layouts/Layout";
 import LoginPage from "pages/login/LoginPage";
+import RegisterPage from "pages/login/RegisterPage";
 import AuthLayout from "layouts/authLayout";
 import PublicLayout from "layouts/publicLayout"
 function App() {
@@ -38,11 +39,14 @@ function App() {
         </Route>
 
         {/* rutas para el modulo de registro e inicio de sesion */}
-        <Route path={["/Login"]}>
+        <Route path={["/login", "/register"]}>
           <AuthLayout>
           <Switch>
             <Route path="/login">
               <LoginPage />
+            </Route>
+            <Route path="/register">
+              <RegisterPage />
             </Route>
           </Switch>
           </AuthLayout>
