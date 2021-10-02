@@ -1,14 +1,19 @@
 import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import logo from './logo.svg';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.css'
+import stylesVentasIndex from 'styles/pages/ventas/ventasIndex.css'
+import stylesComponentsFormulario from 'styles/components/ventas/componentsTabla.css'
+import stylesComponentsBarraBusqueda from 'styles/components/ventas/componentsBarraBusqueda.css'
+// import stylesBarraBusqueda from 'styles/components/ventas/componentBarraBusqueda.css'
+import VentasIndex from "pages/ventas/VentasIndex"
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route path='/ventas'>
-            
+          <Route path='/'>
+            <VentasIndex/>
           </Route>
         </Switch>
       </Router>
