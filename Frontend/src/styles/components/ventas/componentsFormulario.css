@@ -47,7 +47,6 @@
 .form-registro-venta_section-dos{
     height: 100%;
     overflow-y: auto;
-    border: solid 1px black;
     /* background-color: teal; */
     display: flex;
     flex-direction: column;
@@ -100,7 +99,8 @@
 }
 
 .contenedor-venta-registrada{
-    border: solid 1px black;
+    border: solid 0.2px var(--color-uno-b);
+    background-color: var(--color-tres);
 }
 
 input{
@@ -108,14 +108,18 @@ input{
     margin: 0.3em 0.6em;
 }
 
+label{
+    font-weight:600;
+    color: var(--color-uno-b);
+}
 
 .form-registro-venta_section-tres{
     background-color: var(--color-uno-b);
     font-family: var(--font);
     color: var(--color-tres);
+
 }
 
-label{
-    font-weight:600;
-    color: var(--color-uno-b);
+.form-registro-venta_section-tres label{
+    color: var(--color-tres);
 }

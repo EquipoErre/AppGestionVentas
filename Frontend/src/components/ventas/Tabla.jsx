@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from "react-router-dom";
 
 const Tabla = ({datos}) => {
     return (
@@ -19,12 +20,14 @@ const Tabla = ({datos}) => {
                         datos.map((dato) => {
                             return(
                             <tr>
-                                <td>{dato.id}</td>
-                                <td>{dato.id}</td>
-                                <td>{dato.id}</td>
-                                <td>{dato.id}</td>
-                                <td>{dato.id}</td>
-                                <td>{dato.id}</td>
+                                <Link to='/descripcionVenta'>
+                                    <td>{dato.id}</td>
+                                </Link>
+                                <td>{dato.fecha}</td>
+                                <td>{dato.documentoCliente}</td>
+                                <td>{dato.nombreCliente}</td>
+                                <td>{dato.vendedor}</td>
+                                <td>{dato.valorTotal}</td>
                             </tr>
                             );
                         })

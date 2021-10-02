@@ -6,10 +6,10 @@
 .contenedor-tabla{
     width: 50%;
     overflow-y: auto;
-    height: 100vh;/*acá 80vh*/
+    height: 100vh;/*acá*/
 }
 
 .contenedor-formulario{ 
     width: 50%;
-    height: 100vh;/*acá 80vh*/
+    height: 100vh;
 }

@@ -6,12 +6,17 @@ import stylesComponentsTabla from 'styles/components/ventas/componentsTabla.css'
 import stylesComponentsBarraBusqueda from 'styles/components/ventas/componentsBarraBusqueda.css'
 import stylesComponentsFormulario from 'styles/components/ventas/componentsFormulario.css'
 import VentasIndex from "pages/ventas/VentasIndex"
+import VentanaDescrpcionVenta from "pages/ventas/VentanaDescrpcionVenta";
+import styleTabladescripcionVenta from 'styles/components/ventas/componenttablaDescripcionVenta.css'
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Switch>
+          <Route path='/descripcionVenta'>
+            <VentanaDescrpcionVenta/>
+          </Route>
           <Route path='/'>
             <VentasIndex/>
           </Route>
