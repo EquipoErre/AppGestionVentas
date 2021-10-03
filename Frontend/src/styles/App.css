@@ -1,5 +1,9 @@
 :root {
-    --color-boton: lightblue;
+    --hover-color: rgb(42, 186, 243);
+    --link-color: white;
+    --active-color: yellow;
+    --menu-bg-color: #243d52;
+
   }
   * {
     margin: 0;
@@ -10,14 +14,17 @@
 .lista-enlaces {
     display: flex;
     justify-content: space-between;
-    background: #24303c;
+    background: var(--menu-bg-color);
   }
   
   .titulo {
-    color: white;
+    color: var(--link-color);
     font-size: 30px;
     padding: 5px;
     margin-left: 30px;
+  }
+  .titulo:hover{
+    color: var(--hover-color);
   }
   
   .menu {
@@ -35,14 +42,15 @@
   }
   .lista-enlaces a {
     font-size: 22px;
-    color: #777;
+    color: var(--link-color);
     text-decoration: none;
     transition: all 0.45s;
   }
  .lista-enlaces .ruta:hover{
     text-decoration: none;
-    color: white;
+    color: var(--hover-color);
   }
-  .lista-enlaces .menu .ruta:hover{
-    text-decoration: underline;
+
+  .lista-enlaces .menu .active {
+    color: var(--active-color);
   }
