@@ -429,7 +429,7 @@ const datosSimulados = [
         "nombreCliente":'Eduardo Rincon',
         "vendedor": "02",
         "valorTotal":"150550"
-    },
+    }
 
 ];
 

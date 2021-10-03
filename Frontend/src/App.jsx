@@ -7,7 +7,7 @@ import stylesComponentsBarraBusqueda from 'styles/components/ventas/componentsBa
 import stylesComponentsFormulario from 'styles/components/ventas/componentsFormulario.css'
 import VentasIndex from "pages/ventas/VentasIndex"
 import VentanaDescrpcionVenta from "pages/ventas/VentanaDescrpcionVenta";
-import styleTabladescripcionVenta from 'styles/components/ventas/componenttablaDescripcionVenta.css'
+import styleTabladescripcionVenta from 'styles/components/ventas/componentTablaDescripcionVenta.css'
 
 function App() {
   return (

@@ -59,6 +59,10 @@ const TablaDescripcionventa = ({ datos }) => {
                     }
                 </tbody>
             </table>
+            <div className='contenedor-botones'>
+                <button>Cancelar</button>
+                <button>Editar</button>
+            </div>
         </div>
     )
 }

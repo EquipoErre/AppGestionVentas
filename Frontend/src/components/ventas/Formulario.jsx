@@ -10,21 +10,21 @@ const Formulario = () => {
                         <div className='form-registro-venta_section-uno_item-uno'>
                             <div className='form-registro-venta_section-uno_item-uno_section'>
                                 <div>
-                                    <label htmlFor="fecha" >fecha</label>
+                                    <label htmlFor="fecha" className='font-color' >fecha</label>
                                     <input type="date" id="fecha" name="fechaFactura" />
                                 </div>
                                 <div >
-                                    <label htmlFor="codigoFactura">Codigo</label>
+                                    <label className='font-color'  htmlFor="codigoFactura">Codigo</label>
                                     <input type="text" name="codigoFactura" id="codigoFactura" />
                                 </div>
                             </div>
                             <div className='form-registro-venta_section-uno_item-dos_section'>
                                 <div>
-                                    <label htmlFor="cliente">Cliente</label>
-                                    <input type="text" id="cliente" name="nombreCliente" />
+                                    <label className='font-color' htmlFor="cliente">Cliente</label>
+                                    <input  type="text" id="cliente" name="nombreCliente" />
                                 </div>
                                 <div>
-                                    <label htmlFor="documento">Documento</label>
+                                    <label className='font-color' htmlFor="documento">Documento</label>
                                     <input type="text" id="documento" name="documentoCliente" />
                                 </div>
                             </div>

@@ -24,3 +24,14 @@
     color: var(--color-tres);
     font-family: var(--font);
 }
+
+.contenedor-botones{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 3em;
+    padding: 0.4em;
+}
+
+.contenedor-botones button{
+    margin: 0 0.5em;
+}

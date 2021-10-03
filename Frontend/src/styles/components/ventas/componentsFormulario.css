@@ -123,3 +123,9 @@ label{
 .form-registro-venta_section-tres label{
     color: var(--color-tres);
 }
+
+
+
+.font-color{
+    color: var(--color-tres);
+}
