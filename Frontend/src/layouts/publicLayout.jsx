@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
           ruta: "/login",
         },
         {
-          id: "001",
+          id: "002",
           nombre: "Modulos",
           ruta: "/usuarios",
         },

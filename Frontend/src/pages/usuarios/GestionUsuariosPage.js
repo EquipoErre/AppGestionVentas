@@ -1,6 +1,6 @@
 import usuariosJson from "json/usuarios.json";
 import RegistrosUsuarios from "components/UsuariosYRoles/RegistrosUsuarios";
-import "styles/usuariosYRolesCss/UsuariosYRoles.css"
+import "styles/usuariosYRolesCss/UsuariosYRoles.css";
 
 export default function TablaUsuariosYRoles() {
   return (
@@ -43,7 +43,7 @@ export default function TablaUsuariosYRoles() {
               <th className="col-1">Id</th>
               <th className="col-2">Rol</th>
               <th className="col-2">Estado</th>
-              <th>Nombre</th>
+              <th className="col 3">Nombre</th>
               <th className="col-1">Opciones</th>
             </tr>
           </thead>
