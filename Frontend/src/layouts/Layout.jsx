@@ -1,11 +1,18 @@
 import Menu from "components/NavBar/Menu"
 import ListaModulos from "json/menuModuleNames.json"
+import { useState } from "react";
 
 const Layout = ({children}) => {
+
+    const [paginaActual, setPaginaActual] = useState('/usuarios');
     return (
         <div >
             <header>
-                <Menu ModulosYRutas={ListaModulos}/>
+                {/* menu recibe una lista de objetos */}
+                {/* tambien se puede definirla directamente en esta funcion, 
+                esto se hace en publicLayout */}
+                <Menu ModulosYRutas={ListaModulos} paginaActual={paginaActual}
+          onChange={(pagina) => setPaginaActual(pagina)}/>
             </header>
             <main>
             {children}
