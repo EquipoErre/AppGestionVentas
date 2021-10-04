@@ -1,0 +1,26 @@
+:root {
+    --color-uno: #0A283F;
+    --color-uno-b: #243d52;
+    --color-dos: #8fafc7;
+    --color-tres: #e6eaec;
+    --font: sans-serif;
+}
+
+.search-sticky{
+    top: 0;
+    position: sticky;
+    background-color: var(--color-uno-b) ;
+}
+
+
+.search input{
+    width: 75%;
+}
+
+.bi-search{
+    color: var(--color-tres);
+}
+
+.bi-search:hover{
+    transform: scale(1.4,1.4);
+}

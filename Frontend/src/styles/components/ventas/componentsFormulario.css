@@ -1,0 +1,131 @@
+:root {
+    --color-uno: #0A283F;
+    --color-uno-b: #243d52;
+    --color-dos: #8fafc7;
+    --color-tres: #e6eaec;
+    --font: sans-serif;
+}
+
+.form-registro-venta{
+    height: 100vh;/*acá 80vh*/
+    /* background-color: darkgreen; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around, Arial;
+}
+
+
+.form-registro-venta h2{
+    margin-top: 0.5em;
+}
+
+
+.form-registro-venta_section-uno{
+    font-family: var(--font);
+    color: var(--color-tres);
+    height: 50vh;
+    background-color: var(--color-uno-b);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.form-registro-venta_section-uno_item-uno{
+    display: flex;
+    flex-direction: column;
+    /* background-color: burlywood; */
+    width: 100%;
+}
+
+.form-registro-venta_section-uno_item-uno_section, .form-registro-venta_section-uno_item-dos_section{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.form-registro-venta_section-dos{
+    height: 100%;
+    overflow-y: auto;
+    /* background-color: teal; */
+    display: flex;
+    flex-direction: column;
+}
+
+.form-registro-venta_section-dos_item-uno{
+    /* background-color: chartreuse; */
+    display: flex;
+    justify-content: center;
+}
+
+.form-registro-venta_section-dos_item-dos{
+    /* background-color: chocolate; */
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.form-registro-venta_section-dos_item-dos_item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-registro-venta-buttons{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1em;
+}
+
+.form-registro-venta-buttons button{
+    padding: 0.2em;
+    margin: 0.8em;
+}
+
+.form-registro-venta-total{
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5em;
+}
+
+.input-small{
+    width: 90px;
+}
+
+.button-agreagar{
+    height: 1.8em;
+    align-self: flex-end;
+    margin-bottom: 1.5em;
+}
+
+.contenedor-venta-registrada{
+    border: solid 0.2px var(--color-uno-b);
+    background-color: var(--color-tres);
+}
+
+input{
+    padding: 0.1em;
+    margin: 0.3em 0.6em;
+}
+
+label{
+    font-weight:600;
+    color: var(--color-uno-b);
+}
+
+.form-registro-venta_section-tres{
+    background-color: var(--color-uno-b);
+    font-family: var(--font);
+    color: var(--color-tres);
+
+}
+
+.form-registro-venta_section-tres label{
+    color: var(--color-tres);
+}
+
+
+
+.font-color{
+    color: var(--color-tres);
+}
