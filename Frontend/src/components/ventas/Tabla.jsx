@@ -20,7 +20,7 @@ const Tabla = ({datos}) => {
                         datos.map((dato) => {
                             return(
                             <tr>
-                                <Link to='/descripcionVenta'>
+                                <Link to='/ventas:codigo/descripcionVenta'>
                                     <td>{dato.id}</td>
                                 </Link>
                                 <td>{dato.fecha}</td>

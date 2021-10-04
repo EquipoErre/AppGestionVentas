@@ -23,7 +23,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path={["/usuarios", "/usuarios/:id", "/ventas", "/productos", "descripcionVenta"]}>
+        <Route path={["/usuarios", "/usuarios/:id", "/ventas", "/productos", "/ventas:codigo/descripcionVenta"]}>
           <Layout>
             {/* rutas del modulo de usuarios */}
             <Switch>
@@ -34,8 +34,8 @@ function App() {
                 <GestionUsuariosPage />
               </Route>
 
-              {["/ventas","/descripcionVenta"]}
-              <Route path="/descripcionVenta">
+              {["/ventas","/ventas:codigo/descripcionVenta"]}
+              <Route path="/ventas:codigo/descripcionVenta">
                 <VentanaDescrpcionVenta/>
               </Route>
               <Route path="/ventas">
