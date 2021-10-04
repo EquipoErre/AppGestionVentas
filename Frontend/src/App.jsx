@@ -10,9 +10,6 @@ import stylesComponentsFormulario from 'styles/components/ventas/componentsFormu
 import VentasIndex from "pages/ventas/VentasIndex"
 import VentanaDescrpcionVenta from "pages/ventas/VentanaDescrpcionVenta";
 import styleTabladescripcionVenta from 'styles/components/ventas/componentTablaDescripcionVenta.css'
-
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 import GestionUsuariosPage from "pages/usuarios/GestionUsuariosPage";
 import FormularioActualizarUsuario from "components/UsuariosYRoles/Formulario";
 import Layout from "layouts/Layout";
@@ -20,6 +17,8 @@ import LoginPage from "pages/login/LoginPage";
 import RegisterPage from "pages/login/RegisterPage";
 import AuthLayout from "layouts/authLayout";
 import PublicLayout from "layouts/publicLayout"
+
+
 function App() {
   return (
     <Router>
