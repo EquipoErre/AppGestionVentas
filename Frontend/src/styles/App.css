@@ -1,7 +1,7 @@
 :root {
-    --hover-color: rgb(42, 186, 243);
+    --hover-color: rgb(42, 243, 193);
     --link-color: white;
-    --active-color: yellow;
+    --active-color: #60baee;
     --menu-bg-color: #243d52;
 
   }
