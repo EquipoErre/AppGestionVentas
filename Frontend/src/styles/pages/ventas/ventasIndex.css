@@ -6,10 +6,10 @@
 .contenedor-tabla{
     width: 50%;
     overflow-y: auto;
-    height: 100vh;/*acá*/
+    height: 90.35vh;/*Organizar este estilo, lo que se busca es que ovupe el resto del height no ocupado por la barra de navegación*/
 }
 
 .contenedor-formulario{ 
     width: 50%;
-    height: 100vh;
+    height: 90.35vh;/*Organizar este estilo, lo que se busca es que ovupe el resto del height no ocupado por la barra de navegación, revisar esta misma propiedad en componentsFormulario.css*/
 }

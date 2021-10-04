@@ -7,7 +7,7 @@
 }
 
 .form-registro-venta{
-    height: 100vh;/*acá 80vh*/
+    height: 90.35vh;/*Organizar este estilo, lo que se busca es que ovupe el resto del height no ocupado por la barra de navegación*/
     /* background-color: darkgreen; */
     display: flex;
     flex-direction: column;
