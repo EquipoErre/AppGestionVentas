@@ -1,0 +1,23 @@
+[
+  {
+    "id": "001",
+    "correo": "example@gmail.com",
+    "estado": "autorizado",
+    "rol": "administrador",
+    "nombre": "adminName"
+  },
+  {
+    "id": "002",
+    "correo": "example@gmail.com",
+    "estado": "pendiente",
+    "rol": "vendedor",
+    "nombre": "salesman"
+  },
+  {
+    "id": "004",
+    "correo": "example@gmail.com",
+    "estado": "pendiente",
+    "rol": "vendedor",
+    "nombre": "saleswoman"
+  }
+]

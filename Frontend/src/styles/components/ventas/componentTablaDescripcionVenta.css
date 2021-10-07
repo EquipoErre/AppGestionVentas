@@ -1,0 +1,42 @@
+:root {
+    --color-uno: #0A283F;
+    --color-uno-b: #243d52;
+    --color-dos: #8fafc7;
+    --color-tres: #e6eaec;
+    --font: sans-serif;
+}
+
+.contenedor{
+    background-color: var(--color-uno-b);    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item{
+    width: 35%;
+    display: flex;
+    justify-content: space-between;    
+    border-bottom: solid 1px var(--color-dos);  
+}
+
+.item label{
+    color: var(--color-tres);
+    font-family: var(--font);
+}
+
+.contenedor-padre-botones{
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.4em;
+    background-color: var(--color-uno);
+    padding: 1.65em;/* Pendiente de cambio, solo lo hice para completar el height al 100vh, la finalidad despues de hacer los cambios necesarios es qu la tabla tenga una barra de scroll para que la descripcion de una venta solo ocupe ell 100vh de la altura de la pantalla*/
+}
+
+.contenedor-botones button{
+    margin: 0 0.5em;
+}
+
+.contenedor-botones{
+    margin-right: 3em;
+}

@@ -1,0 +1,81 @@
+:root {
+    --color-uno: #0A283F;
+    --color-uno-b: #243d52;
+    --color-dos: #8fafc7;
+    --color-tres: #e6eaec;
+    --border: #3b9eeb; 
+    --tamaño-fuente: 18px;
+}
+*{
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body {
+    background: var(--color-tres);
+}
+.titulo1{
+    text-align: center;
+    font-weight: bold;
+    margin-top: 25px; 
+    margin-bottom: 15px;
+}
+.titulo2{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin: 15px;
+}
+.form-ventas {   
+    text-align: left;
+    width: 60%;
+    padding: 5px 30px 5px;
+    margin: auto;
+    color: white;
+    background-color: var(--color-uno-b);
+    border-radius: 20px;
+    font-size: var(--tamaño-fuente);
+}
+.form-ventas label,
+.form-ventas input {
+    display: block;
+    width: 100%;
+    background: none;
+    padding: 8px;
+    border-radius: 10px;
+    color: white;
+}
+.form-ventas input {
+    background-color: var(--color-tres);
+    border: 1px solid var(--border);
+    margin-bottom: 20px;
+}
+.form-ventas input:focus {
+    border: 1px solid white;
+    outline: none;
+}
+.form-ventas .button {
+    background-color: var(--border);
+    border-radius: 10px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    text-align: center;
+    margin: 40px 0;
+    font-size: var(--tamaño-font);
+    cursor: pointer;
+    font-weight: bold; 
+}
+.seleccionar {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background-color: var(--color-tres);
+    cursor: pointer;
+    padding: 8px;
+    margin-bottom: 15px;
+    width: 100%;
+    font-size: var(--tamaño-font);
+}
+.seleccionar:focus {
+    border: 2px solid var(--color-dos);
+    outline: none;
+}

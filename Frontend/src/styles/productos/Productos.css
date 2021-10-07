@@ -1,0 +1,55 @@
+:root {
+    --color-uno: #0A283F;
+    --color-uno-b: #243d52;
+    --color-dos: #8fafc7;
+    --color-tres: #e6eaec;
+    --border: #3b9eeb; 
+    --tamaño-fuente: 18px;
+    --color-boton: lightblue;
+}
+* { 
+    margin: 0px;   
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body {
+    background: var(--color-tres);
+}
+.titulo1{
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+}
+main{
+    width: 85%;
+    margin: auto;
+}
+.buscador{
+    margin: 25px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: right; 
+    font-size: var(--tamaño-font); 
+}
+.buscador button {
+    margin: 0px 30px;
+}
+.buscador select,
+.buscador input{
+    padding: 0px 0px;
+    margin: 0px;
+    width: 40%;
+}
+.tabla-productos button{
+    border-radius: 8px;
+    font-size: 17px;
+    width: 80%;
+    align-items: center;
+}
+.tabla-productos thead {
+    background-color: var(--color-uno-b);
+    color: white;
+    text-align: left;
+    font-size: var(--tamaño-fuente);
+}
