@@ -1,15 +1,16 @@
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./styles/App.css";
+import "./styles/layoutPrivado.css"
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import GestionUsuariosPage from "pages/usuarios/GestionUsuariosPage";
-import FormularioActualizarUsuario from "components/UsuariosYRoles/Formulario";
+import FormularioActualizarUsuario from "pages/usuarios/FormularioActualizacion";
 import Layout from "layouts/Layout";
 import LoginPage from "pages/login/LoginPage";
 import RegisterPage from "pages/login/RegisterPage";
 import AuthLayout from "layouts/authLayout";
-import PublicLayout from "layouts/publicLayout"
+import PublicLayout from "layouts/publicLayout";
 function App() {
   return (
     <Router>
