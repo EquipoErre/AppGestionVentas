@@ -17,13 +17,15 @@ import LoginPage from "pages/login/LoginPage";
 import RegisterPage from "pages/login/RegisterPage";
 import AuthLayout from "layouts/authLayout";
 import PublicLayout from "layouts/publicLayout"
+import MaestroProductos from "pages/productos/MaestroProductos";
+import ProductoNuevo from "pages/productos/ProductoNuevo";
 
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route path={["/usuarios", "/usuarios/:id", "/ventas", "/productos", "/ventas:codigo/descripcionVenta"]}>
+        <Route path={["/usuarios", "/usuarios/:id", "/ventas", "/productos", "/productoNuevo", "/ventas:codigo/descripcionVenta"]}>
           <Layout>
             {/* rutas del modulo de usuarios */}
             <Switch>
@@ -40,11 +42,16 @@ function App() {
               </Route>
               <Route path="/ventas">
                 <VentasIndex/>
-              </Route>              
-              {/* rutas del modulo de productos */}
-              <Route path="/productos">
-                <h1>Productos</h1>
               </Route>
+
+              {/* rutas del modulo productos */}
+              <Route path="/productos">
+                <MaestroProductos/>
+              </Route>
+              <Route path="/productoNuevo">
+                <ProductoNuevo />
+              </Route>
+
             </Switch>
           </Layout>
         </Route>
