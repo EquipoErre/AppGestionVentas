@@ -1,5 +1,5 @@
+import MenuOpcionesTabla  from "components/MenuOpcionesTabla";
 
-import { Link } from "react-router-dom";
 
 export default function RegistrosUsuarios(props) {
   return (
