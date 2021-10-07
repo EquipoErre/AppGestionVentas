@@ -42,27 +42,26 @@ function App() {
         {/* rutas para el modulo de registro e inicio de sesion */}
         <Route path={["/login", "/register"]}>
           <AuthLayout>
-          <Switch>
-            <Route path="/login">
-              <LoginPage />
-            </Route>
-            <Route path="/register">
-              <RegisterPage />
-            </Route>
-          </Switch>
+            <Switch>
+              <Route path="/login">
+                <LoginPage />
+              </Route>
+              <Route path="/register">
+                <RegisterPage />
+              </Route>
+            </Switch>
           </AuthLayout>
         </Route>
-          
+
         <Route path={["/"]}>
           <PublicLayout>
-          <Switch>
-            <Route exact path="/">
-            <h1>Inicio</h1>
-            </Route>
-          </Switch>
+            <Switch>
+              <Route exact path="/">
+                <h1>Inicio</h1>
+              </Route>
+            </Switch>
           </PublicLayout>
         </Route>
-        
       </Switch>
     </Router>
   );
