@@ -6,7 +6,7 @@ const Layout = ({children}) => {
 
     const [paginaActual, setPaginaActual] = useState('/usuarios');
     return (
-        <div >
+        <div className='contenedorPrincipal'>
             <header>
                 {/* menu recibe una lista de objetos */}
                 {/* tambien se puede definirla directamente en esta funcion, 
