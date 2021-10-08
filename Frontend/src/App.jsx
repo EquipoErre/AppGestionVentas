@@ -1,31 +1,41 @@
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "./styles/App.css";
-import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-import logo from './logo.svg';
+//import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap/dist/css/bootstrap.css'
-import stylesVentasIndex from 'styles/pages/ventas/ventasIndex.css'
-import stylesComponentsTabla from 'styles/components/ventas/componentsTabla.css'
-import stylesComponentsBarraBusqueda from 'styles/components/ventas/componentsBarraBusqueda.css'
-import stylesComponentsFormulario from 'styles/components/ventas/componentsFormulario.css'
-import VentasIndex from "pages/ventas/VentasIndex"
+
+import "styles/pages/ventas/ventasIndex.css";
+import "styles/components/ventas/componentsTabla.css";
+import "styles/components/ventas/componentsBarraBusqueda.css";
+import "styles/components/ventas/componentsFormulario.css";
+import "styles/components/ventas/componentTablaDescripcionVenta.css";
+import "styles/menu.css";
+import "styles/layoutPrivado.css";
+
+import VentasIndex from "pages/ventas/VentasIndex";
 import VentanaDescrpcionVenta from "pages/ventas/VentanaDescrpcionVenta";
-import styleTabladescripcionVenta from 'styles/components/ventas/componentTablaDescripcionVenta.css'
 import GestionUsuariosPage from "pages/usuarios/GestionUsuariosPage";
-import FormularioActualizarUsuario from "components/UsuariosYRoles/Formulario";
+import FormularioActualizarUsuario from "pages/usuarios/FormularioActualizacion";
 import Layout from "layouts/Layout";
 import LoginPage from "pages/login/LoginPage";
 import RegisterPage from "pages/login/RegisterPage";
 import AuthLayout from "layouts/authLayout";
-import PublicLayout from "layouts/publicLayout"
+import PublicLayout from "layouts/publicLayout";
 import MaestroProductos from "pages/productos/MaestroProductos";
 import ProductoNuevo from "pages/productos/ProductoNuevo";
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route path={["/usuarios", "/usuarios/:id", "/ventas", "/productos", "/productoNuevo", "/ventas:codigo/descripcionVenta"]}>
+        <Route
+          path={[
+            "/usuarios",
+            "/usuarios/:id",
+            "/ventas",
+            "/productos",
+            "/productoNuevo",
+            "/ventas:codigo/descripcionVenta",
+          ]}
+        >
           <Layout>
             {/* rutas del modulo de usuarios */}
             <Switch>
@@ -36,22 +46,21 @@ function App() {
                 <GestionUsuariosPage />
               </Route>
 
-              {["/ventas","/ventas:codigo/descripcionVenta"]}
+              {["/ventas", "/ventas:codigo/descripcionVenta"]}
               <Route path="/ventas:codigo/descripcionVenta">
-                <VentanaDescrpcionVenta/>
+                <VentanaDescrpcionVenta />
               </Route>
               <Route path="/ventas">
-                <VentasIndex/>
+                <VentasIndex />
               </Route>
 
               {/* rutas del modulo productos */}
               <Route path="/productos">
-                <MaestroProductos/>
+                <MaestroProductos />
               </Route>
               <Route path="/productoNuevo">
                 <ProductoNuevo />
               </Route>
-
             </Switch>
           </Layout>
         </Route>
@@ -59,27 +68,26 @@ function App() {
         {/* rutas para el modulo de registro e inicio de sesion */}
         <Route path={["/login", "/register"]}>
           <AuthLayout>
-          <Switch>
-            <Route path="/login">
-              <LoginPage />
-            </Route>
-            <Route path="/register">
-              <RegisterPage />
-            </Route>
-          </Switch>
+            <Switch>
+              <Route path="/login">
+                <LoginPage />
+              </Route>
+              <Route path="/register">
+                <RegisterPage />
+              </Route>
+            </Switch>
           </AuthLayout>
         </Route>
-          
+
         <Route path={["/"]}>
           <PublicLayout>
-          <Switch>
-            <Route exact path="/">
-            <h1>Inicio</h1>
-            </Route>
-          </Switch>
+            <Switch>
+              <Route exact path="/">
+                <h1>Inicio</h1>
+              </Route>
+            </Switch>
           </PublicLayout>
         </Route>
-        
       </Switch>
     </Router>
   );

@@ -1,10 +1,11 @@
 import usuariosJson from "json/usuarios.json";
 import RegistrosUsuarios from "components/UsuariosYRoles/RegistrosUsuarios";
-import "styles/usuariosYRolesCss/UsuariosYRoles.css"
+import "styles/usuariosYRolesCss/UsuariosYRoles.css";
 
 export default function TablaUsuariosYRoles() {
   return (
     <div className="container">
+      <h2 className="titulo1">MAESTRO DE USUARIOS</h2>
       <section className="vistas">
         <div className="vista  row my-4">
           <h4 className="mx-3">Vista de roles</h4>
@@ -37,13 +38,13 @@ export default function TablaUsuariosYRoles() {
 
       {/* <!-- tabla de usuarios --> */}
       <section className="tabla-usuarios">
-        <table className="table table-striped ">
+        <table className="table table-striped table-hover">
           <thead className="thead-dark">
             <tr>
               <th className="col-1">Id</th>
               <th className="col-2">Rol</th>
               <th className="col-2">Estado</th>
-              <th>Nombre</th>
+              <th className="col 3">Nombre</th>
               <th className="col-1">Opciones</th>
             </tr>
           </thead>

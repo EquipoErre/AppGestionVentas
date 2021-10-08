@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const MaestroProductos = () => {
     return (
-    <div>
+    <div className='container'>
         <h2 className="titulo1">MAESTRO DE PRODUCTOS</h2>
         <main className='contenedor-maestro-productos'>
             <section className="buscador">
