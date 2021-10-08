@@ -3,6 +3,7 @@ import "./styles/App.css";
 import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.css'
+import 'styles/layoutPrivado.css'
 import stylesVentasIndex from 'styles/pages/ventas/ventasIndex.css'
 import stylesComponentsTabla from 'styles/components/ventas/componentsTabla.css'
 import stylesComponentsBarraBusqueda from 'styles/components/ventas/componentsBarraBusqueda.css'
@@ -11,7 +12,7 @@ import VentasIndex from "pages/ventas/VentasIndex"
 import VentanaDescrpcionVenta from "pages/ventas/VentanaDescrpcionVenta";
 import styleTabladescripcionVenta from 'styles/components/ventas/componentTablaDescripcionVenta.css'
 import GestionUsuariosPage from "pages/usuarios/GestionUsuariosPage";
-import FormularioActualizarUsuario from "components/UsuariosYRoles/Formulario";
+import FormularioActualizarUsuario from "pages/usuarios/FormularioActualizacion";
 import Layout from "layouts/Layout";
 import LoginPage from "pages/login/LoginPage";
 import RegisterPage from "pages/login/RegisterPage";
@@ -59,27 +60,26 @@ function App() {
         {/* rutas para el modulo de registro e inicio de sesion */}
         <Route path={["/login", "/register"]}>
           <AuthLayout>
-          <Switch>
-            <Route path="/login">
-              <LoginPage />
-            </Route>
-            <Route path="/register">
-              <RegisterPage />
-            </Route>
-          </Switch>
+            <Switch>
+              <Route path="/login">
+                <LoginPage />
+              </Route>
+              <Route path="/register">
+                <RegisterPage />
+              </Route>
+            </Switch>
           </AuthLayout>
         </Route>
-          
+
         <Route path={["/"]}>
           <PublicLayout>
-          <Switch>
-            <Route exact path="/">
-            <h1>Inicio</h1>
-            </Route>
-          </Switch>
+            <Switch>
+              <Route exact path="/">
+                <h1>Inicio</h1>
+              </Route>
+            </Switch>
           </PublicLayout>
         </Route>
-        
       </Switch>
     </Router>
   );
