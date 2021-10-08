@@ -21,8 +21,13 @@ body {
     font-weight: bold;
     margin-top: 10px;
 }
-main{
+
+/*se le estaba dando estilos al main y esto estaba afectando todas las páginas del sitio
+Se corrige, dandole un nombre de clase al contenedor main en el maestro de productos
+es aconcejable cambiar ese main por otra etiqueta*/
+.contenedor-maestro-productos{
     width: 85%;
+    padding: 30px;
     margin: auto;
 }
 .buscador{

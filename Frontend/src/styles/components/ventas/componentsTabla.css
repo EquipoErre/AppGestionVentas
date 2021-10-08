@@ -1,3 +1,11 @@
+:root {
+    --color-uno: #0A283F;
+    --color-uno-b: #243d52;
+    --color-dos: #8fafc7;
+    --color-tres: #e6eaec;
+    --font: sans-serif;
+}
+
 .table-head-sticky{
     top: 40px;
     position: sticky;
@@ -5,4 +13,12 @@
 
 .datos-centrados{
     text-align: center;
+}
+
+.table{
+    background-color: white;
+}
+
+.table tr:nth-child(even){
+    background-color: var(--color-tres) ;
 }
