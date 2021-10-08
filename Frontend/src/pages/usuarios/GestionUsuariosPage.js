@@ -5,6 +5,7 @@ import "styles/usuariosYRolesCss/UsuariosYRoles.css";
 export default function TablaUsuariosYRoles() {
   return (
     <div className="container">
+      <h2 className="titulo1">MAESTRO DE USUARIOS</h2>
       <section className="vistas">
         <div className="vista  row my-4">
           <h4 className="mx-3">Vista de roles</h4>
