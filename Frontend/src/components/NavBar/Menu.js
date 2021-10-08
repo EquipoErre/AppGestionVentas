@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import { Link } from "react-router-dom";
 
 // este componente se usa en los layouts
@@ -14,7 +15,7 @@ export default function Menu({ ModulosYRutas, paginaActual, onChange }) {
     ModulosYRutas.forEach((modulo) => {
       // className={props.pagina === i ? "active" : ""}
       resultado.push(
-        <li key={modulo.id}>
+        <li key={nanoid}>
           <Link to={modulo.ruta} className={paginaActual === modulo.ruta ? "active" : "ruta"} onClick= {() => onChange(modulo.ruta)}>
             {modulo.nombre}
           </Link>
