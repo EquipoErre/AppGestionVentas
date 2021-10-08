@@ -1,5 +1,5 @@
 import React from 'react'
-import stylesComponentsBarraBusqueda from 'styles/components/ventas/componentsBarraBusqueda.css'
+import 'styles/components/ventas/componentsBarraBusqueda.css'
 
 const BarraBusqueda = () => {
     return (
