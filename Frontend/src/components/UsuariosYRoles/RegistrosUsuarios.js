@@ -1,4 +1,4 @@
-import MenuOpcionesTabla from "components/MenuOpcionesTabla";
+import MenuOpcionesTabla from "components/UsuariosYRoles/MenuOpcionesTabla";
 import { nanoid } from "nanoid";
 
 export default function RegistrosUsuarios({ id, rol, estado, nombre }) {
