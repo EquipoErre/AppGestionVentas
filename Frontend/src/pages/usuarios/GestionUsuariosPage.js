@@ -37,7 +37,7 @@ export default function TablaUsuariosYRoles() {
 
       {/* <!-- tabla de usuarios --> */}
       <section className="tabla-usuarios">
-        <table className="table table-striped ">
+        <table className="table table-striped table-hover">
           <thead className="thead-dark">
             <tr>
               <th className="col-1">Id</th>
