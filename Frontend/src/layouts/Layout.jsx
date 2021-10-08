@@ -1,10 +1,11 @@
 import Menu from "components/NavBar/Menu"
 import ListaModulos from "json/menuModuleNames.json"
 import { useState } from "react";
+import { useLocation } from "react-router";
 
 const Layout = ({children}) => {
-
-    const [paginaActual, setPaginaActual] = useState('/usuarios');
+    const location = useLocation();
+    const [paginaActual, setPaginaActual] = useState(location.pathname);
     return (
         <div className='contenedorPrincipal'>
             <header>
