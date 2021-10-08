@@ -74,7 +74,10 @@ const Formulario = () => {
                             </div>
                         </div>
 
-                    {/* ************************************************* */}  
+                    {/* *************************Los elementos encerrados en este comentario solo
+                    son parte de una simulación de contenido de la sección de registro de venta ya 
+                    que aún no tiene la funcionalidad esperada el botón de agregar, que se encarga de ir agregando 
+                    cada producto dentro de la venta************************ */}  
                     <div className="contenedor-venta-registrada">                            
                             <div className="form-registro-venta_section-dos_item-uno">
                                 <div >
