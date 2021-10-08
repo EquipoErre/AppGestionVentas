@@ -1,15 +1,19 @@
-import MenuOpcionesTabla  from "components/MenuOpcionesTabla";
+import MenuOpcionesTabla from "components/MenuOpcionesTabla";
+import { nanoid } from "nanoid";
 
-
-export default function RegistrosUsuarios(props) {
+export default function RegistrosUsuarios({ id, rol, estado, nombre }) {
+  // cada ves que se usa un map hay que poner un key
   return (
-    <tr>
-      <td>{props.id}</td>
-      <td>{props.rol}</td>
-      <td>{props.estado}</td>
-      <td>{props.nombre}</td>
+    <tr key={nanoid}>
+      <td>{id}</td>
+      <td>{rol}</td>
+      <td>{estado}</td>
+      <td>{nombre}</td>
       <td>
-        <MenuOpcionesTabla rutaEnviar={`/usuarios/${props.id}`} nombreBoton='Editar'/>
+        <MenuOpcionesTabla
+          rutaEnviar={`/usuarios/${id}`}
+          nombreBoton="Editar"
+        />
       </td>
     </tr>
   );
