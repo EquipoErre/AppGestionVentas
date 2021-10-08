@@ -1,5 +1,3 @@
-import { perfilUsuario } from "context/UsuarioActual";
-
 import { useParams } from "react-router";
 import {  useRef } from "react";
 import "styles/usuariosYRolesCss/FormularioUsuarios.css";
