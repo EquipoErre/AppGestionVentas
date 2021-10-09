@@ -1,5 +1,6 @@
 import Menu from "components/NavBar/Menu";
 import { useState } from "react";
+import "styles/layoutPrivado.css";
 
 const Layout = ({ children }) => {
     const [paginaActual, setPaginaActual] = useState('/')
