@@ -2,6 +2,7 @@ import Menu from "components/NavBar/Menu"
 import ListaModulos from "json/menuModuleNames.json"
 import { useState } from "react";
 import { useLocation } from "react-router";
+import "styles/layoutPrivado.css";
 
 const Layout = ({children}) => {
     const location = useLocation();

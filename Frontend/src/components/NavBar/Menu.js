@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
 import { Link } from "react-router-dom";
+import "styles/menu.css";
 
 // este componente se usa en los layouts
 
@@ -29,7 +30,7 @@ export default function Menu({ ModulosYRutas, paginaActual, onChange }) {
 
   return (
     <nav className="lista-enlaces">
-      <Link to="/">
+      <Link to="/" className='text-decoration-none'>
         <h1 className="titulo">Gestion de Ventas</h1>
       </Link>
 
