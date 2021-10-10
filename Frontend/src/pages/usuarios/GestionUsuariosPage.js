@@ -1,8 +1,25 @@
-import usuariosJson from "json/usuarios.json";
 import RegistrosUsuarios from "components/UsuariosYRoles/RegistrosUsuarios";
 import "styles/usuariosYRolesCss/UsuariosYRoles.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function TablaUsuariosYRoles() {
+  const [usuarios, setUsuarios] = useState([]);
+
+  useEffect(() => {
+    const options = { method: "GET", url: "http://localhost:5000/usuarios" };
+
+    axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data)
+        setUsuarios(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <div className="container">
       <h2 className="titulo1">MAESTRO DE USUARIOS</h2>
@@ -50,7 +67,7 @@ export default function TablaUsuariosYRoles() {
           </thead>
           {/* <!-- registros --> */}
           <tbody>
-            {usuariosJson.map((usuario) => (
+            {usuarios.map((usuario) => (
               <RegistrosUsuarios
                 id={usuario.id}
                 estado={usuario.estado}
