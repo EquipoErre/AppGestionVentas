@@ -7,6 +7,7 @@ import "styles/components/ventas/componentsBarraBusqueda.css";
 import "styles/components/ventas/componentsFormulario.css";
 import "styles/components/ventas/componentTablaDescripcionVenta.css";
 
+
 import VentasIndex from "pages/ventas/VentasIndex";
 import VentanaDescrpcionVenta from "pages/ventas/VentanaDescrpcionVenta";
 import GestionUsuariosPage from "pages/usuarios/GestionUsuariosPage";
@@ -19,6 +20,7 @@ import PublicLayout from "layouts/publicLayout";
 import MaestroProductos from "pages/productos/MaestroProductos";
 import ProductoNuevo from "pages/productos/ProductoNuevo";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ListaVentas from "pages/ventas/ListaVentas"
 
 function App() {
   return (
@@ -29,9 +31,10 @@ function App() {
             "/usuarios",
             "/usuarios/:id",
             "/ventas",
-            "/productos",
-            "/productoNuevo",
             "/ventas:codigo/descripcionVenta",
+            "/ventas/listaVentas",
+            "/productos",
+            "/productoNuevo"
           ]}
         >
           <Layout>
@@ -44,9 +47,12 @@ function App() {
                 <GestionUsuariosPage />
               </Route>
 
-              {["/ventas", "/ventas:codigo/descripcionVenta"]}
+              {["/ventas","/ventas/listaVentas", "/ventas:codigo/descripcionVenta"]}
               <Route path="/ventas:codigo/descripcionVenta">
                 <VentanaDescrpcionVenta />
+              </Route>
+              <Route path="/ventas/listaVentas">
+                <ListaVentas/>
               </Route>
               <Route path="/ventas">
                 <VentasIndex />
