@@ -7,7 +7,7 @@
 }
 
 .table-head-sticky{
-    top: 40px;
+    top: 95px;
     position: sticky;
 }
 
@@ -17,6 +17,7 @@
 
 .table{
     background-color: white;
+
 }
 
 .table tr:nth-child(even){

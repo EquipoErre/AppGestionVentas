@@ -438,25 +438,9 @@ const VentasIndex = () => {
     return (
         <div>
             <div className='contenedor-padre'>
-                {/* <section className='contenedor-tabla'>
-                    <div className='search search-sticky'>                    
-                        <BarraBusqueda/>
-                        </div>
-                        <Tabla datos={datosSimulados}></Tabla>
-                    </section> */}
                 <section className='contenedor-formulario'>
                     <Formulario />
-                </section>
-                <div >
-                    <Link to='/ventas/listaVentas'>
-                    <button type="button" class="btn btn-primary link-ventas">VENTAS</button>
-                    </Link>
-                </div>
-                {/* <section className=''>
-                    <button>
-                        <h2>Ver las ventas</h2>
-                    </button>
-                </section> */}
+                </section>                
             </div>
         </div>
     )

@@ -1,6 +1,8 @@
 import React from 'react'
 import Tabla from 'components/ventas/Tabla'
 import BarraBusqueda from 'components/ventas/BarraBusqueda';
+import { Link } from 'react-router-dom';
+import "styles/pages/ventas/listaVentas.css"
 
 const datosSimulados = [
     {
@@ -434,10 +436,19 @@ const ListaVentas = () => {
     return (
         <>
             <section className='contenedor-tabla'>
-                <div className='search search-sticky'>
-                    <BarraBusqueda />
+                <div className='search search-sticky contenedor-busqueda-button'>
+                    <div className='contenedor-barra-busqueda'>
+                        <BarraBusqueda />
+                    </div>
+                    <div className="contenedor-link-registro-ventas">
+                        <Link to='/ventas'>
+                            <button type="button" class="btn btn-primary button-ventas">REGISTRAR VENTA </button>
+                        </Link>
+                    </div>
                 </div>
-                <Tabla datos={datosSimulados}></Tabla>
+                <div className='contenedor-tabla'>
+                    <Tabla datos={datosSimulados}></Tabla>
+                </div>
             </section>
         </>
     )

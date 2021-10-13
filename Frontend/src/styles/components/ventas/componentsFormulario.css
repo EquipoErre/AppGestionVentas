@@ -25,24 +25,12 @@
     padding: 8px;
     width: 100%;
     text-align: center;
-    margin-left: 100px;
     color: var(--color-tres);
     /* margin-bottom: px; */
     
 }
 
-.link-ventas{
-    /* align-self: flex-end; */
-    /* padding: 8px; */
-    margin: 10px;
-    border-radius: 5px;
-    text-align: center;
-    /* width: 15%; */
-    border: none;
-    outline: none;
-    border-bottom: 4px VAR(--color-) solid;
-    /* background-color: var(--color-dos); */
-}
+
 
 
 
@@ -165,7 +153,12 @@ input{
     
 }
 
-
+.contenedor-link-ventas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
 
 
 /* .input-small{

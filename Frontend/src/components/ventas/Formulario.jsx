@@ -1,18 +1,19 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Formulario = () => {
     return (
         <>
-            
+
             <div className='contenedor-form-registro-venta'>
                 <form action="" className="form-registro-venta">
                     <div className="form-registro-venta_section-head">
                         <div className='form-registro-venta_section-head_head'>
                             <h2>REGISTRO DE VENTA</h2>
-                            <div >
-                                {/* <Link to='/'> */}
-                                    <button type="button" class="btn btn-primary link-ventas">VENTAS</button>
-                                {/* </Link> */}
+                            <div className="contenedor-link-ventas">
+                                <Link to='/ventas/listaVentas'>
+                                    <button type="button" class="btn btn-primary button-ventas"> VER VENTAS </button>
+                                </Link>
                             </div>
                         </div>
                         <div className='form-registro-venta_section-head_item-uno'>
@@ -78,7 +79,7 @@ const Formulario = () => {
                                     <label htmlFor="subtotal">Subtotal</label>
                                     <input type="number" id="subtotal" name="subtotal" disabled placeholder='000000' className='input-small' />
                                 </div>
-                                <div className='form-registro-venta_section-body_item-dos_item'>                                    
+                                <div className='form-registro-venta_section-body_item-dos_item'>
                                     <button className="button-agreagar">agregar</button>
                                     <button className="button-agreagar">agregar</button>
                                     <button className="button-agreagar">agregar</button>

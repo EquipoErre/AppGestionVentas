@@ -9,6 +9,7 @@ import "styles/components/ventas/componentTablaDescripcionVenta.css";
 import "styles/menu.css";
 import "styles/layoutPrivado.css";
 
+
 import VentasIndex from "pages/ventas/VentasIndex";
 import VentanaDescrpcionVenta from "pages/ventas/VentanaDescrpcionVenta";
 import GestionUsuariosPage from "pages/usuarios/GestionUsuariosPage";
