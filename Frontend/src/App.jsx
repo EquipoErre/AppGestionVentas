@@ -6,8 +6,6 @@ import "styles/components/ventas/componentsTabla.css";
 import "styles/components/ventas/componentsBarraBusqueda.css";
 import "styles/components/ventas/componentsFormulario.css";
 import "styles/components/ventas/componentTablaDescripcionVenta.css";
-import "styles/menu.css";
-import "styles/layoutPrivado.css";
 
 import VentasIndex from "pages/ventas/VentasIndex";
 import VentanaDescrpcionVenta from "pages/ventas/VentanaDescrpcionVenta";

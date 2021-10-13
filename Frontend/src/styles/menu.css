@@ -19,8 +19,8 @@
 .titulo {
   color: var(--link-color);
   font-size: 30px;
-  padding: 5px;
-  margin-left: 30px;
+  padding: 10px;
+  margin: 0;
 }
 .titulo:hover {
   color: var(--hover-color);
@@ -28,13 +28,12 @@
 
 .lista-enlaces .menu {
   display: flex;
-  align-items: center;
-  margin: 10px;
+  padding: 10px;
+  margin: 0;
   list-style: none;
 }
 
 .lista-enlaces .menu > li {
-  height: 40px;
   text-align: center;
   padding: 0 5px;
   margin-right: 10px;

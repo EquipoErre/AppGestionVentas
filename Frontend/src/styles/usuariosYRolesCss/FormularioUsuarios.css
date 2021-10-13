@@ -13,14 +13,13 @@
     box-sizing: border-box;
     font-family: "sans serif";
   }
-  body {
-    background: var(--main-bg-color);
-  }
+
   .titulo-principal{
     text-align: center;
   
   }
   .titulo-3{
+    color: var(--text-color);
     font-size: 25px;
   }
   .form-roles {
@@ -37,11 +36,13 @@
   
   .form-roles label,
   .form-roles  input {
+    color: var(--text-color);
     text-align: left;
     display: block;
     width: 100%;
     background: none;
     padding: 10px;
+    margin: 0;
     border-radius: 10px;
     margin-bottom: 5px;
     font-size: var(--tamaño-font);
