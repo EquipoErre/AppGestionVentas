@@ -21,6 +21,7 @@ import PublicLayout from "layouts/publicLayout";
 import MaestroProductos from "pages/productos/MaestroProductos";
 import ProductoNuevo from "pages/productos/ProductoNuevo";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import ListaVentas from "pages/ventas/ListaVentas"
 
 function App() {
   return (
@@ -31,9 +32,10 @@ function App() {
             "/usuarios",
             "/usuarios/:id",
             "/ventas",
-            "/productos",
-            "/productoNuevo",
             "/ventas:codigo/descripcionVenta",
+            "/ventas/listaVentas",
+            "/productos",
+            "/productoNuevo"
           ]}
         >
           <Layout>
@@ -46,9 +48,12 @@ function App() {
                 <GestionUsuariosPage />
               </Route>
 
-              {["/ventas", "/ventas:codigo/descripcionVenta"]}
+              {["/ventas","/ventas/listaVentas", "/ventas:codigo/descripcionVenta"]}
               <Route path="/ventas:codigo/descripcionVenta">
                 <VentanaDescrpcionVenta />
+              </Route>
+              <Route path="/ventas/listaVentas">
+                <ListaVentas/>
               </Route>
               <Route path="/ventas">
                 <VentasIndex />

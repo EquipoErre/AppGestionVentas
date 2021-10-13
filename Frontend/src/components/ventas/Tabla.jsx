@@ -1,6 +1,435 @@
 import React from 'react'
 import {Link} from "react-router-dom";
 
+
+const datosSimulados = [
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    },
+    {
+        "id": "01",
+        "fecha": '01/02/2021',
+        "documentoCliente": '10025232654',
+        "nombreCliente": 'Eduardo Rincon',
+        "vendedor": "02",
+        "valorTotal": "150550"
+    }
+
+];
+
 const Tabla = ({datos}) => {
     return (
         <>
