@@ -1,15 +1,33 @@
-.contenedor-padre{
-    display: flex;
-    /* height: 100%; */
+*{
+    box-sizing: border-box;
 }
 
-.contenedor-tabla{
-    width: 50%;
-    overflow-y: auto;
-    height: 90.35vh;/*Organizar este estilo, lo que se busca es que ovupe el resto del height no ocupado por la barra de navegación*/
+.contenedor-padre{
+    display: flex;
+    height: 90vh;
+    width: 100%;
+    align-items: center;
+
+    /*estilos de priueba*/
+    /* justify-content: center; */
+    /* background-color: red; */
 }
 
 .contenedor-formulario{ 
-    width: 50%;
-    height: 90.35vh;/*Organizar este estilo, lo que se busca es que ovupe el resto del height no ocupado por la barra de navegación, revisar esta misma propiedad en componentsFormulario.css*/
+    display: flex;
+    width: 100%;    
+    padding: 10px;
+    height: 100%;
+    overflow: hidden ;
+
+    /*estilos de priueba*/
+    /* border: solid 2px black; */
 }
+
+/* .contenedor-tabla{
+    width: 50%;
+    overflow-y: auto; */
+    /*Organizar este estilo, lo que se busca es que ovupe el resto del height no ocupado por la barra de navegación*/
+    /* height: 90.35vh;
+} */
+
