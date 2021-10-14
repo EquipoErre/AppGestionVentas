@@ -14,14 +14,17 @@ export default function Menu({ ModulosYRutas, paginaActual, onChange }) {
 
     const resultado = [];
     // los enlaces del menu se cargan a traves de una iteracion
-    
+    resultado.push(   
+      <li key={nanoid}>
+          <Link className={`login ruta`} onClick= {() => loginWithRedirect()}>
+            Iniciar Sesión
+          </Link>
+      </li>
+    )
     ModulosYRutas.forEach((modulo) => {
       // className={props.pagina === i ? "active" : ""}
       resultado.push(
         <li key={nanoid}>
-          <Link className={`login ${paginaActual === modulo.ruta ? "active" : "ruta"} `} onClick= {() => loginWithRedirect()}>
-            Iniciar Sesión
-          </Link>
           <Link to={modulo.ruta} className={paginaActual === modulo.ruta ? "active" : "ruta"} onClick= {() => onChange(modulo.ruta)}>
             {modulo.nombre}
           </Link>
