@@ -54,6 +54,10 @@ export default function Formulario() {
     // no es necesario llenar todos los campos del form
     <div className="paginaActualizacionUsuarios">
       <h1 className="titulo-principal">Gestionar usuarios y roles</h1>
+
+      <Link to="/usuarios/" className="btn btn-primary mx-4 my-4 float-right">
+        volver / cancelar
+      </Link>
       <section className="form-roles">
         {/* formulario */}
         <form ref={form} onSubmit={enviarAlBackend}>
