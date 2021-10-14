@@ -4,6 +4,7 @@ import "styles/usuariosYRolesCss/FormularioUsuarios.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { patchUsuarios } from "utils/api";
+import { Link } from "react-router-dom";
 // normalmente se accederia a la api a traves de useEffect
 
 export default function Formulario() {
@@ -27,7 +28,7 @@ export default function Formulario() {
     if (datosActualizados["nombre"] === "") {
       delete datosActualizados["nombre"];
     }
-    // con lo anterior lo mas probable es que quede 
+    // con lo anterior lo mas probable es que quede
     // solo el id en el objeto
     // entonces hay que validar si solo existe el id
     // no se actualiza nada
@@ -39,12 +40,10 @@ export default function Formulario() {
       // nombre, estado, rol
       patchUsuarios(id, datosActualizados);
       toast.success("usuario actualizado con exito");
-    }else{
-      toast.info('No se han hecho cambios')
+    } else {
+      toast.info("No se han hecho cambios");
     }
   };
-
-
   // se ordenan los datos para tener siempre actualizada la info
   const form = useRef(null);
 
@@ -99,15 +98,15 @@ export default function Formulario() {
         </form>
         {/* notificacion */}
         <ToastContainer
-          position="bottom-center"
+          position="top-center"
           autoClose={5000}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
           rtl={false}
-          pauseOnFocusLoss
+          pauseOnFocusLoss={false}
           draggable
-          pauseOnHover
+          pauseOnHover={false}
         />
       </section>
     </div>
