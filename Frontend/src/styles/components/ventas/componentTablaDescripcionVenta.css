@@ -6,22 +6,22 @@
     --font: sans-serif;
 }
 
-.contenedor{
-    background-color: var(--color-uno-b);    
+.contenedor-head{
+    background-color: var(--color-tres);    
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center;    
 }
 
 .item{
     width: 35%;
     display: flex;
     justify-content: space-between;    
-    border-bottom: solid 1px var(--color-dos);  
+    border-bottom: solid 1px var(--color-uno-b);  
 }
 
 .item label{
-    color: var(--color-tres);
+    color: var(--color-uno);
     font-family: var(--font);
 }
 
@@ -39,4 +39,19 @@
 
 .contenedor-botones{
     margin-right: 3em;
+}
+
+.contenedor-head-descripcion{
+    display: flex;
+}
+
+.contenedor-link-ventas{
+    width: 10%;
+    display: flex;
+    align-items: flex-start;
+    padding: 8px;
+}
+
+.contenedor-head{
+    width: 90%;
 }

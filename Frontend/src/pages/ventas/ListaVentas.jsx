@@ -1,10 +1,8 @@
 import React from 'react'
 import Tabla from 'components/ventas/Tabla'
-// import stylesVentasIndex from 'styles/pages/ventas/ventasIndex.css'
 import BarraBusqueda from 'components/ventas/BarraBusqueda';
-import Formulario from 'components/ventas/Formulario';
-import {Link} from "react-router-dom";
-
+import { Link } from 'react-router-dom';
+import "styles/pages/ventas/listaVentas.css"
 
 const datosSimulados = [
     {
@@ -434,16 +432,26 @@ const datosSimulados = [
 
 ];
 
-const VentasIndex = () => {
+const ListaVentas = () => {
     return (
-        <div>
-            <div className='contenedor-padre'>
-                <section className='contenedor-formulario'>
-                    <Formulario />
-                </section>                
-            </div>
-        </div>
+        <>
+            <section className='contenedor-tabla'>
+                <div className='search search-sticky contenedor-busqueda-button'>
+                    <div className='contenedor-barra-busqueda'>
+                        <BarraBusqueda />
+                    </div>
+                    <div className="contenedor-link-registro-ventas">
+                        <Link to='/ventas'>
+                            <button type="button" class="btn btn-primary button-ventas">REGISTRAR VENTA </button>
+                        </Link>
+                    </div>
+                </div>
+                <div className='contenedor-tabla'>
+                    <Tabla datos={datosSimulados}></Tabla>
+                </div>
+            </section>
+        </>
     )
 }
 
-export default VentasIndex
+export default ListaVentas

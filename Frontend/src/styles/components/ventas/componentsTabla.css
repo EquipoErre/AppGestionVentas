@@ -7,16 +7,13 @@
 }
 
 .table-head-sticky{
-    top: 40px;
+    top: 75px;
     position: sticky;
-}
-
-.datos-centrados{
-    text-align: center;
 }
 
 .table{
     background-color: white;
+
 }
 
 .table tr:nth-child(even){
