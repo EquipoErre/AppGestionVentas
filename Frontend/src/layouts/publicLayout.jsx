@@ -7,11 +7,6 @@ const Layout = ({ children }) => {
 
     let ListaModulos = [
         {
-          id: "001",
-          nombre: "Iniciar Sesion",
-          ruta: "/login",
-        },
-        {
           id: "002",
           nombre: "Modulos",
           ruta: "/usuarios",

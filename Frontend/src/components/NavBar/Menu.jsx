@@ -1,3 +1,4 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { nanoid } from "nanoid";
 import { Link } from "react-router-dom";
 import "styles/menu.css";
@@ -10,6 +11,7 @@ export default function Menu({ ModulosYRutas, paginaActual, onChange }) {
   // se encuentra en la carpeta la info que se carga está en la carpeta json
 
   const nombraModulos = () => {
+
     const resultado = [];
     // los enlaces del menu se cargan a traves de una iteracion
     
@@ -17,6 +19,9 @@ export default function Menu({ ModulosYRutas, paginaActual, onChange }) {
       // className={props.pagina === i ? "active" : ""}
       resultado.push(
         <li key={nanoid}>
+          <Link className={`login ${paginaActual === modulo.ruta ? "active" : "ruta"} `} onClick= {() => loginWithRedirect()}>
+            Iniciar Sesión
+          </Link>
           <Link to={modulo.ruta} className={paginaActual === modulo.ruta ? "active" : "ruta"} onClick= {() => onChange(modulo.ruta)}>
             {modulo.nombre}
           </Link>
@@ -27,7 +32,7 @@ export default function Menu({ ModulosYRutas, paginaActual, onChange }) {
     );
     return resultado;
   };
-
+  const {loginWithRedirect} = useAuth0();
   return (
     <nav className="lista-enlaces">
       <Link to="/" className='text-decoration-none'>
