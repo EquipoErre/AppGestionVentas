@@ -54,3 +54,7 @@
   color: var(--active-color);
   text-decoration: none;
 }
+
+.login{
+  padding-right: 1em;
+}

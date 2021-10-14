@@ -21,79 +21,86 @@ import MaestroProductos from "pages/productos/MaestroProductos";
 import ProductoNuevo from "pages/productos/ProductoNuevo";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ListaVentas from "pages/ventas/ListaVentas"
+import { Auth0Provider } from "@auth0/auth0-react";
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route
-          path={[
-            "/usuarios",
-            "/usuarios/:id",
-            "/ventas",
-            "/ventas:codigo/descripcionVenta",
-            "/ventas/listaVentas",
-            "/productos",
-            "/productoNuevo"
-          ]}
-        >
-          <Layout>
-            {/* rutas del modulo de usuarios */}
-            <Switch>
-              <Route path="/usuarios/:id">
-                <FormularioActualizarUsuario />
-              </Route>
-              <Route path="/usuarios">
-                <GestionUsuariosPage />
-              </Route>
+    <Auth0Provider
+      domain="equipoerre.us.auth0.com"
+      clientId="9OTlnjuVYRbr5TCiEaq8Jc7mNUtzTsOZ"
+      redirectUri={window.location.origin}
+    >
+      <Router>
+        <Switch>
+          <Route
+            path={[
+              "/usuarios",
+              "/usuarios/:id",
+              "/ventas",
+              "/ventas:codigo/descripcionVenta",
+              "/ventas/listaVentas",
+              "/productos",
+              "/productoNuevo"
+            ]}
+          >
+            <Layout>
+              {/* rutas del modulo de usuarios */}
+              <Switch>
+                <Route path="/usuarios/:id">
+                  <FormularioActualizarUsuario />
+                </Route>
+                <Route path="/usuarios">
+                  <GestionUsuariosPage />
+                </Route>
 
-              {["/ventas","/ventas/listaVentas", "/ventas:codigo/descripcionVenta"]}
-              <Route path="/ventas:codigo/descripcionVenta">
-                <VentanaDescrpcionVenta />
-              </Route>
-              <Route path="/ventas/listaVentas">
-                <ListaVentas/>
-              </Route>
-              <Route path="/ventas">
-                <VentasIndex />
-              </Route>
+                {["/ventas","/ventas/listaVentas", "/ventas:codigo/descripcionVenta"]}
+                <Route path="/ventas:codigo/descripcionVenta">
+                  <VentanaDescrpcionVenta />
+                </Route>
+                <Route path="/ventas/listaVentas">
+                  <ListaVentas/>
+                </Route>
+                <Route path="/ventas">
+                  <VentasIndex />
+                </Route>
 
-              {/* rutas del modulo productos */}
-              <Route path="/productos">
-                <MaestroProductos />
-              </Route>
-              <Route path="/productoNuevo">
-                <ProductoNuevo />
-              </Route>
-            </Switch>
-          </Layout>
-        </Route>
+                {/* rutas del modulo productos */}
+                <Route path="/productos">
+                  <MaestroProductos />
+                </Route>
+                <Route path="/productoNuevo">
+                  <ProductoNuevo />
+                </Route>
+              </Switch>
+            </Layout>
+          </Route>
 
-        {/* rutas para el modulo de registro e inicio de sesion */}
-        <Route path={["/login", "/register"]}>
-          <AuthLayout>
-            <Switch>
-              <Route path="/login">
-                <LoginPage />
-              </Route>
-              <Route path="/register">
-                <RegisterPage />
-              </Route>
-            </Switch>
-          </AuthLayout>
-        </Route>
+          {/* rutas para el modulo de registro e inicio de sesion */}
+          <Route path={["/login", "/register"]}>
+            <AuthLayout>
+              <Switch>
+                <Route path="/login">
+                  <LoginPage />
+                </Route>
+                <Route path="/register">
+                  <RegisterPage />
+                </Route>
+              </Switch>
+            </AuthLayout>
+          </Route>
 
-        <Route path={["/"]}>
-          <PublicLayout>
-            <Switch>
-              <Route exact path="/">
-                <h1>Inicio</h1>
-              </Route>
-            </Switch>
-          </PublicLayout>
-        </Route>
-      </Switch>
-    </Router>
+          <Route path={["/"]}>
+            <PublicLayout>
+              <Switch>
+                <Route exact path="/">
+                  <h1>Inicio</h1>
+                </Route>
+              </Switch>
+            </PublicLayout>
+          </Route>
+        </Switch>
+      </Router>
+    </Auth0Provider>
   );
 }
 
