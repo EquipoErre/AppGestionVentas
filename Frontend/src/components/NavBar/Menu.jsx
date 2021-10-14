@@ -31,11 +31,18 @@ export default function Menu({ ModulosYRutas, paginaActual, onChange }) {
         </li>
       );
     }
-    
     );
+    resultado.push(   
+      <li key={nanoid}>
+      <Link className={`login ruta`} onClick= {() => logout({ returnTo: window.location.origin })}>
+        Cerrar Sesión
+      </Link>
+      </li>
+    )
     return resultado;
   };
   const {loginWithRedirect} = useAuth0();
+  const { logout } = useAuth0();
   return (
     <nav className="lista-enlaces">
       <Link to="/" className='text-decoration-none'>
