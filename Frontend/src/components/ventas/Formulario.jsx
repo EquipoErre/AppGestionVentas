@@ -1,12 +1,64 @@
+import { nanoid } from 'nanoid'
 import React from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { getUsuarios } from 'utils/api'
 
 const Formulario = () => {
+
+     //se simulan los productos
+    const productosBackend = [
+        {
+            "_id": "123",
+            "descripcion": "pantalon",
+            "valor": 30000,
+            "estado": true
+        },
+        {
+            "_id": "1234",
+            "descripcion": "short",
+            "valor": 15000,
+            "estado": false
+        },
+        {
+            "_id": "12345",
+            "descripcion": "camisa",
+            "valor": 25000,
+            "estado": true
+        }
+    ]
+
+    const [vendedores, setVendedores] = useState([]);
+    //const [productos, setProductos] = useState([]);
+    const [inputIdProducto, setInputIdProducto] = useState("");
+    const [productoDisponible, setProductoNoDisponible] = useState(false);
+
+    //Se obtienen vendedores y productos al renderizar la página
+    useEffect(() => {
+        // obtener vendedores
+        getUsuarios(setVendedores);
+        // obtener productos
+        //getProductos(setProductos);
+    }, [])
+
+
+    // se comprueba si hay stock del producto
+    useEffect(() => {
+        for (let i = 0; i < productosBackend.length; i++) {
+            if (productosBackend[i]._id === inputIdProducto && productosBackend[i].estado === true) {
+                setProductoNoDisponible(true);
+                break;
+            } else {
+                setProductoNoDisponible(false)
+            }
+        }
+    }, [inputIdProducto])
+
     return (
         <>
 
             <div className='contenedor-form-registro-venta'>
-                <form action="" className="form-registro-venta">
+                <form className="form-registro-venta">
                     <div className="form-registro-venta_section-head">
                         <div className='form-registro-venta_section-head_head'>
                             <h2>REGISTRO DE VENTA</h2>
@@ -40,11 +92,14 @@ const Formulario = () => {
                         </div>
                         <div>
                             <label className='labelVendedor' htmlFor="vendedor">Vendedor</label>
-                            <select name="vendedor" id="vendedor" required>
-                                <option value="">Elija unvendedor</option>
-                                <option value="01">Andres castro</option>
-                                <option value="02">Sandra Ocampo</option>
-                                <option value="03">Juana castro</option>
+                            <select name="vendedor" id="vendedor" required defaultValue='' >
+                                <option value="" disabled>Elija unvendedor</option>
+                                {vendedores.map((vendedor) => {
+                                    return (
+                                        <option value={vendedor._id} key={nanoid()}>{vendedor.nombre}</option>
+                                    )
+                                })
+                                }
                             </select>
                         </div>
                     </div>
@@ -55,8 +110,13 @@ const Formulario = () => {
                         <div className="contenedor-venta-registrada">
                             <div className="form-registro-venta_section-body_item-uno">
                                 <div >
-                                    <label htmlFor="codigoProducto">Codigo producto</label>
-                                    <input type="number" id="codigoProducto" name="codigoProducto " className='input-small' />
+                                    <label htmlFor="codigoProducto">Id producto</label>
+                                    <input onChange={(e) => { setInputIdProducto(e.target.value) }} type="number" id="codigoProducto" name="codigoProducto " className='input-small' />
+                                    {productoDisponible || inputIdProducto === "" ? (
+                                        <></>
+                                    ) : (
+                                        <span className='stock'>NO HAY STOCK!</span>
+                                    )}
                                 </div>
                                 <div>
                                     <label htmlFor="cantidadProducto">Cantidad</label>
@@ -102,7 +162,7 @@ const Formulario = () => {
                         <div className="form-registro-venta-buttons">
                             <div>
                                 <button type="button" class="btn btn-secondary">Cancelar</button>
-                                <button type="button" class="btn btn-primary">Finalizar</button>
+                                <button disabled type="submit" class="btn btn-primary">Finalizar</button>
                             </div>
                         </div>
                     </div>

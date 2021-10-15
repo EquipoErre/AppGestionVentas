@@ -160,6 +160,12 @@ input{
     padding: 10px;
 }
 
+.stock{
+    color: white;
+    border: 1px solid red;
+    border-radius: 3px;
+    background-color: rgb(201, 42, 42);
+}
 
 /* .input-small{
     width: 90px;
