@@ -2,7 +2,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { nanoid } from "nanoid";
 import { Link } from "react-router-dom";
 import "styles/menu.css";
-
 // este componente se usa en los layouts
 
 // modulosYrutas es una lista de objetos
@@ -46,7 +45,7 @@ export default function Menu({ ModulosYRutas, paginaActual, onChange }) {
   return (
     <nav className="lista-enlaces">
       <Link to="/" className='text-decoration-none'>
-        <h1 className="titulo">Gestion de Ventas</h1>
+        <h1 className="titulo">Gestionn de Ventas</h1>
       </Link>
 
       <ul className="menu">{nombraModulos()}</ul>
