@@ -12,7 +12,7 @@ export default function RegistrosUsuarios({
   // cada ves que se usa un map hay que poner un key
   return (
     <tr key={nanoid}>
-      <td>{id}</td>
+      <td>{id.slice(-5)}</td>
       <td>{rol}</td>
       <td>{estado}</td>
       <td>{nombre}</td>
