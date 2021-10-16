@@ -1,5 +1,20 @@
 import axios from "axios";
 
+const getToken = () => {
+  return `Bearer ${localStorage.getItem('token')}`;
+};
+
+export const obtenerDatosUsuario = async (successCallback, errorCallback) => {
+  const options = {
+    method: 'GET',
+    url: 'http://localhost:5000/usuarios/self',
+    headers: {
+      Authorization: getToken(), // 3. enviarle el token a backend
+    },
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
 export const getUsuarios = async (setUsuarios) => {
   const options = { method: "GET", url: "http://localhost:5000/usuarios/" };
 
