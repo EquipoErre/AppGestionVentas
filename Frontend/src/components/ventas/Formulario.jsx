@@ -38,6 +38,17 @@ const Formulario = () => {
     //const [productos, setProductos] = useState([]);
     const [inputIdProducto, setInputIdProducto] = useState("");
 
+    const [productosSeleccionados, setProductosSeleccionados] = useState([]);
+
+    const agregarProducto = ()=> {
+        setProductosSeleccionados([...productosSeleccionados, DropDownProductos])
+    }
+
+    useEffect(() => {
+        console.log("Productos seleccionados: ", productosSeleccionados)
+    },[productosSeleccionados])
+
+
     //Se obtienen vendedores y productos al renderizar la página
     useEffect(() => {
         // obtener vendedores
@@ -59,7 +70,7 @@ const Formulario = () => {
         }
     }, [inputIdProducto])
 
-    
+
 
     return (
         <>
@@ -85,6 +96,18 @@ const Formulario = () => {
                                     <label className='font-color' htmlFor="codigoFactura">Codigo</label>
                                     <input type="text" name="codigoFactura" id="codigoFactura" disabled />
                                 </div> */}
+                                <div>
+                                    <label className='labelVendedor' htmlFor="vendedor">Vendedor</label>
+                                    <select required name="vendedor" id="vendedor" defaultValue='' >
+                                        <option value="" disabled>Elija unvendedor</option>
+                                        {vendedores.map((vendedor) => {
+                                            return (
+                                                <option value={vendedor._id} key={nanoid()}>{vendedor.nombre}</option>
+                                            )
+                                        })
+                                        }
+                                    </select>
+                                </div>
                             </div>
                             <div className='form-registro-venta_section-head_item-dos_section'>
                                 <div>
@@ -97,7 +120,7 @@ const Formulario = () => {
                                 </div>
                             </div>
                         </div>
-                        <div>
+                        {/* <div>
                             <label className='labelVendedor' htmlFor="vendedor">Vendedor</label>
                             <select required name="vendedor" id="vendedor" defaultValue='' >
                                 <option value="" disabled>Elija unvendedor</option>
@@ -108,17 +131,85 @@ const Formulario = () => {
                                 })
                                 }
                             </select>
-                        </div>
+                        </div> */}
                     </div>
-
-
-
                     <div className="form-registro-venta_section-body">
+
+                        
                         <div className="contenedor-venta-registrada">
                             <div className="form-registro-venta_section-body_item-uno">
                                 <div >
                                     <label htmlFor="codigoProducto">Id producto</label>
-                                    <input required onChange={(e) => { setInputIdProducto(e.target.value) }} type="number" id="codigoProducto" name="codigoProducto " className='input-small' />                                    
+                                    <input required onChange={(e) => { setInputIdProducto(e.target.value) }} type="number" id="codigoProducto" name="codigoProducto " className='input-small' />
+                                </div>
+                                <div>
+                                    <label htmlFor="cantidadProducto">Cantidad</label>
+                                    <input required type="number" id="cantidadProducto" name="cantidadProducto"
+                                        className='input-small' />
+                                </div>
+                            </div>
+
+
+                            <div className="form-registro-venta_section-body_item-dos">
+                                <div className='form-registro-venta_section-body_item-dos_item'>
+                                    <label htmlFor="descripcionProducto">Descripcion</label>
+                                    <input type="text" id="descripcionProducto" name="descripcionProducto" disabled />
+                                </div>
+                                <div className='form-registro-venta_section-body_item-dos_item'>
+                                    <label htmlFor="precioProducto" disabled>Precio Unitario</label>
+                                    <input type="number" id="precioProducto" name="precioProducto" disabled placeholder='000000' className='input-small' />
+                                </div>
+                                <div className='form-registro-venta_section-body_item-dos_item'>
+                                    <label htmlFor="subtotal">Subtotal</label>
+                                    <input type="number" id="subtotal" name="subtotal" disabled placeholder='000000' className='input-small' />
+                                </div>
+                                <div className='form-registro-venta_section-body_item-dos_item'>
+                                    <button className="button-agreagar" onClick={()=>agregarProducto()}>agregar</button>
+                                    {/* <button className="button-agreagar">agregar</button>
+                                    <button className="button-agreagar">agregar</button> */}
+                                    {/* Acá van los iconos de agregar, eliminar... */}
+                                </div>
+                            </div>
+                        </div>
+
+                        {
+                            productosSeleccionados.map((P)=>{
+                                return <P/>;
+                            })
+                        }
+
+
+                        
+                    </div>
+                    <div className='form-registro-venta_section-footer'>
+                        <div className="form-registro-venta-total">
+                            <div className="form-registro-venta_section">
+                                <label htmlFor="totalCompra">Total</label>
+                                <input type="number" disabled placeholder="000000" id="totalCompra" name="totalCompra" />
+                            </div>
+                        </div>
+
+                        <div className="form-registro-venta-buttons">
+                            <div>
+                                <button type="button" class="btn btn-secondary">Cancelar</button>
+                                <button disabled type="submit" class="btn btn-primary">Finalizar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </>
+    )
+}
+
+const DropDownProductos = ()=>{
+    return(
+        
+                        <div className="contenedor-venta-registrada">
+                            <div className="form-registro-venta_section-body_item-uno">
+                                <div >
+                                    <label htmlFor="codigoProducto">Id producto</label>
+                                    <input required  type="number" id="codigoProducto" name="codigoProducto " className='input-small' />
                                 </div>
                                 <div>
                                     <label htmlFor="cantidadProducto">Cantidad</label>
@@ -149,28 +240,7 @@ const Formulario = () => {
                                 </div>
                             </div>
                         </div>
-
-                        {/* *************************************************************************** */}
-                        {/* *************************************************************************** */}
-                    </div>
-                    <div className='form-registro-venta_section-footer'>
-                        <div className="form-registro-venta-total">
-                            <div className="form-registro-venta_section">
-                                <label htmlFor="totalCompra">Total</label>
-                                <input type="number" disabled placeholder="000000" id="totalCompra" name="totalCompra" />
-                            </div>
-                        </div>
-
-                        <div className="form-registro-venta-buttons">
-                            <div>
-                                <button type="button" class="btn btn-secondary">Cancelar</button>
-                                <button disabled type="submit" class="btn btn-primary">Finalizar</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </>
+                    
     )
 }
 
