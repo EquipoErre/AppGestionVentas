@@ -22,6 +22,7 @@ import ProductoNuevo from "pages/productos/ProductoNuevo";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ListaVentas from "pages/ventas/ListaVentas"
 import { Auth0Provider } from "@auth0/auth0-react";
+import PrivateRoute from 'components/PrivateRoute';
 
 function App() {
   return (
@@ -47,29 +48,43 @@ function App() {
               {/* rutas del modulo de usuarios */}
               <Switch>
                 <Route path="/usuarios/:id">
-                  <FormularioActualizarUsuario />
+                  {/* <PrivateRoute roleList={['admin']}> */}
+                    <FormularioActualizarUsuario />
+                  {/* </PrivateRoute> */}
                 </Route>
                 <Route path="/usuarios">
-                  <GestionUsuariosPage />
+                  {/* <PrivateRoute roleList={['admin']}> */}
+                    <GestionUsuariosPage />
+                  {/* </PrivateRoute> */}
                 </Route>
 
                 {["/ventas","/ventas/listaVentas", "/ventas:codigo/descripcionVenta"]}
                 <Route path="/ventas:codigo/descripcionVenta">
-                  <VentanaDescrpcionVenta />
+                  {/* <PrivateRoute roleList={['vendedor']}> */}
+                    <VentanaDescrpcionVenta />
+                  {/* </PrivateRoute> */}
                 </Route>
                 <Route path="/ventas/listaVentas">
-                  <ListaVentas/>
+                  {/* <PrivateRoute roleList={['vendedor']}> */}
+                    <ListaVentas/>
+                  {/* </PrivateRoute> */}
                 </Route>
                 <Route path="/ventas">
-                  <VentasIndex />
+                  {/* <PrivateRoute roleList={['vendedor']}> */}
+                    <VentasIndex />
+                  {/* </PrivateRoute> */}
                 </Route>
 
                 {/* rutas del modulo productos */}
                 <Route path="/productos">
-                  <MaestroProductos />
+                  {/* <PrivateRoute roleList={['vendedor']}> */}
+                    <MaestroProductos />
+                  {/* </PrivateRoute> */}
                 </Route>
                 <Route path="/productoNuevo">
-                  <ProductoNuevo />
+                  {/* <PrivateRoute roleList={['vendedor']}> */}
+                    <ProductoNuevo />
+                  {/* </PrivateRoute> */}
                 </Route>
               </Switch>
             </Layout>
