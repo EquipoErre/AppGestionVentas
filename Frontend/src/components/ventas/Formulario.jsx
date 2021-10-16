@@ -6,7 +6,7 @@ import { getUsuarios } from 'utils/api'
 
 const Formulario = () => {
 
-     //se simulan los productos
+    //se simulan los productos
     const productosBackend = [
         {
             "_id": "123",
@@ -25,13 +25,19 @@ const Formulario = () => {
             "descripcion": "camisa",
             "valor": 25000,
             "estado": true
+        },
+        {
+            "_id": "123456",
+            "descripcion": "Blusa",
+            "valor": 25000,
+            "estado": false
         }
     ]
 
     const [vendedores, setVendedores] = useState([]);
     //const [productos, setProductos] = useState([]);
     const [inputIdProducto, setInputIdProducto] = useState("");
-    const [productoDisponible, setProductoNoDisponible] = useState(false);
+    const [productoDisponible, setProductoDisponible] = useState(false);
 
     //Se obtienen vendedores y productos al renderizar la página
     useEffect(() => {
@@ -41,18 +47,22 @@ const Formulario = () => {
         //getProductos(setProductos);
     }, [])
 
-
     // se comprueba si hay stock del producto
     useEffect(() => {
         for (let i = 0; i < productosBackend.length; i++) {
             if (productosBackend[i]._id === inputIdProducto && productosBackend[i].estado === true) {
-                setProductoNoDisponible(true);
+                setProductoDisponible(true);
                 break;
             } else {
-                setProductoNoDisponible(false)
+                setProductoDisponible(false)
+
             }
         }
     }, [inputIdProducto])
+
+     const seleccionarUnProducto =  (id) => {
+        return productosBackend.find(producto => producto._id === inputIdProducto);
+    }
 
     return (
         <>
@@ -72,27 +82,27 @@ const Formulario = () => {
                             <div className='form-registro-venta_section-head_item-uno_section'>
                                 <div>
                                     <label htmlFor="fecha" className='font-color' >Fecha</label>
-                                    <input type="date" id="fecha" name="fechaFactura" />
+                                    <input required type="date" id="fecha" name="fechaFactura" />
                                 </div>
-                                <div >
+                                {/* <div >
                                     <label className='font-color' htmlFor="codigoFactura">Codigo</label>
                                     <input type="text" name="codigoFactura" id="codigoFactura" disabled />
-                                </div>
+                                </div> */}
                             </div>
                             <div className='form-registro-venta_section-head_item-dos_section'>
                                 <div>
                                     <label className='font-color' htmlFor="cliente">Cliente</label>
-                                    <input type="text" id="cliente" name="nombreCliente" />
+                                    <input required type="text" id="cliente" name="nombreCliente" />
                                 </div>
                                 <div>
                                     <label className='font-color' htmlFor="documento">Documento</label>
-                                    <input type="text" id="documento" name="documentoCliente" />
+                                    <input required type="text" id="documento" name="documentoCliente" />
                                 </div>
                             </div>
                         </div>
                         <div>
                             <label className='labelVendedor' htmlFor="vendedor">Vendedor</label>
-                            <select name="vendedor" id="vendedor" required defaultValue='' >
+                            <select required name="vendedor" id="vendedor" defaultValue='' >
                                 <option value="" disabled>Elija unvendedor</option>
                                 {vendedores.map((vendedor) => {
                                     return (
@@ -111,7 +121,7 @@ const Formulario = () => {
                             <div className="form-registro-venta_section-body_item-uno">
                                 <div >
                                     <label htmlFor="codigoProducto">Id producto</label>
-                                    <input onChange={(e) => { setInputIdProducto(e.target.value) }} type="number" id="codigoProducto" name="codigoProducto " className='input-small' />
+                                    <input required onChange={(e) => { setInputIdProducto(e.target.value) }} type="number" id="codigoProducto" name="codigoProducto " className='input-small' />
                                     {productoDisponible || inputIdProducto === "" ? (
                                         <></>
                                     ) : (
@@ -120,7 +130,7 @@ const Formulario = () => {
                                 </div>
                                 <div>
                                     <label htmlFor="cantidadProducto">Cantidad</label>
-                                    <input type="number" id="cantidadProducto" name="cantidadProducto"
+                                    <input required type="number" id="cantidadProducto" name="cantidadProducto"
                                         className='input-small' />
                                 </div>
                             </div>
@@ -129,7 +139,12 @@ const Formulario = () => {
                             <div className="form-registro-venta_section-body_item-dos">
                                 <div className='form-registro-venta_section-body_item-dos_item'>
                                     <label htmlFor="descripcionProducto">Descripcion</label>
-                                    <input type="text" id="descripcionProducto" name="descripcionProducto" disabled />
+                                    <input type="text" id="descripcionProducto" name="descripcionProducto" value={productoDisponible ? (
+                                        // seleccionarUnProducto(inputIdProducto).descripcion
+                                        "true"
+                                    ) : (
+                                        "false"
+                                    )} disabled />
                                 </div>
                                 <div className='form-registro-venta_section-body_item-dos_item'>
                                     <label htmlFor="precioProducto" disabled>Precio Unitario</label>
