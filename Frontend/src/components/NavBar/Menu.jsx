@@ -45,7 +45,9 @@ export default function Menu({ ModulosYRutas, paginaActual, onChange }) {
   return (
     <nav className="lista-enlaces">
       <Link to="/" className='text-decoration-none'>
-        <h1 className="titulo">Gestionn de Ventas</h1>
+        <div className ='contenedor-titulo'>
+          <h1 className="titulo">R</h1>
+        </div>
       </Link>
 
       <ul className="menu">{nombraModulos()}</ul>

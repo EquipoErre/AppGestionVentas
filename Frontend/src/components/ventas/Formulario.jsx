@@ -40,13 +40,13 @@ const Formulario = () => {
 
     const [productosSeleccionados, setProductosSeleccionados] = useState([]);
 
-    const agregarProducto = ()=> {
+    const agregarProducto = () => {
         setProductosSeleccionados([...productosSeleccionados, DropDownProductos])
     }
 
     useEffect(() => {
         console.log("Productos seleccionados: ", productosSeleccionados)
-    },[productosSeleccionados])
+    }, [productosSeleccionados])
 
 
     //Se obtienen vendedores y productos al renderizar la página
@@ -135,12 +135,12 @@ const Formulario = () => {
                     </div>
                     <div className="form-registro-venta_section-body">
 
-                        
+
                         <div className="contenedor-venta-registrada">
                             <div className="form-registro-venta_section-body_item-uno">
                                 <div >
                                     <label htmlFor="codigoProducto">Id producto</label>
-                                    <input required onChange={(e) => { setInputIdProducto(e.target.value) }} type="number" id="codigoProducto" name="codigoProducto " className='input-small' />
+                                    <input required type="number" id="codigoProducto" name="codigoProducto " className='input-small' />
                                 </div>
                                 <div>
                                     <label htmlFor="cantidadProducto">Cantidad</label>
@@ -164,7 +164,11 @@ const Formulario = () => {
                                     <input type="number" id="subtotal" name="subtotal" disabled placeholder='000000' className='input-small' />
                                 </div>
                                 <div className='form-registro-venta_section-body_item-dos_item'>
-                                    <button className="button-agreagar" onClick={()=>agregarProducto()}>agregar</button>
+                                    <button className="button-plus" onClick={() => agregarProducto()}>
+                                        <svg className='button-plus' xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                        </svg>
+                                    </button>
                                     {/* <button className="button-agreagar">agregar</button>
                                     <button className="button-agreagar">agregar</button> */}
                                     {/* Acá van los iconos de agregar, eliminar... */}
@@ -173,13 +177,11 @@ const Formulario = () => {
                         </div>
 
                         {
-                            productosSeleccionados.map((P)=>{
-                                return <P/>;
+                            productosSeleccionados.map((P) => {
+                                return <P agregarProducto={agregarProducto} />;
                             })
                         }
 
-
-                        
                     </div>
                     <div className='form-registro-venta_section-footer'>
                         <div className="form-registro-venta-total">
@@ -192,7 +194,7 @@ const Formulario = () => {
                         <div className="form-registro-venta-buttons">
                             <div>
                                 <button type="button" class="btn btn-secondary">Cancelar</button>
-                                <button disabled type="submit" class="btn btn-primary">Finalizar</button>
+                                <button type="submit" class="btn btn-primary">Finalizar</button>
                             </div>
                         </div>
                     </div>
@@ -202,45 +204,49 @@ const Formulario = () => {
     )
 }
 
-const DropDownProductos = ()=>{
-    return(
-        
-                        <div className="contenedor-venta-registrada">
-                            <div className="form-registro-venta_section-body_item-uno">
-                                <div >
-                                    <label htmlFor="codigoProducto">Id producto</label>
-                                    <input required  type="number" id="codigoProducto" name="codigoProducto " className='input-small' />
-                                </div>
-                                <div>
-                                    <label htmlFor="cantidadProducto">Cantidad</label>
-                                    <input required type="number" id="cantidadProducto" name="cantidadProducto"
-                                        className='input-small' />
-                                </div>
-                            </div>
+const DropDownProductos = ({ agregarProducto }) => {
+    return (
+
+        <div className="contenedor-venta-registrada">
+            <div className="form-registro-venta_section-body_item-uno">
+                <div >
+                    <label htmlFor="codigoProducto">Id producto</label>
+                    <input required type="number" id="codigoProducto" name="codigoProducto " className='input-small' />
+                </div>
+                <div>
+                    <label htmlFor="cantidadProducto">Cantidad</label>
+                    <input required type="number" id="cantidadProducto" name="cantidadProducto"
+                        className='input-small' />
+                </div>
+            </div>
 
 
-                            <div className="form-registro-venta_section-body_item-dos">
-                                <div className='form-registro-venta_section-body_item-dos_item'>
-                                    <label htmlFor="descripcionProducto">Descripcion</label>
-                                    <input type="text" id="descripcionProducto" name="descripcionProducto" disabled />
-                                </div>
-                                <div className='form-registro-venta_section-body_item-dos_item'>
-                                    <label htmlFor="precioProducto" disabled>Precio Unitario</label>
-                                    <input type="number" id="precioProducto" name="precioProducto" disabled placeholder='000000' className='input-small' />
-                                </div>
-                                <div className='form-registro-venta_section-body_item-dos_item'>
-                                    <label htmlFor="subtotal">Subtotal</label>
-                                    <input type="number" id="subtotal" name="subtotal" disabled placeholder='000000' className='input-small' />
-                                </div>
-                                <div className='form-registro-venta_section-body_item-dos_item'>
-                                    <button className="button-agreagar">agregar</button>
-                                    <button className="button-agreagar">agregar</button>
-                                    <button className="button-agreagar">agregar</button>
-                                    {/* Acá van los iconos de agregar, eliminar... */}
-                                </div>
-                            </div>
-                        </div>
-                    
+            <div className="form-registro-venta_section-body_item-dos">
+                <div className='form-registro-venta_section-body_item-dos_item'>
+                    <label htmlFor="descripcionProducto">Descripcion</label>
+                    <input type="text" id="descripcionProducto" name="descripcionProducto" disabled />
+                </div>
+                <div className='form-registro-venta_section-body_item-dos_item'>
+                    <label htmlFor="precioProducto" disabled>Precio Unitario</label>
+                    <input type="number" id="precioProducto" name="precioProducto" disabled placeholder='000000' className='input-small' />
+                </div>
+                <div className='form-registro-venta_section-body_item-dos_item'>
+                    <label htmlFor="subtotal">Subtotal</label>
+                    <input type="number" id="subtotal" name="subtotal" disabled placeholder='000000' className='input-small' />
+                </div>
+                <div className='form-registro-venta_section-body_item-dos_item'>
+                    <button className="button-plus" onClick={() => agregarProducto()}>
+                        <svg className='button-plus' xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                        </svg>
+                    </button>
+                    {/* <button className="button-agreagar">agregar</button>
+                <button className="button-agreagar">agregar</button> */}
+                    {/* Acá van los iconos de agregar, eliminar... */}
+                </div>
+            </div>
+        </div>
+
     )
 }
 
