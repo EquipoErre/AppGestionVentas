@@ -62,7 +62,7 @@ export default function Formulario() {
         {/* formulario */}
         <form ref={form} onSubmit={enviarAlBackend}>
           <h3 className="titulo-3">Formulario Actualización</h3>
-          <label htmlFor="nombre">Nombre completo</label>
+          <label htmlFor="nombre">Nombre completo <i>(opcional)</i></label>
           <input
             autoComplete="off"
             type="text"
@@ -71,7 +71,7 @@ export default function Formulario() {
             placeholder="actualizar nombre"
             // defaultValue={usuarioActual.nombre}
           />
-          <label htmlFor="estado">Estado</label>
+          <label htmlFor="estado">Estado  <i>(opcional)</i></label>
           <select
             className="seleccionar"
             name="estado"
@@ -85,7 +85,7 @@ export default function Formulario() {
             <option value="autorizado">Autorizado</option>
             <option value="no autorizado">No Autorizado</option>
           </select>
-          <label htmlFor="rol">Asignar rol</label>
+          <label htmlFor="rol">Asignar rol  <i>(opcional)</i></label>
           <select
             className="seleccionar"
             name="rol"

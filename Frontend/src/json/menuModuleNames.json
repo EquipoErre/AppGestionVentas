@@ -1,22 +1,14 @@
 [
     {
-       "id":"001",
-       "nombre":"Gestion de usuarios",
+       "nombre":"Usuarios",
        "ruta":"/usuarios" 
     },
     {
-        "id":"002",
-        "nombre":"Gestion de productos",
+        "nombre":"Productos",
         "ruta":"/productos" 
      },
      {
-        "id":"003",
-        "nombre":"gestion de ventas",
+        "nombre":"Ventas",
         "ruta":"/ventas" 
-     },
-     {
-        "id":"004",
-        "nombre":"salir",
-        "ruta":"/" 
-     }      
+     }     
 ]
