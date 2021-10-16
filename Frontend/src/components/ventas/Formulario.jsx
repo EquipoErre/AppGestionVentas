@@ -64,6 +64,12 @@ const Formulario = () => {
         return productosBackend.find(producto => producto._id === inputIdProducto);
     }
 
+    // const nuevaVenta = ()=>{
+    //     if(productoDisponible){
+            
+    //     }
+    // }
+
     return (
         <>
 
