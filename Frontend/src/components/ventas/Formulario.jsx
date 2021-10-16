@@ -146,8 +146,8 @@ const Formulario = () => {
                                 <div className='form-registro-venta_section-body_item-dos_item'>
                                     <label htmlFor="descripcionProducto">Descripcion</label>
                                     <input type="text" id="descripcionProducto" name="descripcionProducto" value={productoDisponible ? (
-                                        // seleccionarUnProducto(inputIdProducto).descripcion
-                                        "true"
+                                        seleccionarUnProducto(inputIdProducto).descripcion
+                                        // "true"
                                     ) : (
                                         "false"
                                     )} disabled />
