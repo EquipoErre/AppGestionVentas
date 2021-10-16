@@ -13,10 +13,5 @@
         "id":"003",
         "nombre":"gestion de ventas",
         "ruta":"/ventas" 
-     },
-     {
-        "id":"004",
-        "nombre":"salir",
-        "ruta":"/" 
-     }      
+     }   
 ]
