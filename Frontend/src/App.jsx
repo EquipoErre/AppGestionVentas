@@ -1,4 +1,3 @@
-//import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import 'bootstrap/dist/css/bootstrap.css'
 
 import "styles/pages/ventas/ventasIndex.css";
@@ -23,98 +22,106 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ListaVentas from "pages/ventas/ListaVentas"
 import { Auth0Provider } from "@auth0/auth0-react";
 import PrivateRoute from 'components/PrivateRoute';
+import React, { useState } from 'react';
+import { perfilUsuario } from 'context/UsuarioActual';
 
 function App() {
+  const [userData, setUserData] = useState({});
   return (
     <Auth0Provider
       domain="equipoerre.us.auth0.com"
       clientId="9OTlnjuVYRbr5TCiEaq8Jc7mNUtzTsOZ"
       redirectUri={window.location.origin}
+      audience = "api-autenticacion-equipoerre"
     >
-      <Router>
-        <Switch>
-          <Route
-            path={[
-              "/usuarios",
-              "/usuarios/:id",
-              "/ventas",
-              "/ventas:codigo/descripcionVenta",
-              "/ventas/listaVentas",
-              "/productos",
-              "/productoNuevo"
-            ]}
-          >
-            <Layout>
-              {/* rutas del modulo de usuarios */}
-              <Switch>
-                <Route path="/usuarios/:id">
-                  {/* <PrivateRoute roleList={['admin']}> */}
-                    <FormularioActualizarUsuario />
-                  {/* </PrivateRoute> */}
-                </Route>
-                <Route path="/usuarios">
-                  {/* <PrivateRoute roleList={['admin']}> */}
-                    <GestionUsuariosPage />
-                  {/* </PrivateRoute> */}
-                </Route>
+      <div className='App'>
+        <perfilUsuario.Provider value={{ userData, setUserData }}>
+          <Router>
+            <Switch>
+              <Route
+                path={[
+                  "/usuarios",
+                  "/usuarios/:id",
+                  "/ventas",
+                  "/ventas:codigo/descripcionVenta",
+                  "/ventas/listaVentas",
+                  "/productos",
+                  "/productoNuevo"
+                ]}
+              >
+                 <Layout>
+                  {/* rutas del modulo de usuarios */}
+                  <Switch>
+                    <Route path="/usuarios/:id">
+                      {/* <PrivateRoute roleList={['admin']}> */}
+                        <FormularioActualizarUsuario />
+                      {/* </PrivateRoute> */}
+                    </Route>
+                    <Route path="/usuarios">
+                      {/* <PrivateRoute roleList={['admin']}> */}
+                        <GestionUsuariosPage />
+                      {/* </PrivateRoute> */}
+                    </Route>
 
-                {["/ventas","/ventas/listaVentas", "/ventas:codigo/descripcionVenta"]}
-                <Route path="/ventas:codigo/descripcionVenta">
-                  {/* <PrivateRoute roleList={['vendedor']}> */}
-                    <VentanaDescrpcionVenta />
-                  {/* </PrivateRoute> */}
-                </Route>
-                <Route path="/ventas/listaVentas">
-                  {/* <PrivateRoute roleList={['vendedor']}> */}
-                    <ListaVentas/>
-                  {/* </PrivateRoute> */}
-                </Route>
-                <Route path="/ventas">
-                  {/* <PrivateRoute roleList={['vendedor']}> */}
-                    <VentasIndex />
-                  {/* </PrivateRoute> */}
-                </Route>
+                    {["/ventas","/ventas/listaVentas", "/ventas:codigo/descripcionVenta"]}
+                    <Route path="/ventas:codigo/descripcionVenta">
+                      {/* <PrivateRoute roleList={['vendedor']}> */}
+                        <VentanaDescrpcionVenta />
+                      {/* </PrivateRoute> */}
+                    </Route>
+                    <Route path="/ventas/listaVentas">
+                      {/* <PrivateRoute roleList={['vendedor']}> */}
+                        <ListaVentas/>
+                      {/* </PrivateRoute> */}
+                    </Route>
+                    <Route path="/ventas">
+                      {/* <PrivateRoute roleList={['vendedor']}> */}
+                        <VentasIndex />
+                      {/* </PrivateRoute> */}
+                    </Route>
 
-                {/* rutas del modulo productos */}
-                <Route path="/productos">
-                  {/* <PrivateRoute roleList={['vendedor']}> */}
-                    <MaestroProductos />
-                  {/* </PrivateRoute> */}
-                </Route>
-                <Route path="/productoNuevo">
-                  {/* <PrivateRoute roleList={['vendedor']}> */}
-                    <ProductoNuevo />
-                  {/* </PrivateRoute> */}
-                </Route>
-              </Switch>
-            </Layout>
-          </Route>
+                    {/* rutas del modulo productos */}
+                    <Route path="/productos">
+                      {/* <PrivateRoute roleList={['vendedor']}> */}
+                        <MaestroProductos />
+                      {/* </PrivateRoute> */}
+                    </Route>
+                    <Route path="/productoNuevo">
+                      {/* <PrivateRoute roleList={['vendedor']}> */}
+                        <ProductoNuevo />
+                      {/* </PrivateRoute> */}
+                    </Route>
+                  </Switch>
+                </Layout>
+              </Route>
 
-          {/* rutas para el modulo de registro e inicio de sesion */}
-          <Route path={["/login", "/register"]}>
-            <AuthLayout>
-              <Switch>
-                <Route path="/login">
-                  <LoginPage />
-                </Route>
-                <Route path="/register">
-                  <RegisterPage />
-                </Route>
-              </Switch>
-            </AuthLayout>
-          </Route>
+              {/* rutas para el modulo de registro e inicio de sesion */}
+              <Route path={["/login", "/register"]}>
+                <AuthLayout>
+                  <Switch>
+                    <Route path="/login">
+                      <LoginPage />
+                    </Route>
+                    <Route path="/register">
+                      <RegisterPage />
+                    </Route>
+                  </Switch>
+                </AuthLayout>
+              </Route>
 
-          <Route path={["/"]}>
-            <PublicLayout>
-              <Switch>
-                <Route exact path="/">
-                  <h1>Inicio</h1>
-                </Route>
-              </Switch>
-            </PublicLayout>
-          </Route>
-        </Switch>
-      </Router>
+              <Route path={["/"]}>
+                <PublicLayout>
+                  <Switch>
+                    <Route exact path="/">
+                      <h1>Inicio</h1>
+                    </Route>
+                  </Switch>
+                </PublicLayout>
+              </Route>
+            </Switch>
+          </Router>
+        </perfilUsuario.Provider>
+      </div>
     </Auth0Provider>
   );
 }
