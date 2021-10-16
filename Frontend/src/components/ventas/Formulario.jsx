@@ -12,10 +12,10 @@ const Formulario = () => {
             "_id": "123",
             "descripcion": "pantalon",
             "valor": 30000,
-            "estado": true
+            "estado": false
         },
         {
-            "_id": "1234",
+            "_id": "124",
             "descripcion": "short",
             "valor": 15000,
             "estado": false
@@ -37,7 +37,6 @@ const Formulario = () => {
     const [vendedores, setVendedores] = useState([]);
     //const [productos, setProductos] = useState([]);
     const [inputIdProducto, setInputIdProducto] = useState("");
-    const [productoDisponible, setProductoDisponible] = useState(false);
 
     //Se obtienen vendedores y productos al renderizar la página
     useEffect(() => {
@@ -50,25 +49,17 @@ const Formulario = () => {
     // se comprueba si hay stock del producto
     useEffect(() => {
         for (let i = 0; i < productosBackend.length; i++) {
-            if (productosBackend[i]._id === inputIdProducto && productosBackend[i].estado === true) {
-                setProductoDisponible(true);
+            if (productosBackend[i]._id === inputIdProducto) {
+                console.log("encontrado → ", inputIdProducto);
                 break;
             } else {
-                setProductoDisponible(false)
+                console.log("No encontrado → ", inputIdProducto);
 
             }
         }
     }, [inputIdProducto])
 
-     const seleccionarUnProducto =  (id) => {
-        return productosBackend.find(producto => producto._id === inputIdProducto);
-    }
-
-    // const nuevaVenta = ()=>{
-    //     if(productoDisponible){
-            
-    //     }
-    // }
+    
 
     return (
         <>
@@ -127,12 +118,7 @@ const Formulario = () => {
                             <div className="form-registro-venta_section-body_item-uno">
                                 <div >
                                     <label htmlFor="codigoProducto">Id producto</label>
-                                    <input required onChange={(e) => { setInputIdProducto(e.target.value) }} type="number" id="codigoProducto" name="codigoProducto " className='input-small' />
-                                    {productoDisponible || inputIdProducto === "" ? (
-                                        <></>
-                                    ) : (
-                                        <span className='stock'>NO HAY STOCK!</span>
-                                    )}
+                                    <input required onChange={(e) => { setInputIdProducto(e.target.value) }} type="number" id="codigoProducto" name="codigoProducto " className='input-small' />                                    
                                 </div>
                                 <div>
                                     <label htmlFor="cantidadProducto">Cantidad</label>
@@ -145,12 +131,7 @@ const Formulario = () => {
                             <div className="form-registro-venta_section-body_item-dos">
                                 <div className='form-registro-venta_section-body_item-dos_item'>
                                     <label htmlFor="descripcionProducto">Descripcion</label>
-                                    <input type="text" id="descripcionProducto" name="descripcionProducto" value={productoDisponible ? (
-                                        seleccionarUnProducto(inputIdProducto).descripcion
-                                        // "true"
-                                    ) : (
-                                        "false"
-                                    )} disabled />
+                                    <input type="text" id="descripcionProducto" name="descripcionProducto" disabled />
                                 </div>
                                 <div className='form-registro-venta_section-body_item-dos_item'>
                                     <label htmlFor="precioProducto" disabled>Precio Unitario</label>
