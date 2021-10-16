@@ -1,7 +1,7 @@
 :root {
-  --hover-color: rgb(42, 243, 193);
+  --active-color: #84adff; ;
+  --hover-color: #bbbbd6;  
   --link-color: white;
-  --active-color: #60baee;
   --menu-bg-color: #243d52;
   --menu-bg-color-2: #2e4e68;
   --menu-bg-color-3: #4d89b9;
@@ -17,11 +17,9 @@
 .lista-enlaces {
   display: flex;
   justify-content: space-between;
-  /* background: var(--menu-bg-color); */
   background: linear-gradient(to left, var(--menu-bg-color), var(--menu-bg-color-2), var(--menu-bg-color-3));
   box-shadow: 0px 4px 10px var(--menu-bg-color-shadow);
   padding: 5px;
-  /* border-bottom: 1px solid black;  */
 }
 
 .titulo {
@@ -30,10 +28,6 @@
   padding: 10px;
   margin: 0;
 }
-/* .titulo:hover {
-  color: var(--hover-color);
-} */
-
 .contenedor-titulo{
   background-color: var(--logo-bg-color);
   width: 50px;
@@ -48,7 +42,7 @@
 
 .contenedor-titulo:hover{
   transform: scale(1.1,1.1);
-  box-shadow: 0px 4px 6px var(--logo-bg-color);;
+  box-shadow: 0px 4px 6px var(--logo-bg-color);
 }
 
 .lista-enlaces .menu {
@@ -72,7 +66,7 @@
 }
 .lista-enlaces .menu .ruta:hover {
   text-decoration: none;
-  color: var(--hover-color);
+  color: var(--hover-color);  
 }
 
 .lista-enlaces .menu .active {
