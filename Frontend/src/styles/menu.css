@@ -1,19 +1,25 @@
 :root {
-  --hover-color: rgb(42, 243, 193);
+  --active-color: #849bc5; ;
+  --hover-color: #bbbbd6;  
   --link-color: white;
-  --active-color: #60baee;
   --menu-bg-color: #243d52;
+  --menu-bg-color-2: #2e4e68;
+  --menu-bg-color-3: #4d89b9;
+  --menu-bg-color-shadow: #5a91be;
+  --logo-bg-color: #173e5e;
 }
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box;  
 }
 
 .lista-enlaces {
   display: flex;
   justify-content: space-between;
-  background: var(--menu-bg-color);
+  background: linear-gradient(to left, var(--menu-bg-color), var(--menu-bg-color-2), var(--menu-bg-color-3));
+  box-shadow: 0px 4px 10px var(--menu-bg-color-shadow);
+  padding: 5px;
 }
 
 .titulo {
@@ -22,15 +28,28 @@
   padding: 10px;
   margin: 0;
 }
-.titulo:hover {
-  color: var(--hover-color);
+.contenedor-titulo{
+  background-color: var(--logo-bg-color);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 8px;
+  margin: 5px 0 5px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contenedor-titulo:hover{
+  transform: scale(1.1,1.1);
+  box-shadow: 0px 4px 6px var(--logo-bg-color);
 }
 
 .lista-enlaces .menu {
   display: flex;
   padding: 10px;
   margin: 0;
-  list-style: none;
+  list-style: none;  
 }
 
 .lista-enlaces .menu > li {
@@ -42,11 +61,12 @@
   font-size: 22px;
   color: var(--link-color);
   text-decoration: none;
-  transition: all 0.45s;
+  transition: all 0.45s;  
+  font-size: 1.2em;
 }
 .lista-enlaces .menu .ruta:hover {
   text-decoration: none;
-  color: var(--hover-color);
+  color: var(--hover-color);  
 }
 
 .lista-enlaces .menu .active {
@@ -58,3 +78,4 @@
 .login{
   padding-right: 0.2em;
 }
+
