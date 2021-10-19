@@ -8,17 +8,13 @@ import "styles/menu.css";
 export default function Menu({ ModulosYRutas, paginaActual, onChange }) {
   // modulos y es una lista de objetos con informacion para cargar
   // se encuentra en la carpeta la info que se carga está en la carpeta json
-  const { loginWithRedirect, logout } = useAuth0();
+
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+
   const nombraModulos = () => {
     const resultado = [];
     // los enlaces del menu se cargan a traves de una iteracion
-    resultado.push(
-      <li key={nanoid()}>
-        <Link className={`login ruta`} onClick={() => loginWithRedirect()}>
-          Iniciar Sesión
-        </Link>
-      </li>
-    );
+
     ModulosYRutas.forEach((modulo) => {
       // className={props.pagina === i ? "active" : ""}
       resultado.push(
@@ -35,12 +31,23 @@ export default function Menu({ ModulosYRutas, paginaActual, onChange }) {
     });
     resultado.push(
       <li key={nanoid()}>
-        <Link
-          className={`login ruta`}
-          onClick={() => logout({ returnTo: window.location.origin })}
-        >
-          Cerrar Sesión
-        </Link>
+        {isAuthenticated ? (
+          <Link
+            to="#!"
+            className={`login ruta`}
+            onClick={() => logout({ returnTo: window.location.origin })}
+          >
+            Cerrar Sesión
+          </Link>
+        ) : (
+          <Link
+            to="#!"
+            className={`login ruta`}
+            onClick={() => loginWithRedirect()}
+          >
+            Iniciar Sesión
+          </Link>
+        )}
       </li>
     );
     return resultado;
