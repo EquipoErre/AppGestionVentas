@@ -5,6 +5,7 @@ const getToken = () => {
 };
 
 export const obtenerDatosUsuario = async (successCallback, errorCallback) => {
+  // obtener el dato del usuario actual
   const options = {
     method: "GET",
     url: "http://localhost:5000/usuarios/self",

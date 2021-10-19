@@ -3,7 +3,6 @@ import ListaModulos from "json/menuModuleNames.json"
 import { useLocation } from "react-router";
 import "styles/layoutPrivado.css";
 import { useAuth0 } from '@auth0/auth0-react';
-import ReactLoading from 'react-loading';
 import { obtenerDatosUsuario } from 'utils/api';
 import { usePerfilUsuario } from 'context/UsuarioActual';
 import React, { useEffect, useState } from 'react';
@@ -26,20 +25,20 @@ const Layout = ({children}) => {
           });
           // 2. recibir token de auth0
           localStorage.setItem('token', accessToken);
-          console.log(accessToken);
+          // console.log(accessToken);
           // 3. enviarle el token a el backend
-          await obtenerDatosUsuario(
-            (response) => {
-              console.log('response con datos del usuario', response);
-              setUserData(response.data);
-              setLoadingUserInformation(false);
-            },
-            (err) => {
-              console.log('err', err);
-              setLoadingUserInformation(false);
-              logout({ returnTo: 'http://localhost:3000/' });
-            }
-          );
+          // await obtenerDatosUsuario(
+          //   (response) => {
+          //     console.log('response con datos del usuario', response);
+          //     setUserData(response.data);
+          //     setLoadingUserInformation(false);
+          //   },
+          //   (err) => {
+          //     console.log('err', err);
+          //     setLoadingUserInformation(false);
+          //     logout({ returnTo: 'http://localhost:3000/' });
+          //   }
+          // );
         };
         if (isAuthenticated) {
           fetchAuth0Token();
