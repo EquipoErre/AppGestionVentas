@@ -1,13 +1,13 @@
 import axios from "axios";
 
 const getToken = () => {
-  return `Bearer ${localStorage.getItem('token')}`;
+  return `Bearer ${localStorage.getItem("token")}`;
 };
 
 export const obtenerDatosUsuario = async (successCallback, errorCallback) => {
   const options = {
-    method: 'GET',
-    url: 'http://localhost:5000/usuarios/self',
+    method: "GET",
+    url: "http://localhost:5000/usuarios/self",
     headers: {
       Authorization: getToken(), // 3. enviarle el token a backend
     },
@@ -16,7 +16,13 @@ export const obtenerDatosUsuario = async (successCallback, errorCallback) => {
 };
 
 export const getUsuarios = async (setUsuarios) => {
-  const options = { method: "GET", url: "http://localhost:5000/usuarios/" };
+  const options = {
+    method: "GET",
+    url: "http://localhost:5000/usuarios/",
+    headers: {
+      Authorization: getToken(), // 3. enviarle el token a backend
+    },
+  };
 
   await axios
     .request(options)
@@ -33,7 +39,7 @@ export const patchUsuarios = (id, data) => {
   var options = {
     method: "PATCH",
     url: `http://localhost:5000/usuarios/${id}`,
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", Authorization: getToken() },
     data: data,
   };
 
@@ -44,17 +50,21 @@ export const patchUsuarios = (id, data) => {
       console.error(error);
     });
 };
+
 export const getOneUser = async (id, setUser) => {
   const options = {
     method: "GET",
     url: `http://localhost:5000/usuarios/${id}`,
+    headers: {
+      Authorization: getToken(),
+    },
   };
 
   await axios
     .request(options)
     .then(function (response) {
-      setUser(response.data)
-      console.log('response cargado');
+      setUser(response.data);
+      console.log("response cargado");
     })
     .catch(function (error) {
       console.error(error);
@@ -65,6 +75,9 @@ export const deleteUser = (id, onChange) => {
   var options = {
     method: "DELETE",
     url: `http://localhost:5000/usuarios/${id}`,
+    headers: {
+      Authorization: getToken(),
+    },
   };
 
   axios
@@ -76,5 +89,4 @@ export const deleteUser = (id, onChange) => {
     .catch(function (error) {
       console.error(error);
     });
-    
 };
