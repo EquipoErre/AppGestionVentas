@@ -8,44 +8,48 @@ import "styles/menu.css";
 export default function Menu({ ModulosYRutas, paginaActual, onChange }) {
   // modulos y es una lista de objetos con informacion para cargar
   // se encuentra en la carpeta la info que se carga está en la carpeta json
-
+  const { loginWithRedirect, logout } = useAuth0();
   const nombraModulos = () => {
-
     const resultado = [];
     // los enlaces del menu se cargan a traves de una iteracion
-    resultado.push(   
-      <li key={nanoid}>
-          <Link className={`login ruta`} onClick= {() => loginWithRedirect()}>
-            Iniciar Sesión
-          </Link>
+    resultado.push(
+      <li key={nanoid()}>
+        <Link className={`login ruta`} onClick={() => loginWithRedirect()}>
+          Iniciar Sesión
+        </Link>
       </li>
-    )
+    );
     ModulosYRutas.forEach((modulo) => {
       // className={props.pagina === i ? "active" : ""}
       resultado.push(
-        <li key={nanoid}>
-          <Link to={modulo.ruta} className={paginaActual === modulo.ruta ? "active" : "ruta"} onClick= {() => onChange(modulo.ruta)}>
+        <li key={nanoid()}>
+          <Link
+            to={modulo.ruta}
+            className={paginaActual === modulo.ruta ? "active" : "ruta"}
+            onClick={() => onChange(modulo.ruta)}
+          >
             {modulo.nombre}
           </Link>
         </li>
       );
-    }
-    );
-    resultado.push(   
-      <li key={nanoid}>
-      <Link className={`login ruta`} onClick= {() => logout({ returnTo: window.location.origin })}>
-        Cerrar Sesión
-      </Link>
+    });
+    resultado.push(
+      <li key={nanoid()}>
+        <Link
+          className={`login ruta`}
+          onClick={() => logout({ returnTo: window.location.origin })}
+        >
+          Cerrar Sesión
+        </Link>
       </li>
-    )
+    );
     return resultado;
   };
-  const {loginWithRedirect} = useAuth0();
-  const { logout } = useAuth0();
+
   return (
     <nav className="lista-enlaces">
-      <Link to="/" className='text-decoration-none'>
-        <div className ='contenedor-titulo'>
+      <Link to="/" className="text-decoration-none">
+        <div className="contenedor-titulo">
           <h1 className="titulo">R</h1>
         </div>
       </Link>
