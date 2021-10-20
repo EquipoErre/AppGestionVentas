@@ -17,17 +17,18 @@ export default function Menu({ ModulosYRutas, paginaActual, onChange }) {
 
     ModulosYRutas.forEach((modulo) => {
       // className={props.pagina === i ? "active" : ""}
-      resultado.push(
-        <li key={nanoid()}>
-          <Link
-            to={modulo.ruta}
-            className={paginaActual === modulo.ruta ? "active" : "ruta"}
-            onClick={() => onChange(modulo.ruta)}
-          >
-            {modulo.nombre}
-          </Link>
-        </li>
-      );
+      isAuthenticated &&
+        resultado.push(
+          <li key={nanoid()}>
+            <Link
+              to={modulo.ruta}
+              className={paginaActual === modulo.ruta ? "active" : "ruta"}
+              onClick={() => onChange(modulo.ruta)}
+            >
+              {modulo.nombre}
+            </Link>
+          </li>
+        );
     });
     resultado.push(
       <li key={nanoid()}>
