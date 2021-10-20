@@ -86,7 +86,7 @@
     flex-direction: column;
 }
 
-.contenedor-venta-registrada{
+.contenedor-registro-venta{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -128,7 +128,7 @@
     margin-top: 8px;
 }
 
-.contenedor-venta-registrada{
+.contenedor-registro-venta{
     border-bottom: solid 1px var(--color-uno-b);
     padding: 8px;
     background-color: var(--color-cinco);
@@ -231,3 +231,13 @@ input{
 
     background-color: blue;
 } */
+.table tr{
+    text-align: center;
+}
+.contenedor-table{
+    overflow-y: auto;
+}
+.content-button-delete{
+    display: flex;
+    justify-content: center;
+}
