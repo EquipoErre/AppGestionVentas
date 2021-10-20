@@ -3,11 +3,13 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getUsuarios } from 'utils/api'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Formulario = () => {
 
     //se simulan los productos
-    const productosBackend = [
+    const productosSimulados = [
         {
             "_id": "123",
             "descripcion": "pantalon",
@@ -34,20 +36,12 @@ const Formulario = () => {
         }
     ]
 
+    //Estados
     const [vendedores, setVendedores] = useState([]);
     //const [productos, setProductos] = useState([]);
     const [inputIdProducto, setInputIdProducto] = useState("");
-
+    const [productoDisponible, setProductoDisponible] = useState(false);
     const [productosSeleccionados, setProductosSeleccionados] = useState([]);
-
-    const agregarProducto = () => {
-        setProductosSeleccionados([...productosSeleccionados, DropDownProductos])
-    }
-
-    useEffect(() => {
-        console.log("Productos seleccionados: ", productosSeleccionados)
-    }, [productosSeleccionados])
-
 
     //Se obtienen vendedores y productos al renderizar la página
     useEffect(() => {
@@ -57,20 +51,37 @@ const Formulario = () => {
         //getProductos(setProductos);
     }, [])
 
-    // se comprueba si hay stock del producto
-    useEffect(() => {
-        for (let i = 0; i < productosBackend.length; i++) {
-            if (productosBackend[i]._id === inputIdProducto) {
-                console.log("encontrado → ", inputIdProducto);
-                break;
-            } else {
-                console.log("No encontrado → ", inputIdProducto);
-
-            }
+    const comprobarStock = (productos) => {
+        const producto = productos.find(producto => (producto._id === inputIdProducto && producto.estado === true))
+        if (producto != undefined) {
+            setInputIdProducto("");
+            setCantidadProducto(0);
+            agregarProducto();
+            toast.success("Producto añadido")
+        } else {
+            toast.error("No hay stock");
         }
-    }, [inputIdProducto])
+    }
+
+    const agregarProducto = () => {
+        setProductosSeleccionados([...productosSeleccionados, DropDownProductos])
+    }
 
 
+    // ********
+    const [cantidadProducto, setCantidadProducto] = useState(0);
+    const [carritoCompras, setCarritoCompras] = useState([]);
+    const [camposProductoLlenos, setCamposProductoLlenos] = useState(false);
+
+    useEffect(() => {
+        if (cantidadProducto > 0 && inputIdProducto !== "") {
+            setCamposProductoLlenos(true)
+        } else {
+            setCamposProductoLlenos(false)
+        }
+    }, [inputIdProducto, cantidadProducto])
+
+    // ********
 
     return (
         <>
@@ -92,10 +103,6 @@ const Formulario = () => {
                                     <label htmlFor="fecha" className='font-color' >Fecha</label>
                                     <input required type="date" id="fecha" name="fechaFactura" />
                                 </div>
-                                {/* <div >
-                                    <label className='font-color' htmlFor="codigoFactura">Codigo</label>
-                                    <input type="text" name="codigoFactura" id="codigoFactura" disabled />
-                                </div> */}
                                 <div>
                                     <label className='labelVendedor' htmlFor="vendedor">Vendedor</label>
                                     <select required name="vendedor" id="vendedor" defaultValue='' >
@@ -120,31 +127,18 @@ const Formulario = () => {
                                 </div>
                             </div>
                         </div>
-                        {/* <div>
-                            <label className='labelVendedor' htmlFor="vendedor">Vendedor</label>
-                            <select required name="vendedor" id="vendedor" defaultValue='' >
-                                <option value="" disabled>Elija unvendedor</option>
-                                {vendedores.map((vendedor) => {
-                                    return (
-                                        <option value={vendedor._id} key={nanoid()}>{vendedor.nombre}</option>
-                                    )
-                                })
-                                }
-                            </select>
-                        </div> */}
                     </div>
                     <div className="form-registro-venta_section-body">
-
-
+                        {/* CONTENEDOR DE UNA VENTA*/}
                         <div className="contenedor-venta-registrada">
                             <div className="form-registro-venta_section-body_item-uno">
                                 <div >
                                     <label htmlFor="codigoProducto">Id producto</label>
-                                    <input required type="number" id="codigoProducto" name="codigoProducto " className='input-small' />
+                                    <input required onChange={(e) => { setInputIdProducto(e.target.value) }} type="text" id="codigoProducto" name="codigoProducto " className='input-small' />
                                 </div>
                                 <div>
                                     <label htmlFor="cantidadProducto">Cantidad</label>
-                                    <input required type="number" id="cantidadProducto" name="cantidadProducto"
+                                    <input required onChange={(e) => { setCantidadProducto(e.target.value) }} type="number" id="cantidadProducto" name="cantidadProducto"
                                         className='input-small' />
                                 </div>
                             </div>
@@ -164,25 +158,39 @@ const Formulario = () => {
                                     <input type="number" id="subtotal" name="subtotal" disabled placeholder='000000' className='input-small' />
                                 </div>
                                 <div className='form-registro-venta_section-body_item-dos_item'>
-                                    <button className="button-plus" onClick={() => agregarProducto()}>
-                                        <svg className='button-plus' xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                        </svg>
-                                    </button>
-                                    {/* <button className="button-agreagar">agregar</button>
-                                    <button className="button-agreagar">agregar</button> */}
-                                    {/* Acá van los iconos de agregar, eliminar... */}
+                                    {
+                                        camposProductoLlenos ? (
+                                            <button type='button' className="button-plus" onClick={() => comprobarStock(productosSimulados)}>
+                                                <svg className='button-plus' xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                                </svg>
+                                            </button>
+                                        ) : (
+                                            <button disabled type='button' className="button-plus" onClick={() => comprobarStock(productosSimulados)}>
+                                                <svg className='button-plus' xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                                </svg>
+                                            </button>
+                                        )
+                                    }
+
                                 </div>
                             </div>
                         </div>
 
                         {
                             productosSeleccionados.map((P) => {
-                                return <P agregarProducto={agregarProducto} />;
+                                return (
+                                    // acá no usé nanoId porque me elimina lo que ya ahabía escrito cada que añado un dropDown           
+                                    <P setInputIdProducto={setInputIdProducto} comprobarStock={comprobarStock} productosSimulados={productosSimulados} camposProductoLlenos={camposProductoLlenos} setCantidadProducto={setCantidadProducto}/>
+                                );
+
                             })
                         }
 
                     </div>
+
+
                     <div className='form-registro-venta_section-footer'>
                         <div className="form-registro-venta-total">
                             <div className="form-registro-venta_section">
@@ -193,29 +201,33 @@ const Formulario = () => {
 
                         <div className="form-registro-venta-buttons">
                             <div>
-                                <button type="button" class="btn btn-secondary">Cancelar</button>
+                                <button type="reset" class="btn btn-secondary">Cancelar</button>
                                 <button type="submit" class="btn btn-primary">Finalizar</button>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
+            <ToastContainer
+                position="bottom-center"
+                autoClose={3000}
+            />
         </>
     )
 }
 
-const DropDownProductos = ({ agregarProducto }) => {
+const DropDownProductos = ({ setInputIdProducto, comprobarStock, productosSimulados, camposProductoLlenos, setCantidadProducto }) => {
     return (
 
         <div className="contenedor-venta-registrada">
             <div className="form-registro-venta_section-body_item-uno">
                 <div >
                     <label htmlFor="codigoProducto">Id producto</label>
-                    <input required type="number" id="codigoProducto" name="codigoProducto " className='input-small' />
+                    <input required onChange={(e) => { setInputIdProducto(e.target.value) }} type="text" id="codigoProducto" name="codigoProducto " className='input-small' />
                 </div>
                 <div>
                     <label htmlFor="cantidadProducto">Cantidad</label>
-                    <input required type="number" id="cantidadProducto" name="cantidadProducto"
+                    <input required onChange={(e) => { setCantidadProducto(e.target.value) }} type="number" id="cantidadProducto" name="cantidadProducto"
                         className='input-small' />
                 </div>
             </div>
@@ -235,19 +247,28 @@ const DropDownProductos = ({ agregarProducto }) => {
                     <input type="number" id="subtotal" name="subtotal" disabled placeholder='000000' className='input-small' />
                 </div>
                 <div className='form-registro-venta_section-body_item-dos_item'>
-                    <button className="button-plus" onClick={() => agregarProducto()}>
-                        <svg className='button-plus' xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                        </svg>
-                    </button>
-                    {/* <button className="button-agreagar">agregar</button>
-                <button className="button-agreagar">agregar</button> */}
-                    {/* Acá van los iconos de agregar, eliminar... */}
+                    {
+                        camposProductoLlenos ? (
+                            <button type='button' className="button-plus" onClick={() => comprobarStock(productosSimulados)}>
+                                <svg className='button-plus' xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                </svg>
+                            </button>
+                        ) : (
+                            <button disabled type='button' className="button-plus" onClick={() => comprobarStock(productosSimulados)}>
+                                <svg className='button-plus' xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                </svg>
+                            </button>
+                        )
+                    }
+
                 </div>
             </div>
         </div>
-
     )
 }
+
+
 
 export default Formulario
