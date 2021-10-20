@@ -15,7 +15,6 @@ export default function TablaUsuariosYRoles() {
       await getUsuarios(setUsuarios);
       setEjecutarConsulta(false);
     };
-    console.log(ejecutarConsulta);
     if (ejecutarConsulta) {
       fetchUsers();
     }
@@ -74,7 +73,7 @@ export default function TablaUsuariosYRoles() {
                 id={usuario._id}
                 estado={usuario.estado}
                 rol={usuario.rol}
-                nombre={usuario.nombre}
+                nombre={usuario.name}
                 onChange={(i) => {
                   setEjecutarConsulta(i);
                 }}
