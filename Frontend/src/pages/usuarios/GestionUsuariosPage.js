@@ -3,6 +3,7 @@ import "styles/usuariosYRolesCss/UsuariosYRoles.css";
 import { useEffect, useState } from "react";
 import { getUsuarios } from "utils/api";
 import { nanoid } from "nanoid";
+import PrivateRoute from "components/PrivateRoute";
 
 export default function TablaUsuariosYRoles() {
   const [usuarios, setUsuarios] = useState([]);
@@ -22,7 +23,8 @@ export default function TablaUsuariosYRoles() {
   //console.log(usuarios)
 
   return (
-    <div className="container">
+    <PrivateRoute roleList ={['administrador']} stateList = {['autorizado']}>
+      <div className="container">
       <h2 className="titulo1">MAESTRO DE USUARIOS</h2>
       {/* seccion de filtros y busqueda */}
       <section className="vistas">
@@ -83,5 +85,6 @@ export default function TablaUsuariosYRoles() {
         </table>
       </section>
     </div>
+    </PrivateRoute>
   );
 }
