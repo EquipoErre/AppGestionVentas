@@ -241,3 +241,7 @@ input{
     display: flex;
     justify-content: center;
 }
+.hidden{
+    display: none;
+    /* visibility: hidden; */
+}

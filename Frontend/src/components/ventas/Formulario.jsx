@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid'
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef} from 'react'
 import { Link } from 'react-router-dom'
 import { getUsuarios } from 'utils/api'
 import { ToastContainer, toast } from 'react-toastify';
@@ -35,6 +35,20 @@ const Formulario = () => {
             'estado': true
         }
     ]
+    const vendedoresBack = [
+        {
+            '_id': '1',
+            'nombre': 'Carla'
+        },
+        {
+            '_id': '2',
+            'nombre': 'Juan'
+        },
+        {
+            '_id': '3',
+            'nombre': 'Pedro'
+        }
+    ]
 
     //Estados
     //const [productos, setProductos] = useState([]);
@@ -46,6 +60,7 @@ const Formulario = () => {
     const [inputCantidadProducto, setCantidadProducto] = useState(0);
     const [camposProductoLlenos, setCamposProductoLlenos] = useState(false);
     const [filasTabla, setFilasTabla] = useState([])
+    const form = useRef(null);
 
     // const [productoDisponible, setProductoDisponible] = useState(false);
 
@@ -54,7 +69,8 @@ const Formulario = () => {
     //Se obtienen vendedores y productos al renderizar la página
     useEffect(() => {
         // obtener vendedores
-        getUsuarios(setVendedores);
+        //getUsuarios(setVendedores);
+        setVendedores(vendedoresBack)
         // obtener productos
         //getProductos(setProductos);
     }, [])
@@ -87,11 +103,65 @@ const Formulario = () => {
             'cantidad': cantidadProducto,
             'subtotal': (parseInt(producto.valor)) * (parseInt(cantidadProducto))
         }
-        setTotal(total + parseInt(productoFacturado.subtotal))
         setProductoFacturado(productoFacturado);
         setFilasTabla([...filasTabla, productoFacturado])
+        // setTotal(calcularTotal())
         setProductosSeleccionados([...productosSeleccionados, TablaProductos])
     }
+
+    // useEffect(() => {
+    //     setTotal(total +1)
+    // }, [filasTabla])
+
+    // const calcularTotal = ()=>{
+    //     var totalTemp = total;
+    //     filasTabla.map(el=>{
+    //        totalTemp = totalTemp + parseInt(el.subtotal)
+    //      })
+    //      return totalTemp
+    // }
+
+
+    const submitForm = async (e) => {
+        e.preventDefault();
+        const fd = new FormData(form.current);
+    
+        const formData = {};
+        fd.forEach((value, key) => {
+          formData[key] = value;
+        });
+    
+        console.log('form data', formData);
+    
+        const listaProductos = Object.keys(formData)
+          .map((k) => {
+            if (k.includes('producto')) {
+              return filasTabla.filter((p) => p._id === formData[k])[0];
+            }
+            return null;
+          }).filter((p) => p);    
+        
+    
+          const datosVenta = {
+              "fecha": formData.fechaFactura,
+              "vendedor": vendedores.filter(v=>v._id ===formData.vendedor)[0],
+              "cliente": formData.nombreCliente,
+              "documento":formData.documentoCliente,
+              "productos": listaProductos
+              
+            }
+            
+            console.log("DATOS VENTA → ",datosVenta)
+            // await crearVenta(
+            //   datosVenta,
+            //   (response) => {
+            //     console.log(response);
+            //   },
+            //   (error) => {
+            //     console.error(error);
+            //   }
+            // );
+        };
 
 
 
@@ -102,7 +172,7 @@ const Formulario = () => {
     return (
         <>
             <div className='contenedor-form-registro-venta'>
-                <form className='form-registro-venta'>
+                <form ref={form} onSubmit={submitForm} className='form-registro-venta'>
                     <div className='form-registro-venta_section-head'>
                         <div className='form-registro-venta_section-head_head'>
                             <h2>REGISTRO DE VENTA</h2>
@@ -152,7 +222,7 @@ const Formulario = () => {
                             </div>
                             <div>
                                 <label htmlFor='inputCantidadProducto'>Cantidad</label>
-                                <input required onChange={(e) => { setCantidadProducto(e.target.value) }} type='number' id='inputCantidadProducto' name='inputCantidadProducto'
+                                <input required onChange={(e) => { setCantidadProducto(e.target.value) }} type='number' id='inputCantidadProducto' name='cantidadProducto'
                                     className='input-small' />
                             </div>
 
@@ -205,6 +275,10 @@ const Formulario = () => {
     )
 }
 
+
+
+
+
 const TablaProductos = ({ setInputIdProducto, setCantidadProducto, camposProductoLlenos, productosSimulados, inputIdProducto, inputCantidadProducto, comprobarStock, filasTabla, setFilasTabla }) => {
 
     const eliminarProducto = (productoAEliminar) =>{
@@ -212,40 +286,6 @@ const TablaProductos = ({ setInputIdProducto, setCantidadProducto, camposProduct
     }
     return (
         <div>
-            {/* <div className='contenedor-registro-venta'>
-                <div className='form-registro-venta_section-body_item-uno'>
-                    <div >
-                        <label htmlFor='codigoProducto'>Id producto</label>
-                        <input required onChange={(e) => { setInputIdProducto(e.target.value) }} type='text' id='codigoProducto' name='codigoProducto ' />
-                    </div>
-                    <div>
-                        <label htmlFor='inputCantidadProducto'>Cantidad</label>
-                        <input required onChange={(e) => { setCantidadProducto(e.target.value) }} type='number' id='inputCantidadProducto' name='inputCantidadProducto'
-                            className='input-small' />
-                    </div>
-
-
-                    <div className='form-registro-venta_section-body_item-dos'>
-                        {
-                            camposProductoLlenos ? (
-                                <button type='button' className='button-plus' onClick={() => comprobarStock(productosSimulados, inputIdProducto, inputCantidadProducto)}>
-                                    <svg className='button-plus' xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='currentColor' class='bi bi-plus' viewBox='0 0 16 16'>
-                                        <path d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z' />
-                                    </svg>
-                                </button>
-                            ) : (
-                                <button disabled type='button' className='button-plus' onClick={() => comprobarStock(productosSimulados, inputIdProducto, inputCantidadProducto)}>
-                                    <svg className='button-plus' xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='currentColor' class='bi bi-plus' viewBox='0 0 16 16'>
-                                        <path d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z' />
-                                    </svg>
-                                </button>
-                            )
-                        }
-
-                    </div>
-                </div>
-            </div> */}
-            {/* ********************************** */}
             <div className='contenedor-table'>
 
                 <table class="table">
@@ -257,11 +297,12 @@ const TablaProductos = ({ setInputIdProducto, setCantidadProducto, camposProduct
                             <th>Cantidad</th>
                             <th>Subtotal</th>
                             <th>Eliminar</th>
+                            <th className='hidden'>Input</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            filasTabla.map(el => {
+                            filasTabla.map((el, index) => {
                                 return (
                                     <tr key={nanoid()}>
                                         <td>{el._id}</td>
@@ -276,6 +317,9 @@ const TablaProductos = ({ setInputIdProducto, setCantidadProducto, camposProduct
                                                 </svg>
                                             </button>
                                         </td>
+                                        <input hidden  defaultValue={el._id} name={`producto_${index}`}/>
+                                        <input hidden  defaultValue={el.cantidad} name={`cantidad_${index}`}/>
+                                        <input hidden  defaultValue={el.subtotal} name={`subtotal_${index}`}/>
                                     </tr>
                                 )
                             })
@@ -283,7 +327,6 @@ const TablaProductos = ({ setInputIdProducto, setCantidadProducto, camposProduct
                     </tbody>
                 </table>
             </div>
-            {/* ********************************** */}
         </div>
 
     )
