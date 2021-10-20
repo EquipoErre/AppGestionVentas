@@ -4,8 +4,9 @@ import { useLocation } from "react-router";
 import "styles/layoutPrivado.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { obtenerDatosUsuario } from "utils/api";
-import { usePerfilUsuario } from "context/UsuarioActual";
+
 import React, { useEffect, useState } from "react";
+import { useUser } from "context/UserContext";
 
 const Layout = ({ children }) => {
   const {
@@ -16,7 +17,7 @@ const Layout = ({ children }) => {
     logout,
   } = useAuth0();
   const [loadingUserInformation, setLoadingUserInformation] = useState(false);
-  const { setUserData } = usePerfilUsuario();
+  const { setUserData } = useUser();
   const location = useLocation();
   const [paginaActual, setPaginaActual] = useState(location.pathname);
 
