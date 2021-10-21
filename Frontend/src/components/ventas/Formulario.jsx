@@ -137,7 +137,7 @@ const Formulario = ({vendedores, productos}) => {
                                         <option disabled value=''>Elija unvendedor</option>
                                         {vendedores.map((vendedor) => {
                                             return (
-                                                <option value={vendedor._id} key={nanoid()}>{vendedor.nombre}</option>
+                                                <option value={vendedor._id} key={nanoid()}>{vendedor.name}</option>
                                             )
                                         })
                                         }
