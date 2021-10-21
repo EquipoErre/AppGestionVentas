@@ -3,6 +3,8 @@ import Tabla from 'components/ventas/Tabla'
 import BarraBusqueda from 'components/ventas/BarraBusqueda';
 import { Link } from 'react-router-dom';
 import "styles/pages/ventas/listaVentas.css"
+import { obtenerVentas } from 'utils/api';
+import { useState, useEffect } from 'react';
 
 const datosSimulados = [
     {
@@ -432,8 +434,17 @@ const datosSimulados = [
 
 ];
 
+
 const ListaVentas = () => {
-    return (
+    
+    // const [ventas, setVentas] = useState([]);
+    // useEffect(() => {
+    //     obtenerVentas(setVentas)
+    //     console.log(ventas)
+    // }, [])
+        
+                
+        return (
         <>
             <section className='contenedor-tabla'>
                 <div className='search search-sticky contenedor-busqueda-button'>
