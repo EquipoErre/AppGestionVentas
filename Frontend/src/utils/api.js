@@ -78,3 +78,14 @@ export const deleteUser = (id, onChange) => {
     });
     
 };
+
+
+export const crearVenta = async (data, successCallback, errorCallback) => {
+  const options = {
+    method: 'POST',
+    url: 'http://localhost:5000/ventas/nuevo',
+    headers: { 'Content-Type': 'application/json', Authorization: getToken() },
+    data,
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};

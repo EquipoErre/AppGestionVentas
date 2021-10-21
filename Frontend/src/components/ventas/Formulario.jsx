@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { getUsuarios } from 'utils/api'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { crearVenta } from 'utils/api'
 
 const Formulario = () => {
 
@@ -81,7 +82,7 @@ const Formulario = () => {
         }
     }, [inputIdProducto, inputCantidadProducto])
 
-    
+
     //Se comprueba si el producto existe y esta disponible
     const comprobarStock = (productos, idProducto, cantidadProducto) => {
         const producto = productos.find(producto => (producto._id === idProducto && producto.estado === true))
@@ -95,7 +96,7 @@ const Formulario = () => {
         }
     }
 
-    
+
     const agregarProducto = (producto, cantidadProducto) => {
         const productoFacturado = {
             '_id': producto._id,
@@ -136,20 +137,23 @@ const Formulario = () => {
             "cliente": formData.nombreCliente,
             "documento": formData.documentoCliente,
             "productos": listaProductos,
-            "total": formData.totalCompra
+            "total": formData.totalCompra,
+            "estado": formData.estado
 
         }
 
         console.log("DATOS VENTA → ", datosVenta)
-        // await crearVenta(
-        //   datosVenta,
-        //   (response) => {
-        //     console.log(response);
-        //   },
-        //   (error) => {
-        //     console.error(error);
-        //   }
-        // );
+        await crearVenta(
+          datosVenta,
+          (response) => {
+            console.log(response);
+            toast.success("Venta agragada con éxito")
+          },
+          (error) => {
+            toast.error("Error al agregar venta")
+            console.error(error);
+          }
+        );
     };
 
 
@@ -207,6 +211,14 @@ const Formulario = () => {
                                     <label className='font-color' htmlFor='documento'>Documento</label>
                                     <input required type='text' id='documento' name='documentoCliente' pattern='[0-9]*' />
                                 </div>
+                                <div>
+                                    <label htmlFor="estado">Estado:</label>
+                                    <select required name="estado" id='estado' defaultValue=''>
+                                        <option disabled value=''>Seleccione un estado</option>
+                                        <option value='enProceso'>En proceso</option>
+                                        <option value='entregada'>Entregada</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -231,7 +243,7 @@ const Formulario = () => {
                             </div>
                         </div>
                     </div>
-                    {/* *******************************************************************************************/}                   
+                    {/* *******************************************************************************************/}
                     <div className='form-registro-venta_section-body'>
                         <TablaProductos filasTabla={filasTabla} setFilasTabla={setFilasTabla} total={total} setTotal={setTotal} />
                     </div>
@@ -240,7 +252,7 @@ const Formulario = () => {
                         <div className='form-registro-venta-total'>
                             <div className='form-registro-venta_section'>
                                 <label htmlFor='totalCompra'>Total</label>
-                                <input required type='number' value={total}  id='totalCompra' name='totalCompra' />
+                                <input required type='number' value={total} id='totalCompra' name='totalCompra' />
                             </div>
                         </div>
                         <div className='form-registro-venta-buttons'>
@@ -258,7 +270,7 @@ const Formulario = () => {
 }
 
 
-const TablaProductos = ({filasTabla, setFilasTabla,total, setTotal }) => {
+const TablaProductos = ({ filasTabla, setFilasTabla, total, setTotal }) => {
 
     const eliminarProducto = (productoAEliminar) => {
         setTotal(parseInt(total - productoAEliminar.subtotal))
