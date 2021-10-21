@@ -99,27 +99,23 @@ export const crearVenta = async (data, successCallback, errorCallback) => {
   await axios.request(options).then(successCallback).catch(errorCallback);
 };
 
+export const obtenerVentas = async (setVentas) => {
+  const options = {
+    method: "GET", url: "http://localhost:5000/ventas/", headers: {
+    Authorization: getToken(),
+  },
+ };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  await axios
+    .request(options)
+    .then(function (response) {
+      // console.log(response.data)
+      setVentas(response.data);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+};
 
 
 // export const obtenerVentas = async (successCallback, errorCallback) => {
@@ -131,18 +127,4 @@ export const crearVenta = async (data, successCallback, errorCallback) => {
 //     },
 //   };
 //   await axios.request(options).then(successCallback).catch(errorCallback);
-// };
-
-// export const obtenerVentas = async (setVentas) => {
-//   const options = { method: "GET", url: "http://localhost:5000/ventas/" };
-
-//   await axios
-//     .request(options)
-//     .then(function (response) {
-//       // console.log(response.data)
-//       setUsuarios(response.data);
-//     })
-//     .catch(function (error) {
-//       console.error(error);
-//     });
-// };
+//   };

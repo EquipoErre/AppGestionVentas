@@ -437,11 +437,16 @@ const datosSimulados = [
 
 const ListaVentas = () => {
     
-    // const [ventas, setVentas] = useState([]);
-    // useEffect(() => {
-    //     obtenerVentas(setVentas)
-    //     console.log(ventas)
-    // }, [])
+    const [ventas, setVentas] = useState([]);
+    useEffect(() => {
+        // setVentas(obtenerVentas)
+        obtenerVentas(setVentas)
+    }, [])
+    
+    useEffect(() => {
+        console.log(ventas)
+        
+    }, [ventas])
         
                 
         return (
@@ -458,7 +463,7 @@ const ListaVentas = () => {
                     </div>
                 </div>
                 <div className='contenedor-tabla'>
-                    <Tabla datos={datosSimulados}></Tabla>
+                    <Tabla datos={ventas}></Tabla>
                 </div>
             </section>
         </>
