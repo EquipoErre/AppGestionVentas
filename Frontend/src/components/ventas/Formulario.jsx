@@ -7,53 +7,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { crearVenta } from 'utils/api'
 
-const Formulario = () => {
-
-    //se simulan los productos
-    const productosBack = [
-        {
-            '_id': '123',
-            'descripcion': 'pantalon',
-            'valor': 30000,
-            'estado': false
-        },
-        {
-            '_id': '1234',
-            'descripcion': 'short',
-            'valor': 15000,
-            'estado': true
-        },
-        {
-            '_id': '12345',
-            'descripcion': 'camisa',
-            'valor': 25000,
-            'estado': true
-        },
-        {
-            '_id': '123456',
-            'descripcion': 'Blusa',
-            'valor': 27850,
-            'estado': true
-        }
-    ]
-    const vendedoresBack = [
-        {
-            '_id': '1',
-            'nombre': 'Carla'
-        },
-        {
-            '_id': '2',
-            'nombre': 'Juan'
-        },
-        {
-            '_id': '3',
-            'nombre': 'Pedro'
-        }
-    ]
+const Formulario = ({vendedores, productos}) => {
 
     //Estados
-    const [vendedores, setVendedores] = useState([]);
-    const [productos, setProductos] = useState([]);
+    // const [vendedores, setVendedores] = useState([]);
+    // const [productos, setProductos] = useState([]);
     const [inputIdProducto, setInputIdProducto] = useState('');
     const [total, setTotal] = useState(0);
     const [productoFacturado, setProductoFacturado] = useState({});
@@ -61,17 +19,6 @@ const Formulario = () => {
     const [camposProductoLlenos, setCamposProductoLlenos] = useState(false);
     const [filasTabla, setFilasTabla] = useState([])
     const form = useRef(null);
-    // const [productosSeleccionados, setProductosSeleccionados] = useState([]);
-
-    //Se obtienen vendedores y productos al renderizar la página
-    useEffect(() => {
-        // obtener vendedores
-        //getUsuarios(setVendedores);
-        // obtener productos
-        //getProductos(setProductos);
-        setVendedores(vendedoresBack)
-        setProductos(productosBack)
-    }, [])
 
     //Se validan condiciones para activar el boton de añadir producto a la venta
     useEffect(() => {
