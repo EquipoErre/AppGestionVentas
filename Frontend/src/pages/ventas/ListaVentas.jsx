@@ -442,19 +442,9 @@ const ListaVentas = () => {
     const [ventasFiltradas, setVentasFiltradas] = useState(ventas);
 
     useEffect(() => {
-        // setVentas(obtenerVentas)
         obtenerVentas(setVentas)
     }, [])
     
-    useEffect(() => {
-        console.log(ventas)
-        
-    }, [ventas])
-
-    useEffect(() => {
-        console.log(ventasFiltradas)
-    }, [ventasFiltradas])
-
     useEffect(() => {
         setVentasFiltradas(
           ventas.filter((elemento) => {

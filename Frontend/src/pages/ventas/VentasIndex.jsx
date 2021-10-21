@@ -17,43 +17,42 @@ const VentasIndex = () => {
       const productosBack = [
         {
             '_id': '123',
-            'descripcion': 'pantalon',
+            'descripcion': 'Pantalon',
             'valor': 30000,
             'estado': false
         },
         {
             '_id': '1234',
-            'descripcion': 'short',
+            'descripcion': 'Short',
             'valor': 15000,
             'estado': true
         },
         {
             '_id': '12345',
-            'descripcion': 'camisa',
+            'descripcion': 'Camisa',
             'valor': 25000,
             'estado': true
         },
         {
             '_id': '123456',
-            'descripcion': 'Blusa',
+            'descripcion': 'Camisa boton',
+            'valor': 27850,
+            'estado': true
+        },
+        {
+            '_id': '1234567',
+            'descripcion': 'Pantaloneta',
+            'valor': 27850,
+            'estado': true
+        },
+        {
+            '_id': '12345678',
+            'descripcion': 'Esqueleto',
             'valor': 27850,
             'estado': true
         }
     ]
-    const vendedoresBack = [
-        {
-            '_id': '1',
-            'nombre': 'Carla'
-        },
-        {
-            '_id': '2',
-            'nombre': 'Juan'
-        },
-        {
-            '_id': '3',
-            'nombre': 'Pedro'
-        }
-    ]
+
     const [usuarios, setUsuarios] = useState([]);
     const [vendedores, setVendedores] = useState([]);
     const [productos, setProductos] = useState([]);
@@ -63,8 +62,6 @@ const VentasIndex = () => {
         getUsuarios(setUsuarios);        
         // obtener productos
         //getProductos(setProductos);
-        // setVendedores(vendedoresBack)
-
         setProductos(productosBack)
     }, [])
     
