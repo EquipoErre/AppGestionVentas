@@ -31,7 +31,7 @@ const Tabla = ({datos}) => {
                                 <td>{dato.fecha}</td>
                                 <td>{dato.documento}</td>
                                 <td>{dato.cliente}</td>
-                                <td>{dato.vendedor.nombre}</td>
+                                <td>{dato.vendedor.name}</td>
                                 <td>{dato.total}</td>
                             </tr>
                             );
