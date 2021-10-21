@@ -438,6 +438,9 @@ const datosSimulados = [
 const ListaVentas = () => {
     
     const [ventas, setVentas] = useState([]);
+    const [busqueda, setBusqueda] = useState("");
+    const [ventasFiltradas, setVentasFiltradas] = useState(ventas);
+
     useEffect(() => {
         // setVentas(obtenerVentas)
         obtenerVentas(setVentas)
@@ -447,6 +450,18 @@ const ListaVentas = () => {
         console.log(ventas)
         
     }, [ventas])
+
+    useEffect(() => {
+        console.log(ventasFiltradas)
+    }, [ventasFiltradas])
+
+    useEffect(() => {
+        setVentasFiltradas(
+          ventas.filter((elemento) => {
+            return JSON.stringify(elemento).toLowerCase().includes(busqueda.toLowerCase());
+          })
+        );
+      }, [busqueda, ventas]);
         
                 
         return (
@@ -454,7 +469,7 @@ const ListaVentas = () => {
             <section className='contenedor-tabla'>
                 <div className='search search-sticky contenedor-busqueda-button'>
                     <div className='contenedor-barra-busqueda'>
-                        <BarraBusqueda />
+                        <BarraBusqueda setBusqueda={setBusqueda} />
                     </div>
                     <div className="contenedor-link-registro-ventas">
                         <Link to='/ventas'>
@@ -463,7 +478,7 @@ const ListaVentas = () => {
                     </div>
                 </div>
                 <div className='contenedor-tabla'>
-                    <Tabla datos={ventas}></Tabla>
+                    <Tabla datos={ventasFiltradas}/>
                 </div>
             </section>
         </>
