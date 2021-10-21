@@ -62,7 +62,6 @@ export const getOneUser = async (id, setUser) => {
     .request(options)
     .then(function (response) {
       setUser(response.data);
-      console.log("response cargado");
     })
     .catch(function (error) {
       console.error(error);

@@ -5,26 +5,26 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { patchUsuarios } from "utils/api";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { getOneUser } from "utils/api";
 // normalmente se accederia a la api a traves de useEffect
 
 export default function Formulario() {
   const { id } = useParams();
-  const [usuarioActual, setUsuarios] = useState([]);
-  const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
-  useEffect(() => {
-    console.log(ejecutarConsulta)
-    if (ejecutarConsulta) {
-      getOneUser(id, setUsuarios);
-      setEjecutarConsulta(false);
-    }
-    
-  }, [ejecutarConsulta, id]);
+  // const [usuarioActual, setUsuarios] = useState(null);
+  // const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
+  // useEffect(() => {
+  //   console.log(ejecutarConsulta);
+  //   const obtenerUsuario = async () => {
+  //     await getOneUser(id, setUsuarios);
+  //     setEjecutarConsulta(false);
+  //     console.log(usuarioActual);
+  //   };
+  //   if (ejecutarConsulta) {
+  //     obtenerUsuario();
+  //   }
+  // }, [ejecutarConsulta, id, usuarioActual]);
   //   id es el nombre que se le puso en la ruta
   // permite optener el valor n de la ruta
   // usuarios/n
-  
 
   const enviarAlBackend = (e) => {
     e.preventDefault();
@@ -36,7 +36,7 @@ export default function Formulario() {
     formdata.forEach((value, key) => {
       datosActualizados[key] = value;
     });
-    console.log(datosActualizados)
+    console.log(datosActualizados);
     // validar si el campo name está vacio
     // si lo esta no se actualiza
     if (datosActualizados["name"] === "") {
@@ -76,21 +76,24 @@ export default function Formulario() {
         {/* formulario */}
         <form ref={form} onSubmit={enviarAlBackend}>
           <h3 className="titulo-3">Formulario Actualización</h3>
-          <label htmlFor="name">Nombre completo <i>(opcional)</i></label>
+          <label htmlFor="name">
+            Nombre completo <i>(opcional)</i>
+          </label>
           <input
             autoComplete="off"
             type="text"
             name="name"
             id="name"
             placeholder="actualizar nombre"
-            defaultValue={usuarioActual.name}
           />
-          <label htmlFor="estado">Estado  <i>(opcional)</i></label>
+          <label htmlFor="estado">
+            Estado <i>(opcional)</i>
+          </label>
           <select
             className="seleccionar"
             name="estado"
             id="estado"
-            defaultValue={usuarioActual.estado}
+            defaultValue="seleccionar"
           >
             <option value="seleccionar" disabled>
               seleccione una opción
@@ -99,12 +102,14 @@ export default function Formulario() {
             <option value="autorizado">Autorizado</option>
             <option value="no autorizado">No Autorizado</option>
           </select>
-          <label htmlFor="rol">Asignar rol  <i>(opcional)</i></label>
+          <label htmlFor="rol">
+            Asignar rol <i>(opcional)</i>
+          </label>
           <select
             className="seleccionar"
             name="rol"
             id="roles"
-            defaultValue={usuarioActual.rol}
+            defaultValue="seleccionar"
           >
             <option value="seleccionar" disabled>
               seleccione una opción
