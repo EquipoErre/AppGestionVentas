@@ -23,7 +23,7 @@ import ListaVentas from "pages/ventas/ListaVentas"
 import { Auth0Provider } from "@auth0/auth0-react";
 import PrivateRoute from 'components/PrivateRoute';
 import React, { useState } from 'react';
-import { perfilUsuario } from 'context/UsuarioActual';
+import { UserContext } from 'context/UserContext';
 
 function App() {
   const [userData, setUserData] = useState({});
@@ -35,7 +35,7 @@ function App() {
       audience = "api-autenticacion-equipoerre"
     >
       <div className='App'>
-        <perfilUsuario.Provider value={{ userData, setUserData }}>
+        <UserContext.Provider value={{ userData, setUserData }}>
           <Router>
             <Switch>
               <Route
@@ -120,7 +120,7 @@ function App() {
               </Route>
             </Switch>
           </Router>
-        </perfilUsuario.Provider>
+        </UserContext.Provider>
       </div>
     </Auth0Provider>
   );

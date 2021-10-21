@@ -2,6 +2,8 @@ import RegistrosUsuarios from "components/UsuariosYRoles/RegistrosUsuarios";
 import "styles/usuariosYRolesCss/UsuariosYRoles.css";
 import { useEffect, useState } from "react";
 import { getUsuarios } from "utils/api";
+import { nanoid } from "nanoid";
+import PrivateRoute from "components/PrivateRoute";
 
 export default function TablaUsuariosYRoles() {
   const [usuarios, setUsuarios] = useState([]);
@@ -10,17 +12,19 @@ export default function TablaUsuariosYRoles() {
   // sirve para actualizar la tabla cuando se elimina un elemento
   // y para cargar la info al inicio
   useEffect(() => {
-    console.log(ejecutarConsulta)
-    if (ejecutarConsulta) {
-      getUsuarios(setUsuarios);
+    const fetchUsers = async () => {
+      await getUsuarios(setUsuarios);
       setEjecutarConsulta(false);
+    };
+    if (ejecutarConsulta) {
+      fetchUsers();
     }
-    
   }, [ejecutarConsulta]);
   //console.log(usuarios)
 
   return (
-    <div className="container">
+    <PrivateRoute roleList ={['administrador']} stateList = {['autorizado']}>
+      <div className="container">
       <h2 className="titulo1">MAESTRO DE USUARIOS</h2>
       {/* seccion de filtros y busqueda */}
       <section className="vistas">
@@ -32,7 +36,6 @@ export default function TablaUsuariosYRoles() {
             <option value="administrador">Administrador</option>
             <option value="vendedor">Vendedor</option>
           </select>
-
         </div>
         <div className="bar-busqueda row my-4">
           <select className="col-3 mr-2 " name="busqueda-usuario" id="usuario">
@@ -68,6 +71,7 @@ export default function TablaUsuariosYRoles() {
               // este componente retorna una fila
               // se le pasa onChange para poder actualizar la info
               <RegistrosUsuarios
+              key = {nanoid()}
                 id={usuario._id}
                 estado={usuario.estado}
                 rol={usuario.rol}
@@ -81,5 +85,6 @@ export default function TablaUsuariosYRoles() {
         </table>
       </section>
     </div>
+    </PrivateRoute>
   );
 }

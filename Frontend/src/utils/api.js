@@ -1,13 +1,14 @@
 import axios from "axios";
 
 const getToken = () => {
-  return `Bearer ${localStorage.getItem('token')}`;
+  return `Bearer ${localStorage.getItem("token")}`;
 };
 
 export const obtenerDatosUsuario = async (successCallback, errorCallback) => {
+  // obtener el dato del usuario actual
   const options = {
-    method: 'GET',
-    url: 'http://localhost:5000/usuarios/self',
+    method: "GET",
+    url: "http://localhost:5000/usuarios/self",
     headers: {
       Authorization: getToken(),
     },
@@ -47,6 +48,7 @@ export const patchUsuarios = (id, data) => {
       console.error(error);
     });
 };
+
 export const getOneUser = async (id, setUser) => {
   const options = {
     method: "GET",
@@ -59,8 +61,7 @@ export const getOneUser = async (id, setUser) => {
   await axios
     .request(options)
     .then(function (response) {
-      setUser(response.data)
-      console.log('response cargado');
+      setUser(response.data);
     })
     .catch(function (error) {
       console.error(error);
