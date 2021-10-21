@@ -245,3 +245,8 @@ input{
     display: none;
     /* visibility: hidden; */
 }
+
+thead{
+    top: 0;
+    position: sticky;
+}

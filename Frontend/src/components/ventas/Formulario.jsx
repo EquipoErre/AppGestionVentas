@@ -144,15 +144,15 @@ const Formulario = () => {
 
         console.log("DATOS VENTA → ", datosVenta)
         await crearVenta(
-          datosVenta,
-          (response) => {
-            console.log(response);
-            toast.success("Venta agragada con éxito")
-          },
-          (error) => {
-            toast.error("Error al agregar venta")
-            console.error(error);
-          }
+            datosVenta,
+            (response) => {
+                console.log(response);
+                toast.success("Venta agragada con éxito")
+            },
+            (error) => {
+                toast.error("Error al agregar venta")
+                console.error(error);
+            }
         );
     };
 
@@ -278,47 +278,44 @@ const TablaProductos = ({ filasTabla, setFilasTabla, total, setTotal }) => {
     }
     return (
         <div>
-            <div className='contenedor-table'>
-
-                <table class="table">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Id</th>
-                            <th>Descripcion</th>
-                            <th>Valor</th>
-                            <th>Cantidad</th>
-                            <th>Subtotal</th>
-                            <th>Eliminar</th>
-                            <th className='hidden'>Input</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            filasTabla.map((el, index) => {
-                                return (
-                                    <tr key={nanoid()}>
-                                        <td>{el._id}</td>
-                                        <td>{el.descripcion}</td>
-                                        <td>{el.valor}</td>
-                                        <td>{el.cantidad}</td>
-                                        <td>{el.subtotal}</td>
-                                        <td className='content-button-delete'>
-                                            <button type='button' className='button-delete' onClick={() => eliminarProducto(el)}>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                                                </svg>
-                                            </button>
-                                        </td>
-                                        <input hidden defaultValue={el._id} name={`producto_${index}`} />
-                                        <input hidden defaultValue={el.cantidad} name={`cantidad_${index}`} />
-                                        <input hidden defaultValue={el.subtotal} name={`subtotal_${index}`} />
-                                    </tr>
-                                )
-                            })
-                        }
-                    </tbody>
-                </table>
-            </div>
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Id</th>
+                        <th>Descripcion</th>
+                        <th>Valor</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                        <th>Eliminar</th>
+                        <th className='hidden'>Input</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        filasTabla.map((el, index) => {
+                            return (
+                                <tr key={nanoid()}>
+                                    <td>{el._id}</td>
+                                    <td>{el.descripcion}</td>
+                                    <td>{el.valor}</td>
+                                    <td>{el.cantidad}</td>
+                                    <td>{el.subtotal}</td>
+                                    <td className='content-button-delete'>
+                                        <button type='button' className='button-delete' onClick={() => eliminarProducto(el)}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                            </svg>
+                                        </button>
+                                    </td>
+                                    <input hidden defaultValue={el._id} name={`producto_${index}`} />
+                                    <input hidden defaultValue={el.cantidad} name={`cantidad_${index}`} />
+                                    <input hidden defaultValue={el.subtotal} name={`subtotal_${index}`} />
+                                </tr>
+                            )
+                        })
+                    }
+                </tbody>
+            </table>
         </div>
 
     )
