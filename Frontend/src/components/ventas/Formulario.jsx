@@ -19,12 +19,12 @@ const Formulario = ({vendedores, productos}) => {
 
     //Se validan condiciones para activar el boton de añadir producto a la venta
     useEffect(() => {
-        if (inputIdProducto !== '' && inputCantidadProducto > 0) {
+        if (inputIdProducto !== '' && inputCantidadProducto > 0 && filasTabla.find((p) => (p._id === inputIdProducto)) === undefined ) {
             setCamposProductoLlenos(true)
         } else {
             setCamposProductoLlenos(false)
         }
-    }, [inputIdProducto, inputCantidadProducto])
+    }, [inputIdProducto, inputCantidadProducto, filasTabla])
 
 
     //Se comprueba si el producto existe y esta disponible
@@ -32,7 +32,7 @@ const Formulario = ({vendedores, productos}) => {
         const producto = productos.find(producto => (producto._id === idProducto && producto.estado === true))
         if (producto != undefined) {
             agregarProducto(producto, cantidadProducto);
-            setInputIdProducto('');
+            // setInputIdProducto("");
             // setCantidadProducto(0);
             toast.success('Producto añadido')
         } else {

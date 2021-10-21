@@ -16,37 +16,79 @@ const VentasIndex = () => {
       //se simulan los productos
       const productosBack = [
         {
-            '_id': '123',
+            '_id': '1',
             'descripcion': 'Pantalon',
             'valor': 30000,
             'estado': false
         },
         {
-            '_id': '1234',
+            '_id': '2',
             'descripcion': 'Short',
             'valor': 15000,
             'estado': true
         },
         {
-            '_id': '12345',
+            '_id': '3',
             'descripcion': 'Camisa',
             'valor': 25000,
             'estado': true
         },
         {
-            '_id': '123456',
+            '_id': '4',
             'descripcion': 'Camisa boton',
             'valor': 27850,
             'estado': true
         },
         {
-            '_id': '1234567',
+            '_id': '5',
             'descripcion': 'Pantaloneta',
             'valor': 27850,
             'estado': true
         },
         {
-            '_id': '12345678',
+            '_id': '6',
+            'descripcion': 'Esqueleto',
+            'valor': 27850,
+            'estado': true
+        },
+        {
+            '_id': '7',
+            'descripcion': 'Esqueleto',
+            'valor': 27850,
+            'estado': true
+        },
+        {
+            '_id': '8',
+            'descripcion': 'Esqueleto',
+            'valor': 27850,
+            'estado': true
+        },
+        {
+            '_id': '9',
+            'descripcion': 'Esqueleto',
+            'valor': 27850,
+            'estado': true
+        },
+        {
+            '_id': '10',
+            'descripcion': 'Esqueleto',
+            'valor': 27850,
+            'estado': true
+        },
+        {
+            '_id': '11',
+            'descripcion': 'Esqueleto',
+            'valor': 27850,
+            'estado': false
+        },
+        {
+            '_id': '12',
+            'descripcion': 'Esqueleto',
+            'valor': 27850,
+            'estado': true
+        },
+        {
+            '_id': '13',
             'descripcion': 'Esqueleto',
             'valor': 27850,
             'estado': true
