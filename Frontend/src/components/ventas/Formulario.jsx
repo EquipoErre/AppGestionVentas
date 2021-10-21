@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid'
 import React from 'react'
-import { useState, useEffect, useRef} from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { getUsuarios } from 'utils/api'
 import { ToastContainer, toast } from 'react-toastify';
@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Formulario = () => {
 
     //se simulan los productos
-    const productosSimulados = [
+    const productosBack = [
         {
             '_id': '123',
             'descripcion': 'pantalon',
@@ -51,30 +51,28 @@ const Formulario = () => {
     ]
 
     //Estados
-    //const [productos, setProductos] = useState([]);
     const [vendedores, setVendedores] = useState([]);
+    const [productos, setProductos] = useState([]);
     const [inputIdProducto, setInputIdProducto] = useState('');
-    const [productosSeleccionados, setProductosSeleccionados] = useState([]);
     const [total, setTotal] = useState(0);
     const [productoFacturado, setProductoFacturado] = useState({});
     const [inputCantidadProducto, setCantidadProducto] = useState(0);
     const [camposProductoLlenos, setCamposProductoLlenos] = useState(false);
     const [filasTabla, setFilasTabla] = useState([])
     const form = useRef(null);
-
-    // const [productoDisponible, setProductoDisponible] = useState(false);
-
-
+    // const [productosSeleccionados, setProductosSeleccionados] = useState([]);
 
     //Se obtienen vendedores y productos al renderizar la página
     useEffect(() => {
         // obtener vendedores
         //getUsuarios(setVendedores);
-        setVendedores(vendedoresBack)
         // obtener productos
         //getProductos(setProductos);
+        setVendedores(vendedoresBack)
+        setProductos(productosBack)
     }, [])
 
+    //Se validan condiciones para activar el boton de añadir producto a la venta
     useEffect(() => {
         if (inputIdProducto !== '' && inputCantidadProducto > 0) {
             setCamposProductoLlenos(true)
@@ -83,6 +81,8 @@ const Formulario = () => {
         }
     }, [inputIdProducto, inputCantidadProducto])
 
+    
+    //Se comprueba si el producto existe y esta disponible
     const comprobarStock = (productos, idProducto, cantidadProducto) => {
         const producto = productos.find(producto => (producto._id === idProducto && producto.estado === true))
         if (producto != undefined) {
@@ -95,6 +95,7 @@ const Formulario = () => {
         }
     }
 
+    
     const agregarProducto = (producto, cantidadProducto) => {
         const productoFacturado = {
             '_id': producto._id,
@@ -105,9 +106,53 @@ const Formulario = () => {
         }
         setProductoFacturado(productoFacturado);
         setFilasTabla([...filasTabla, productoFacturado])
-        // setTotal(calcularTotal())
-        setProductosSeleccionados([...productosSeleccionados, TablaProductos])
+        setTotal(parseInt(total + productoFacturado.subtotal))
+        // setProductosSeleccionados([...productosSeleccionados, TablaProductos])
     }
+
+    const submitForm = async (e) => {
+        e.preventDefault();
+        const fd = new FormData(form.current);
+
+        const formData = {};
+        fd.forEach((value, key) => {
+            formData[key] = value;
+        });
+
+        console.log('form data', formData);
+
+        const listaProductos = Object.keys(formData)
+            .map((k) => {
+                if (k.includes('producto')) {
+                    return filasTabla.filter((p) => p._id === formData[k])[0];
+                }
+                return null;
+            }).filter((p) => p);
+
+
+        const datosVenta = {
+            "fecha": formData.fechaFactura,
+            "vendedor": vendedores.filter(v => v._id === formData.vendedor)[0],
+            "cliente": formData.nombreCliente,
+            "documento": formData.documentoCliente,
+            "productos": listaProductos,
+            "total": formData.totalCompra
+
+        }
+
+        console.log("DATOS VENTA → ", datosVenta)
+        // await crearVenta(
+        //   datosVenta,
+        //   (response) => {
+        //     console.log(response);
+        //   },
+        //   (error) => {
+        //     console.error(error);
+        //   }
+        // );
+    };
+
+
 
     // useEffect(() => {
     //     setTotal(total +1)
@@ -120,54 +165,6 @@ const Formulario = () => {
     //      })
     //      return totalTemp
     // }
-
-
-    const submitForm = async (e) => {
-        e.preventDefault();
-        const fd = new FormData(form.current);
-    
-        const formData = {};
-        fd.forEach((value, key) => {
-          formData[key] = value;
-        });
-    
-        console.log('form data', formData);
-    
-        const listaProductos = Object.keys(formData)
-          .map((k) => {
-            if (k.includes('producto')) {
-              return filasTabla.filter((p) => p._id === formData[k])[0];
-            }
-            return null;
-          }).filter((p) => p);    
-        
-    
-          const datosVenta = {
-              "fecha": formData.fechaFactura,
-              "vendedor": vendedores.filter(v=>v._id ===formData.vendedor)[0],
-              "cliente": formData.nombreCliente,
-              "documento":formData.documentoCliente,
-              "productos": listaProductos
-              
-            }
-            
-            console.log("DATOS VENTA → ",datosVenta)
-            // await crearVenta(
-            //   datosVenta,
-            //   (response) => {
-            //     console.log(response);
-            //   },
-            //   (error) => {
-            //     console.error(error);
-            //   }
-            // );
-        };
-
-
-
-    useEffect(() => {
-        console.log("Producto facturado → ", productoFacturado);
-    }, [productoFacturado])
 
     return (
         <>
@@ -225,40 +222,25 @@ const Formulario = () => {
                                 <input required onChange={(e) => { setCantidadProducto(e.target.value) }} type='number' id='inputCantidadProducto' name='cantidadProducto'
                                     className='input-small' />
                             </div>
-
-
                             <div className='form-registro-venta_section-body_item-dos'>
-                                {
-                                    camposProductoLlenos ? (
-                                        <button type='button' className='button-plus' onClick={() => comprobarStock(productosSimulados, inputIdProducto, inputCantidadProducto)}>
-                                            <svg className='button-plus' xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='currentColor' class='bi bi-plus' viewBox='0 0 16 16'>
-                                                <path d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z' />
-                                            </svg>
-                                        </button>
-                                    ) : (
-                                        <button disabled type='button' className='button-plus' onClick={() => comprobarStock(productosSimulados, inputIdProducto, inputCantidadProducto)}>
-                                            <svg className='button-plus' xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='currentColor' class='bi bi-plus' viewBox='0 0 16 16'>
-                                                <path d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z' />
-                                            </svg>
-                                        </button>
-                                    )
-                                }
-
+                                <button disabled={camposProductoLlenos ? (false) : (true)} type='button' className='button-plus' onClick={() => comprobarStock(productos, inputIdProducto, inputCantidadProducto)}>
+                                    <svg className='button-plus' xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='currentColor' class='bi bi-plus' viewBox='0 0 16 16'>
+                                        <path d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z' />
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     </div>
+                    {/* *******************************************************************************************/}                   
                     <div className='form-registro-venta_section-body'>
-
-                        <TablaProductos setInputIdProducto={setInputIdProducto} setCantidadProducto={setCantidadProducto} camposProductoLlenos={camposProductoLlenos} productosSimulados={productosSimulados} inputIdProducto={inputIdProducto} inputCantidadProducto={inputCantidadProducto} comprobarStock={comprobarStock} filasTabla={filasTabla} setFilasTabla={setFilasTabla}/>
+                        <TablaProductos filasTabla={filasTabla} setFilasTabla={setFilasTabla} total={total} setTotal={setTotal} />
                     </div>
-                    {/* *******************************************************************************************/}
-
                     {/* *******************************************************************************************/}
                     <div className='form-registro-venta_section-footer'>
                         <div className='form-registro-venta-total'>
                             <div className='form-registro-venta_section'>
                                 <label htmlFor='totalCompra'>Total</label>
-                                <input type='number' disabled value={total} placeholder='000000' id='totalCompra' name='totalCompra' />
+                                <input required type='number' value={total}  id='totalCompra' name='totalCompra' />
                             </div>
                         </div>
                         <div className='form-registro-venta-buttons'>
@@ -276,13 +258,11 @@ const Formulario = () => {
 }
 
 
+const TablaProductos = ({filasTabla, setFilasTabla,total, setTotal }) => {
 
-
-
-const TablaProductos = ({ setInputIdProducto, setCantidadProducto, camposProductoLlenos, productosSimulados, inputIdProducto, inputCantidadProducto, comprobarStock, filasTabla, setFilasTabla }) => {
-
-    const eliminarProducto = (productoAEliminar) =>{
-        setFilasTabla(filasTabla.filter(p => p._id!==productoAEliminar._id))
+    const eliminarProducto = (productoAEliminar) => {
+        setTotal(parseInt(total - productoAEliminar.subtotal))
+        setFilasTabla(filasTabla.filter(p => p._id !== productoAEliminar._id))
     }
     return (
         <div>
@@ -311,15 +291,15 @@ const TablaProductos = ({ setInputIdProducto, setCantidadProducto, camposProduct
                                         <td>{el.cantidad}</td>
                                         <td>{el.subtotal}</td>
                                         <td className='content-button-delete'>
-                                            <button type='button' className='button-delete' onClick={()=>eliminarProducto(el)}>
+                                            <button type='button' className='button-delete' onClick={() => eliminarProducto(el)}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                                                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
                                                 </svg>
                                             </button>
                                         </td>
-                                        <input hidden  defaultValue={el._id} name={`producto_${index}`}/>
-                                        <input hidden  defaultValue={el.cantidad} name={`cantidad_${index}`}/>
-                                        <input hidden  defaultValue={el.subtotal} name={`subtotal_${index}`}/>
+                                        <input hidden defaultValue={el._id} name={`producto_${index}`} />
+                                        <input hidden defaultValue={el.cantidad} name={`cantidad_${index}`} />
+                                        <input hidden defaultValue={el.subtotal} name={`subtotal_${index}`} />
                                     </tr>
                                 )
                             })
