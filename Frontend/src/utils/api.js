@@ -10,20 +10,17 @@ export const obtenerDatosUsuario = async (successCallback, errorCallback) => {
     method: "GET",
     url: "http://localhost:5000/usuarios/self",
     headers: {
-      Authorization: getToken(), // 3. enviarle el token a backend
+      Authorization: getToken(),
     },
   };
   await axios.request(options).then(successCallback).catch(errorCallback);
 };
 
 export const getUsuarios = async (setUsuarios) => {
-  const options = {
-    method: "GET",
-    url: "http://localhost:5000/usuarios/",
-    headers: {
-      Authorization: getToken(), // 3. enviarle el token a backend
-    },
-  };
+  const options = { method: "GET", url: "http://localhost:5000/usuarios/",
+  headers: {
+    Authorization: getToken(),
+  }, };
 
   await axios
     .request(options)
@@ -40,7 +37,7 @@ export const patchUsuarios = (id, data) => {
   var options = {
     method: "PATCH",
     url: `http://localhost:5000/usuarios/${id}`,
-    headers: { "Content-Type": "application/json", Authorization: getToken() },
+    headers: { "Content-Type": "application/json", Authorization: getToken()  },
     data: data,
   };
 
@@ -55,7 +52,7 @@ export const patchUsuarios = (id, data) => {
 export const getOneUser = async (id, setUser) => {
   const options = {
     method: "GET",
-    url: `http://localhost:5000/usuarios/${id}`,
+    url: `http://localhost:5000/usuarios/${id}`, 
     headers: {
       Authorization: getToken(),
     },
@@ -75,7 +72,7 @@ export const getOneUser = async (id, setUser) => {
 export const deleteUser = (id, onChange) => {
   var options = {
     method: "DELETE",
-    url: `http://localhost:5000/usuarios/${id}`,
+    url: `http://localhost:5000/usuarios/${id}`,  
     headers: {
       Authorization: getToken(),
     },
@@ -90,4 +87,46 @@ export const deleteUser = (id, onChange) => {
     .catch(function (error) {
       console.error(error);
     });
+    
 };
+
+
+export const crearVenta = async (data, successCallback, errorCallback) => {
+  const options = {
+    method: 'POST',
+    url: 'http://localhost:5000/ventas/nuevo',
+    headers: { 'Content-Type': 'application/json', Authorization: getToken() },
+    data,
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+export const obtenerVentas = async (setVentas) => {
+  const options = {
+    method: "GET", url: "http://localhost:5000/ventas/", headers: {
+    Authorization: getToken(),
+  },
+ };
+
+  await axios
+    .request(options)
+    .then(function (response) {
+      // console.log(response.data)
+      setVentas(response.data);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+};
+
+
+// export const obtenerVentas = async (successCallback, errorCallback) => {
+//   const options = {
+//     method: 'GET',
+//     url: 'http://localhost:5000/ventas/',
+//     headers: {
+//       Authorization: getToken(),
+//     },
+//   };
+//   await axios.request(options).then(successCallback).catch(errorCallback);
+//   };

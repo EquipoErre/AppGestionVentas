@@ -5,6 +5,7 @@
     --color-tres: #e6eaec;
     --font: sans-serif;
     --color-cuatro: #2e2e3f;
+    --color-cinco: #d4dfeb;
     
 }
 
@@ -85,7 +86,7 @@
     flex-direction: column;
 }
 
-.contenedor-venta-registrada{
+.contenedor-registro-venta{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -93,18 +94,19 @@
 
 .form-registro-venta_section-body_item-uno{
     display: flex;
-    width: 65%;
+    width: 75%;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
 
 }
 
-.form-registro-venta_section-body_item-dos{
+/* .form-registro-venta_section-body_item-dos{
     display: flex;
     width: 100%;
     justify-content: space-around;
     flex-wrap: wrap;;
-}
+} */
 
 
 .form-registro-venta-buttons{
@@ -126,10 +128,10 @@
     margin-top: 8px;
 }
 
-.contenedor-venta-registrada{
+.contenedor-registro-venta{
     border-bottom: solid 1px var(--color-uno-b);
-    background-color: var(--color-tres);
     padding: 8px;
+    background-color: var(--color-cinco);
 }
 
 input, select, label{
@@ -168,10 +170,10 @@ input{
 }
 
 
-.button-plus{
+.button-plus, .button-delete, .button-edit{
     border: none;
     background-color: rgb(67, 185, 67);
-    background-color: rgb(144, 171, 230);
+    background-color: rgb(136, 162, 219);
     border-radius: 50%;
     width: 23px;
     height: 23px;
@@ -184,9 +186,23 @@ input{
     background-color: teal;
     color: white;
 }
-/* .input-small{
+
+.contenedor-dos-venta-registrada{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+}
+.input-small{
     width: 90px;
-} */
+}
+
+.butons-delete-edit{
+    display: flex;
+    width: 5%;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 10px;
+}
 
 /* .button-agreagar{
     height: 1.8em;
@@ -215,3 +231,22 @@ input{
 
     background-color: blue;
 } */
+.table tr{
+    text-align: center;
+}
+.contenedor-table{
+    overflow-y: auto;
+}
+.content-button-delete{
+    display: flex;
+    justify-content: center;
+}
+.hidden{
+    display: none;
+    /* visibility: hidden; */
+}
+
+thead{
+    top: 0;
+    position: sticky;
+}

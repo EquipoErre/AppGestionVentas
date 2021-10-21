@@ -1,10 +1,12 @@
 import React from 'react'
+import { useState } from 'react';
 import {Link} from "react-router-dom";
 
 
 
-
 const Tabla = ({datos}) => {
+
+
     return (
         <>
             <table class="table">
@@ -24,13 +26,13 @@ const Tabla = ({datos}) => {
                             return(
                             <tr>
                                 <Link to='/ventas:codigo/descripcionVenta'>
-                                    <td>{dato.id}</td>
+                                    <td>{dato._id}</td>
                                 </Link>
                                 <td>{dato.fecha}</td>
-                                <td>{dato.documentoCliente}</td>
-                                <td>{dato.nombreCliente}</td>
-                                <td>{dato.vendedor}</td>
-                                <td>{dato.valorTotal}</td>
+                                <td>{dato.documento}</td>
+                                <td>{dato.cliente}</td>
+                                <td>{dato.vendedor.name}</td>
+                                <td>{dato.total}</td>
                             </tr>
                             );
                         })

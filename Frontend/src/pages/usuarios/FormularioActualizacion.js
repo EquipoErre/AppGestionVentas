@@ -5,13 +5,26 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { patchUsuarios } from "utils/api";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getOneUser } from "utils/api";
 // normalmente se accederia a la api a traves de useEffect
 
 export default function Formulario() {
-  //   id es el name que se le puso en la ruta
+  const { id } = useParams();
+  const [usuarioActual, setUsuarios] = useState([]);
+  const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
+  useEffect(() => {
+    console.log(ejecutarConsulta)
+    if (ejecutarConsulta) {
+      getOneUser(id, setUsuarios);
+      setEjecutarConsulta(false);
+    }
+    
+  }, [ejecutarConsulta, id]);
+  //   id es el nombre que se le puso en la ruta
   // permite optener el valor n de la ruta
   // usuarios/n
-  const { id } = useParams();
+  
 
   const enviarAlBackend = (e) => {
     e.preventDefault();
@@ -63,21 +76,21 @@ export default function Formulario() {
         {/* formulario */}
         <form ref={form} onSubmit={enviarAlBackend}>
           <h3 className="titulo-3">Formulario Actualización</h3>
-          <label htmlFor="name">nombre completo <i>(opcional)</i></label>
+          <label htmlFor="name">Nombre completo <i>(opcional)</i></label>
           <input
             autoComplete="off"
             type="text"
             name="name"
-            id="nombre"
+            id="name"
             placeholder="actualizar nombre"
-            // defaultValue={usuarioActual.name}
+            defaultValue={usuarioActual.name}
           />
           <label htmlFor="estado">Estado  <i>(opcional)</i></label>
           <select
             className="seleccionar"
             name="estado"
             id="estado"
-            defaultValue="seleccionar"
+            defaultValue={usuarioActual.estado}
           >
             <option value="seleccionar" disabled>
               seleccione una opción
@@ -91,7 +104,7 @@ export default function Formulario() {
             className="seleccionar"
             name="rol"
             id="roles"
-            defaultValue="seleccionar"
+            defaultValue={usuarioActual.rol}
           >
             <option value="seleccionar" disabled>
               seleccione una opción
