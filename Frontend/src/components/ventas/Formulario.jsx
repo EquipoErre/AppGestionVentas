@@ -10,11 +10,8 @@ import { crearVenta } from 'utils/api'
 const Formulario = ({vendedores, productos}) => {
 
     //Estados
-    // const [vendedores, setVendedores] = useState([]);
-    // const [productos, setProductos] = useState([]);
     const [inputIdProducto, setInputIdProducto] = useState('');
     const [total, setTotal] = useState(0);
-    const [productoFacturado, setProductoFacturado] = useState({});
     const [inputCantidadProducto, setCantidadProducto] = useState(0);
     const [camposProductoLlenos, setCamposProductoLlenos] = useState(false);
     const [filasTabla, setFilasTabla] = useState([])
@@ -52,10 +49,8 @@ const Formulario = ({vendedores, productos}) => {
             'cantidad': cantidadProducto,
             'subtotal': (parseInt(producto.valor)) * (parseInt(cantidadProducto))
         }
-        setProductoFacturado(productoFacturado);
         setFilasTabla([...filasTabla, productoFacturado])
         setTotal(parseInt(total + productoFacturado.subtotal))
-        // setProductosSeleccionados([...productosSeleccionados, TablaProductos])
     }
 
     const submitForm = async (e) => {
