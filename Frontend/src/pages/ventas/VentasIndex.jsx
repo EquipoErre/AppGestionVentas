@@ -111,11 +111,6 @@ const VentasIndex = () => {
         setVendedores(usuarios.filter((u) => u.rol === "vendedor"))
     }, [usuarios])
 
-    useEffect(() => {
-        console.log("vendedores →→→ ",vendedores)
-
-    }, [vendedores])
-
     return (
         <div>
             <div className='contenedor-padre'>
