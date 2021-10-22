@@ -16,6 +16,8 @@ const Formulario = ({vendedores, productos}) => {
     const [camposProductoLlenos, setCamposProductoLlenos] = useState(false);
     const [filasTabla, setFilasTabla] = useState([])
     const form = useRef(null);
+    const [hayProductosFacturados, setHayProductosFacturados] = useState(false);
+
 
     //Se validan condiciones para activar el boton de añadir producto a la venta
     useEffect(() => {
@@ -26,14 +28,20 @@ const Formulario = ({vendedores, productos}) => {
         }
     }, [inputIdProducto, inputCantidadProducto, filasTabla])
 
+    //Se comprueba que sea facturado por lo menos un producto para activar el boton que envía el form al back
+    useEffect(() => {
+        if(filasTabla.length > 0){
+            setHayProductosFacturados(true)
+        }else{
+            setHayProductosFacturados(false)
+        }
+    }, [filasTabla])
 
     //Se comprueba si el producto existe y esta disponible
     const comprobarStock = (productos, idProducto, cantidadProducto) => {
         const producto = productos.find(producto => (producto._id === idProducto && producto.estado === true))
         if (producto != undefined) {
             agregarProducto(producto, cantidadProducto);
-            // setInputIdProducto("");
-            // setCantidadProducto(0);
             toast.success('Producto añadido')
         } else {
             toast.error('No hay stock');
@@ -97,20 +105,6 @@ const Formulario = ({vendedores, productos}) => {
             }
         );
     };
-
-
-
-    // useEffect(() => {
-    //     setTotal(total +1)
-    // }, [filasTabla])
-
-    // const calcularTotal = ()=>{
-    //     var totalTemp = total;
-    //     filasTabla.map(el=>{
-    //        totalTemp = totalTemp + parseInt(el.subtotal)
-    //      })
-    //      return totalTemp
-    // }
 
     return (
         <>
@@ -200,7 +194,7 @@ const Formulario = ({vendedores, productos}) => {
                         <div className='form-registro-venta-buttons'>
                             <div>
                                 <button type='reset' class='btn btn-secondary'>Cancelar</button>
-                                <button type='submit' class='btn btn-primary'>Finalizar</button>
+                                <button disabled= {hayProductosFacturados ? (false) : (true)} type='submit' class='btn btn-primary'>Finalizar</button>
                             </div>
                         </div>
                     </div>
