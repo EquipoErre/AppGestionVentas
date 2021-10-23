@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 
 
-const Tabla = ({datos}) => {
+const Tabla = ({ventas}) => {
 
 
     return (
@@ -22,17 +22,17 @@ const Tabla = ({datos}) => {
                 </thead>
                 <tbody className="datos-centrados">
                     {
-                        datos.map((dato) => {
+                        ventas.map((venta) => {
                             return(
                             <tr>
                                 <Link to='/ventas:codigo/descripcionVenta'>
-                                    <td>{dato._id}</td>
+                                    <td>{venta._id}</td>
                                 </Link>
-                                <td>{dato.fecha}</td>
-                                <td>{dato.documento}</td>
-                                <td>{dato.cliente}</td>
-                                <td>{dato.vendedor.name}</td>
-                                <td>{dato.total}</td>
+                                <td>{venta.fecha}</td>
+                                <td>{venta.documento}</td>
+                                <td>{venta.cliente}</td>
+                                <td>{venta.vendedor.name}</td>
+                                <td>{venta.total}</td>
                             </tr>
                             );
                         })
