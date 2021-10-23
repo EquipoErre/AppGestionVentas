@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import {Link} from "react-router-dom";
-
+import DescripcionVenta from 'pages/ventas/DescripcionVenta';
 
 
 const Tabla = ({ventas}) => {
@@ -25,7 +25,7 @@ const Tabla = ({ventas}) => {
                         ventas.map((venta) => {
                             return(
                             <tr>
-                                <Link to='/ventas:codigo/descripcionVenta'>
+                                <Link to={`/ventas${venta._id}/descripcionVenta`}>
                                     <td>{venta._id}</td>
                                 </Link>
                                 <td>{venta.fecha}</td>

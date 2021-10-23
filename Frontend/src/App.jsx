@@ -8,7 +8,7 @@ import "styles/components/ventas/componentTablaDescripcionVenta.css";
 
 
 import VentasIndex from "pages/ventas/VentasIndex";
-import VentanaDescrpcionVenta from "pages/ventas/VentanaDescrpcionVenta";
+import DescripcionVenta from "pages/ventas/DescripcionVenta";
 import GestionUsuariosPage from "pages/usuarios/GestionUsuariosPage";
 import FormularioActualizarUsuario from "pages/usuarios/FormularioActualizacion";
 import Layout from "layouts/Layout";
@@ -43,7 +43,7 @@ function App() {
                   "/usuarios",
                   "/usuarios/:id",
                   "/ventas",
-                  "/ventas:codigo/descripcionVenta",
+                  "/ventas:id/descripcionVenta",
                   "/ventas/listaVentas",
                   "/productos",
                   "/productoNuevo"
@@ -63,10 +63,10 @@ function App() {
                       {/* </PrivateRoute> */}
                     </Route>
 
-                    {["/ventas","/ventas/listaVentas", "/ventas:codigo/descripcionVenta"]}
-                    <Route path="/ventas:codigo/descripcionVenta">
+                    {["/ventas","/ventas/listaVentas", "/ventas:id/descripcionVenta"]}
+                    <Route path="/ventas:id/descripcionVenta">
                       {/* <PrivateRoute roleList={['vendedor']}> */}
-                        <VentanaDescrpcionVenta />
+                        <DescripcionVenta />
                       {/* </PrivateRoute> */}
                     </Route>
                     <Route path="/ventas/listaVentas">
