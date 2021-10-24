@@ -94,8 +94,8 @@ const TablaDescripcionventa = ({ unaVenta, unVendedor, productos }) => {
     const [vendedores, setVendedores] = useState([]);
     const [usuarios, setUsuarios] = useState([]);
 
-    
-    
+
+
     useEffect(() => {
         getUsuarios(setUsuarios);
     }, [])
@@ -103,7 +103,7 @@ const TablaDescripcionventa = ({ unaVenta, unVendedor, productos }) => {
     useEffect(() => {
         setVendedor(venta.vendedor)
     }, [venta])
-    
+
     useEffect(() => {
         setVendedores(usuarios.filter((u) => u.rol === "vendedor"))
     }, [usuarios])
@@ -204,11 +204,7 @@ const TablaDescripcionventa = ({ unaVenta, unVendedor, productos }) => {
                 }
 
 
-                <div className="contenedor-link-ventas">
-                    <Link to='/ventas/listaVentas'>
-                        <button type="button" class="btn btn-primary button-ventas"> REGRESAR </button>
-                    </Link>
-                </div>
+
             </div>
             <table class="table">
                 <thead class="table-dark">
@@ -245,7 +241,12 @@ const TablaDescripcionventa = ({ unaVenta, unVendedor, productos }) => {
                                 <button onClick={() => enviarEdicionAlBackend()} type="button" class="btn btn-primary"> Guardar </button>
                             </div>
                         ) : (
-                            <button type="button" class="btn btn-primary" onClick={() => setEditarCampos(true)}> Editar </button>
+                            <div>
+                                <Link to='/ventas/listaVentas'>
+                                    <button type="button" class="btn btn-primary button-ventas"> REGRESAR </button>
+                                </Link>
+                                <button type="button" class="btn btn-primary" onClick={() => setEditarCampos(true)}> Editar </button>
+                            </div>
                         )
                     }
                 </div>

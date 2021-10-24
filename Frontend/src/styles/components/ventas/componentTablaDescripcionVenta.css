@@ -31,8 +31,8 @@
     padding: 0.4em;
     background-color: var(--color-uno);
     padding: 1.65em;/* Pendiente de cambio, solo lo hice para completar el height al 100vh, la finalidad despues de hacer los cambios necesarios es qu la tabla tenga una barra de scroll para que la descripcion de una venta solo ocupe ell 100vh de la altura de la pantalla*/
-    /* bottom: 0;
-    position: sticky; */
+    bottom: 0;
+    position: sticky;
 }
 
 .contenedor-botones button{
@@ -52,6 +52,9 @@
     display: flex;
     align-items: flex-start;
     padding: 8px;
+    /* top: 100px;
+    left: 90%;
+    position: fixed; */
 }
 
 .contenedor-head{
