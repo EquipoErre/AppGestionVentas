@@ -138,6 +138,22 @@ export const getOneSale = async (id, setSale) => {
     });
 };
 
+export const patchVentas = (id, data) => {
+  var options = {
+    method: "PATCH",
+    url: `http://localhost:5000/ventas/${id}`,
+    headers: { "Content-Type": "application/json", Authorization: getToken()  },
+    data: data,
+  };
+
+  axios
+    .request(options)
+    .then(function (response) {})
+    .catch(function (error) {
+      console.error(error);
+    });
+};
+
 // export const obtenerVentas = async (successCallback, errorCallback) => {
 //   const options = {
 //     method: 'GET',
