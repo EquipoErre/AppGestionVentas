@@ -81,8 +81,8 @@ const datos = [
     },
 ];
 
-const TablaDescripcionventa = ({venta}) => {  
-    
+const TablaDescripcionventa = ({venta, vendedor, productos}) => {  
+    console.log(venta.productos);
     return (
         <div>
             <div className='contenedor-head-descripcion'>
@@ -109,7 +109,7 @@ const TablaDescripcionventa = ({venta}) => {
                     </div>
                     <div className="item">
                         <label htmlFor="">Vendedor</label>
-                        <label htmlFor="">{venta.vendedor.nickname}</label>
+                        <label htmlFor="">{vendedor.name}</label>
                     </div>
                     <div className="item">
                         <label htmlFor="">Valor total</label>
@@ -133,8 +133,8 @@ const TablaDescripcionventa = ({venta}) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {
-                        venta.productos.map((p) => {
+                    {
+                        productos.map((p) => {
                             return (
                                 <tr>
                                     <td>{p._id}</td>
@@ -145,7 +145,7 @@ const TablaDescripcionventa = ({venta}) => {
                                 </tr>
                             )
                         })
-                    } */}
+                    }
                 </tbody>
             </table>
             <div className='contenedor-padre-botones'>

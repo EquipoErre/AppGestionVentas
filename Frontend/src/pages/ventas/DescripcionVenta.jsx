@@ -12,21 +12,42 @@ const DescripcionVenta = () => {
     // const [id, setId] = useState("");
     const [ventas, setVentas] = useState([]);
     const [venta, setVenta] = useState({});
+    const [vendedor, setVendedor] = useState({});
+    const [productos, setProductos] = useState([]);
     const [ventaFiltrada, setVentaFiltrada] = useState({});
 
     useEffect(() => {
         const obtenerUnaVenta = async () => {
-            await getOneSale(id, setVenta)
+            await getOneSale(id, setVenta)            
         }
         obtenerUnaVenta();
     }, [])
 
 
+
+    // useEffect(() => {
+    //     console.log("Ventas →→ ", ventas);
+    // }, [ventas])
+
+
     useEffect(() => {
-        console.log("Venta → →" , venta);
+        console.log("Venta → →" , venta)
+        setVendedor(venta.vendedor)
+        setProductos(venta.productos)
     }, [venta])
 
     
+
+    // useEffect(() => {
+    //     console.log("vendedor → ", vendedor);
+        
+    // }, [vendedor])
+    
+    useEffect(() => {
+        console.log("Productos → ", productos);
+    }, [productos])
+
+
     // useEffect(() => {
     //     const traerVentas = async ()=>{
     //         setId(useParams)        
@@ -70,7 +91,7 @@ const DescripcionVenta = () => {
             </div>
             
             <div>
-                <TablaDescripcionventa venta={venta}/>
+                {vendedor && productos && <TablaDescripcionventa venta={venta} vendedor={vendedor} productos={productos}/>}
             </div>
         </>
     )
