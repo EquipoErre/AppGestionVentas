@@ -98,6 +98,8 @@ const Formulario = ({vendedores, productos}) => {
             (response) => {
                 console.log(response);
                 toast.success("Venta agragada con éxito")
+                setFilasTabla([])
+                setTotal(0)
             },
             (error) => {
                 toast.error("Error al agregar venta")
