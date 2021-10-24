@@ -131,7 +131,7 @@ const TablaDescripcionventa = ({ venta, vendedor, productos }) => {
                         <div className="contenedor-head">
                             <div className="item">
                             <label htmlFor="estado">Estado</label>
-                                <select onChange={(e) => setVentaEditada({...ventaEditada, estado: e.target.value})} name="estado" id="estado" defaultValue={venta.estado} placeholder={venta.estado}>                                                                            
+                                <select onChange={(e) => setVentaEditada({...ventaEditada, estado: e.target.value})} name="estado" id="estado" defaultValue={venta.estado} >                                                                            
                                     <option value="entregada">Entregada</option>                                       
                                     <option value="enProceso">En Proceso</option>                                       
                                     <option value="cancelada">Cancelada</option>                                       
@@ -155,11 +155,11 @@ const TablaDescripcionventa = ({ venta, vendedor, productos }) => {
                             </div>
                             <div className="item">
                             <label className='labelVendedor' htmlFor='vendedor'>Vendedor</label>
-                                    <select onChange= {(e) => editarVendedor(e.target.value)} required name='vendedor' id='vendedor' >
-                                        {/* <option disabled value={vendedor._id}>{vendedor.name}</option> */}
+                                    <select onChange= {(e) => editarVendedor(e.target.value)} required name='vendedor' id='vendedor' defaultValue={vendedor._id}>
+                                        
                                         {vendedores.map((v) => {
                                             return (
-                                                <option value={v._id} key={nanoid()}>{v.name}</option>
+                                                <option value={v._id} >{v.name}</option>
                                             )
                                         })
                                         }
