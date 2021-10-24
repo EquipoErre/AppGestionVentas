@@ -43,9 +43,9 @@ const DescripcionVenta = () => {
         
     // }, [vendedor])
     
-    useEffect(() => {
-        console.log("Productos → ", productos);
-    }, [productos])
+    // useEffect(() => {
+    //     console.log("Productos → ", productos);
+    // }, [productos])
 
 
     // useEffect(() => {
