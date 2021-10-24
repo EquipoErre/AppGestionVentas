@@ -3,6 +3,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom'
+import { getOneSale } from 'utils/api';
 import { patchVentas } from 'utils/api';
 import { getUsuarios } from 'utils/api';
 
@@ -84,42 +85,40 @@ const datos = [
     },
 ];
 
-const TablaDescripcionventa = ({ venta, vendedor, productos }) => {
+const TablaDescripcionventa = ({ unaVenta, unVendedor, productos }) => {
     // console.log(venta.productos);
-
+    const [venta, setVenta] = useState(unaVenta)
+    const [vendedor, setVendedor] = useState(unVendedor)
     const [editarCampos, setEditarCampos] = useState(false);
     const [ventaEditada, setVentaEditada] = useState(venta)
     const [vendedores, setVendedores] = useState([]);
     const [usuarios, setUsuarios] = useState([]);
 
-
-
+    
+    
     useEffect(() => {
-       console.log("Venta Editada → ", ventaEditada);
-    }, [ventaEditada])
-
-
-
-    useEffect(() => {
-        getUsuarios(setUsuarios);    
+        getUsuarios(setUsuarios);
     }, [])
+
+    useEffect(() => {
+        setVendedor(venta.vendedor)
+    }, [venta])
     
     useEffect(() => {
         setVendedores(usuarios.filter((u) => u.rol === "vendedor"))
     }, [usuarios])
 
-    const editarVendedor = (id)=> {
-        // console.log("idVendedor → ", id);
-        setVentaEditada({...ventaEditada, vendedor: vendedores.filter((v) => v._id === id)[0] })
+    const editarVendedor = (id) => {
+        setVentaEditada({ ...ventaEditada, vendedor: vendedores.filter((v) => v._id === id)[0] })
     }
 
-    const enviarEdicionAlBackend = ()=> {
-        console.log("Venta Editada" , ventaEditada);
-        console.log("Venta Editada id" , ventaEditada._id);
+    const enviarEdicionAlBackend = () => {
         const id = ventaEditada._id;
         delete ventaEditada["_id"];
         patchVentas(id, ventaEditada)
         setEditarCampos(false)
+        getOneSale(id, setVenta);
+        getOneSale(id, setVentaEditada)
     }
 
     return (
@@ -130,11 +129,11 @@ const TablaDescripcionventa = ({ venta, vendedor, productos }) => {
                     editarCampos ? (
                         <div className="contenedor-head">
                             <div className="item">
-                            <label htmlFor="estado">Estado</label>
-                                <select onChange={(e) => setVentaEditada({...ventaEditada, estado: e.target.value})} name="estado" id="estado" defaultValue={venta.estado} >                                                                            
-                                    <option value="entregada">Entregada</option>                                       
-                                    <option value="enProceso">En Proceso</option>                                       
-                                    <option value="cancelada">Cancelada</option>                                       
+                                <label htmlFor="estado">Estado</label>
+                                <select onChange={(e) => setVentaEditada({ ...ventaEditada, estado: e.target.value })} name="estado" id="estado" defaultValue={venta.estado} >
+                                    <option value="entregada">Entregada</option>
+                                    <option value="enProceso">En Proceso</option>
+                                    <option value="cancelada">Cancelada</option>
                                 </select>
                             </div>
                             <div className="item">
@@ -143,27 +142,27 @@ const TablaDescripcionventa = ({ venta, vendedor, productos }) => {
                             </div>
                             <div className="item">
                                 <label htmlFor='fecha' className='font-color' >Fecha</label>
-                                <input required  onChange={(e) => setVentaEditada({...ventaEditada, fecha: e.target.value})} type='date' id='fecha' name='fechaFactura' defaultValue={venta.fecha}/>
+                                <input required onChange={(e) => setVentaEditada({ ...ventaEditada, fecha: e.target.value })} type='date' id='fecha' name='fechaFactura' defaultValue={venta.fecha} />
                             </div>
                             <div className="item">
                                 <label className='font-color' htmlFor='documento'>Documento</label>
-                                <input required onChange={(e) => setVentaEditada({...ventaEditada, documento: e.target.value})} type='text' id='documento' name='documentoCliente' pattern='[0-9]*' defaultValue={venta.documento}/>
+                                <input required onChange={(e) => setVentaEditada({ ...ventaEditada, documento: e.target.value })} type='text' id='documento' name='documentoCliente' pattern='[0-9]*' defaultValue={venta.documento} />
                             </div>
                             <div className="item">
                                 <label className='font-color' htmlFor='cliente'>Cliente</label>
-                                <input required onChange={(e) => setVentaEditada({...ventaEditada, cliente: e.target.value})} type='text' id='cliente' name='nombreCliente' defaultValue={venta.cliente}/>
+                                <input required onChange={(e) => setVentaEditada({ ...ventaEditada, cliente: e.target.value })} type='text' id='cliente' name='nombreCliente' defaultValue={venta.cliente} />
                             </div>
                             <div className="item">
-                            <label className='labelVendedor' htmlFor='vendedor'>Vendedor</label>
-                                    <select onChange= {(e) => editarVendedor(e.target.value)} required name='vendedor' id='vendedor' defaultValue={vendedor._id}>
-                                        
-                                        {vendedores.map((v) => {
-                                            return (
-                                                <option value={v._id} >{v.name}</option>
-                                            )
-                                        })
-                                        }
-                                    </select>
+                                <label className='labelVendedor' htmlFor='vendedor'>Vendedor</label>
+                                <select onChange={(e) => editarVendedor(e.target.value)} required name='vendedor' id='vendedor' defaultValue={vendedor._id}>
+
+                                    {vendedores.map((v) => {
+                                        return (
+                                            <option value={v._id} >{v.name}</option>
+                                        )
+                                    })
+                                    }
+                                </select>
                             </div>
                             <div className="item">
                                 <label htmlFor="">Valor total</label>
@@ -239,10 +238,12 @@ const TablaDescripcionventa = ({ venta, vendedor, productos }) => {
             </table>
             <div className='contenedor-padre-botones'>
                 <div className='contenedor-botones'>
-                    <button type="button" class="btn btn-secondary">Cancelar</button>
                     {
                         editarCampos ? (
-                            <button onClick={()=> enviarEdicionAlBackend()} type="button" class="btn btn-primary"> Guardar </button>
+                            <div>
+                                <button type="button" class="btn btn-secondary" onClick={() => setEditarCampos(false)}>Cancelar</button>
+                                <button onClick={() => enviarEdicionAlBackend()} type="button" class="btn btn-primary"> Guardar </button>
+                            </div>
                         ) : (
                             <button type="button" class="btn btn-primary" onClick={() => setEditarCampos(true)}> Editar </button>
                         )

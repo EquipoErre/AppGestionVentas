@@ -91,7 +91,7 @@ const DescripcionVenta = () => {
             </div>
             
             <div>
-                {vendedor && productos && <TablaDescripcionventa venta={venta} vendedor={vendedor} productos={productos}/>}
+                {vendedor && productos && <TablaDescripcionventa unaVenta={venta} unVendedor={vendedor} productos={productos}/>}
             </div>
         </>
     )
