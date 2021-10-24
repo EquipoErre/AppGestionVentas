@@ -94,9 +94,9 @@ const TablaDescripcionventa = ({ venta, vendedor, productos }) => {
 
 
 
-    // useEffect(() => {
-    //    console.log("Venta Editada → ", ventaEditada);
-    // }, [ventaEditada])
+    useEffect(() => {
+       console.log("Venta Editada → ", ventaEditada);
+    }, [ventaEditada])
 
 
 
@@ -116,7 +116,9 @@ const TablaDescripcionventa = ({ venta, vendedor, productos }) => {
     const enviarEdicionAlBackend = ()=> {
         console.log("Venta Editada" , ventaEditada);
         console.log("Venta Editada id" , ventaEditada._id);
-        patchVentas(ventaEditada._id, ventaEditada)
+        const id = ventaEditada._id;
+        delete ventaEditada["_id"];
+        patchVentas(id, ventaEditada)
         setEditarCampos(false)
     }
 
@@ -153,11 +155,11 @@ const TablaDescripcionventa = ({ venta, vendedor, productos }) => {
                             </div>
                             <div className="item">
                             <label className='labelVendedor' htmlFor='vendedor'>Vendedor</label>
-                                    <select onChange= {(e) => editarVendedor(e.target.value)} required name='vendedor' id='vendedor' defaultValue={venta.vendedor._id} placeholder={venta.vendedor.name}>
-                                        <option disabled value={venta.vendedor._id}>{venta.vendedor.name}</option>
-                                        {vendedores.map((vendedor) => {
+                                    <select onChange= {(e) => editarVendedor(e.target.value)} required name='vendedor' id='vendedor' >
+                                        {/* <option disabled value={vendedor._id}>{vendedor.name}</option> */}
+                                        {vendedores.map((v) => {
                                             return (
-                                                <option value={vendedor._id} key={nanoid()}>{vendedor.name}</option>
+                                                <option value={v._id} key={nanoid()}>{v.name}</option>
                                             )
                                         })
                                         }
