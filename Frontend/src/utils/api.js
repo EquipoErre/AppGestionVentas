@@ -119,6 +119,25 @@ export const obtenerVentas = async (setVentas) => {
 };
 
 
+export const getOneSale = async (id, setSale) => {
+  const options = {
+    method: "GET",
+    url: `http://localhost:5000/ventas/${id}`, 
+    headers: {
+      Authorization: getToken(),
+    },
+  };
+
+  await axios
+    .request(options)
+    .then(function (response) {
+      setSale(response.data);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+};
+
 // export const obtenerVentas = async (successCallback, errorCallback) => {
 //   const options = {
 //     method: 'GET',

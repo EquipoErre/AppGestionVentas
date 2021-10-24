@@ -109,7 +109,7 @@ const TablaDescripcionventa = ({venta}) => {
                     </div>
                     <div className="item">
                         <label htmlFor="">Vendedor</label>
-                        {/* <label htmlFor="">{venta.vendedor.name}</label> */}
+                        <label htmlFor="">{venta.vendedor.nickname}</label>
                     </div>
                     <div className="item">
                         <label htmlFor="">Valor total</label>
