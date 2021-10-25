@@ -6,8 +6,9 @@ import { getUsuarios } from 'utils/api'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { crearVenta } from 'utils/api'
+import { obtenerVentas } from 'utils/api'
 
-const Formulario = ({vendedores, productos}) => {
+const Formulario = ({vendedores, productos, ventas}) => {
 
     //Estados
     const [inputIdProducto, setInputIdProducto] = useState('');
@@ -17,6 +18,21 @@ const Formulario = ({vendedores, productos}) => {
     const [filasTabla, setFilasTabla] = useState([])
     const form = useRef(null);
     const [hayProductosFacturados, setHayProductosFacturados] = useState(false);
+    const [inputDocumento, setInputDocumento] = useState("");
+    const [nombreCliente, setNombreCliente] = useState("");
+
+    const filtrarNombreCliente = ()=> {
+        if (ventas.filter((e)=> e.documento === inputDocumento)[0] !== undefined) {
+            return ventas.filter((e)=> e.documento === inputDocumento)[0].cliente
+        }else{
+            return ("");
+        }
+        
+    }
+
+    useEffect(() => {
+        setNombreCliente(filtrarNombreCliente())
+    }, [inputDocumento])
 
 
     //Se validan condiciones para activar el boton de añadir producto a la venta
@@ -143,11 +159,11 @@ const Formulario = ({vendedores, productos}) => {
                             <div className='form-registro-venta_section-head_item-dos_section'>
                                 <div>
                                     <label className='font-color' htmlFor='cliente'>Cliente</label>
-                                    <input required type='text' id='cliente' name='nombreCliente' />
+                                    <input required type='text' id='cliente' name='nombreCliente' defaultValue={nombreCliente}/>
                                 </div>
                                 <div>
                                     <label className='font-color' htmlFor='documento'>Documento</label>
-                                    <input required type='text' id='documento' name='documentoCliente' pattern='[0-9]*' />
+                                    <input onChange={(e)=> setInputDocumento(e.target.value)} required type='text' id='documento' name='documentoCliente' pattern='[0-9]*' />
                                 </div>
                                 <div>
                                     <label htmlFor="estado">Estado:</label>
