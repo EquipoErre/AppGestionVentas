@@ -60,3 +60,37 @@
 .contenedor-head{
     width: 90%;
 }
+
+.container-dialog{
+    font-family: var(--font);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color:var(--color-uno-b); */
+}
+
+.container-dialog h1{
+    /* width: 800px; */
+    font-size: 1.5rem;
+    font-weight: 700;
+    /* color: var(--color-tres); */
+    padding: 8px;
+    margin: 10px;
+}
+
+.contaqiner-buttons-Dialog{
+    /* background-color: teal; */
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    padding: 2px;
+    margin: 10px;
+}
+
+.btn-Dialog{
+    width: 80px;
+    padding: 4px;
+}
+

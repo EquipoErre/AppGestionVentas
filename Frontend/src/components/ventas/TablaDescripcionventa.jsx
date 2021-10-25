@@ -1,3 +1,4 @@
+import { Dialog } from '@material-ui/core';
 import { nanoid } from 'nanoid';
 import React from 'react'
 import { useState } from 'react';
@@ -95,6 +96,7 @@ const TablaDescripcionventa = ({ unaVenta, unVendedor, productos }) => {
     const [usuarios, setUsuarios] = useState([]);
     const [campoEditado, setCampoEditado] = useState(false)
     const [vendedorEditado, setVendedorEditado] = useState(unVendedor)
+    const [OpenDialog,setOpenDialog] = useState(false);
 
     useEffect(() => {
         if (ventaEditada !== undefined && venta !== undefined && vendedores.length > 0) {
@@ -127,10 +129,19 @@ const TablaDescripcionventa = ({ unaVenta, unVendedor, productos }) => {
     const enviarEdicionAlBackend = () => {
         const id = ventaEditada._id;
         delete ventaEditada["_id"];
+        setOpenDialog(false)
         patchVentas(id, ventaEditada)
         setEditarCampos(false)
         getOneSale(id, setVenta);
         getOneSale(id, setVentaEditada)
+    }
+
+    const cancelarEdicion = ()=> {
+        if(OpenDialog){
+            setOpenDialog(false);
+        }
+        setEditarCampos(false);
+        setVentaEditada(venta)
     }
 
     return (
@@ -249,15 +260,24 @@ const TablaDescripcionventa = ({ unaVenta, unVendedor, productos }) => {
                     {
                         editarCampos ? (
                             <div>
-                                <button type="button" class="btn btn-secondary" onClick={() => setEditarCampos(false)}>Cancelar</button>
-                                <button disabled={campoEditado ? (false) : (true)} onClick={() => enviarEdicionAlBackend()} type="button" class="btn btn-primary"> Guardar </button>
+                                <button type="button" class="btn btn-secondary" onClick={() => cancelarEdicion()}>Cancelar</button>
+                                <button disabled={campoEditado ? (false) : (true)} onClick={() => setOpenDialog(true)} type="button" class="btn btn-primary"> Guardar </button>
+                                <Dialog className="Dialog" open={OpenDialog}>
+                                    <div className='container-dialog'>
+                                        <h1>¿Estás seguro de editar la venta?</h1>
+                                        <div className='contaqiner-buttons-Dialog'>
+                                            <button type="button" class="btn btn-primary btn-Dialog" onClick={()=> enviarEdicionAlBackend()}>Si</button>
+                                            <button type="button" class="btn btn-secondary btn-Dialog" onClick={()=> cancelarEdicion()}>No</button>
+                                        </div>
+                                    </div>
+                                </Dialog>
                             </div>
                         ) : (
                             <div>
                                 <Link to='/ventas/listaVentas'>
                                     <button type="button" class="btn btn-primary button-ventas"> REGRESAR </button>
                                 </Link>
-                                <button type="button" class="btn btn-primary" onClick={() => setEditarCampos(true)}> Editar </button>
+                                <button type="button" class="btn btn-primary" onClick={() => setEditarCampos(true)}> Editar </button>                                
                             </div>
                         )
                     }
