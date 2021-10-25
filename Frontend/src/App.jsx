@@ -18,6 +18,7 @@ import AuthLayout from "layouts/authLayout";
 import PublicLayout from "layouts/publicLayout";
 import MaestroProductos from "pages/productos/MaestroProductos";
 import ProductoNuevo from "pages/productos/ProductoNuevo";
+import Product from "pages/productos/Product"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ListaVentas from "pages/ventas/ListaVentas"
 import { Auth0Provider } from "@auth0/auth0-react";
@@ -46,7 +47,8 @@ function App() {
                   "/ventas:codigo/descripcionVenta",
                   "/ventas/listaVentas",
                   "/productos",
-                  "/productoNuevo"
+                  "/productoNuevo",
+                  "/product"
                 ]}
               >
                  <Layout>
@@ -80,15 +82,20 @@ function App() {
                       {/* </PrivateRoute> */}
                     </Route>
 
-                    {/* rutas del modulo productos */}
+                    {/* rutas del modulo productos */}                
                     <Route path="/productos">
                       {/* <PrivateRoute roleList={['vendedor']}> */}
-                        <MaestroProductos />
+                        <Product />
                       {/* </PrivateRoute> */}
                     </Route>
                     <Route path="/productoNuevo">
                       {/* <PrivateRoute roleList={['vendedor']}> */}
                         <ProductoNuevo />
+                      {/* </PrivateRoute> */}
+                    </Route>
+                    <Route path="/producto">
+                      {/* <PrivateRoute roleList={['vendedor']}> */}
+                        <Product />
                       {/* </PrivateRoute> */}
                     </Route>
                   </Switch>
