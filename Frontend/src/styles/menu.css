@@ -19,7 +19,7 @@
   justify-content: space-between;
   background: linear-gradient(to left, var(--menu-bg-color), var(--menu-bg-color-2), var(--menu-bg-color-3));
   box-shadow: 0px 4px 10px var(--menu-bg-color-shadow);
-  padding: 5px;
+  padding: 5px;  
 }
 
 .titulo {

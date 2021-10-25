@@ -5,37 +5,39 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { patchUsuarios } from "utils/api";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { getOneUser } from "utils/api";
 // normalmente se accederia a la api a traves de useEffect
 
 export default function Formulario() {
-  const [usuarioActual, setUsuarios] = useState([]);
-  const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
-  useEffect(() => {
-    console.log(ejecutarConsulta)
-    if (ejecutarConsulta) {
-      getOneUser(id, setUsuarios);
-      setEjecutarConsulta(false);
-    }
-    
-  }, [ejecutarConsulta]);
+  const { id } = useParams();
+  // const [usuarioActual, setUsuarios] = useState(null);
+  // const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
+  // useEffect(() => {
+  //   console.log(ejecutarConsulta);
+  //   const obtenerUsuario = async () => {
+  //     await getOneUser(id, setUsuarios);
+  //     setEjecutarConsulta(false);
+  //     console.log(usuarioActual);
+  //   };
+  //   if (ejecutarConsulta) {
+  //     obtenerUsuario();
+  //   }
+  // }, [ejecutarConsulta, id, usuarioActual]);
   //   id es el nombre que se le puso en la ruta
   // permite optener el valor n de la ruta
   // usuarios/n
-  const { id } = useParams();
 
   const enviarAlBackend = (e) => {
     e.preventDefault();
     const datosActualizados = {};
     // cargar los datos que no se pueden cambiar
-    datosActualizados["id"] = id;
+    // datosActualizados["id"] = id;
     // cargar los datos nuevos
     const formdata = new FormData(form.current);
     formdata.forEach((value, key) => {
       datosActualizados[key] = value;
     });
-    // validar si el campo nombre está vacio
+    console.log(datosActualizados);
+    // validar si el campo name está vacio
     // si lo esta no se actualiza
     if (datosActualizados["name"] === "") {
       delete datosActualizados["name"];
@@ -46,10 +48,10 @@ export default function Formulario() {
     // no se actualiza nada
     // los otros campos por si no se cambian el useRef
     // no los captura
-    if (Object.keys(datosActualizados).length > 1) {
+    if (Object.keys(datosActualizados).length >= 1) {
       // se actualiza el id y si hay mas datos tambien se actualizan
       // en este caso el form captura
-      // nombre, estado, rol
+      // name, estado, rol
       patchUsuarios(id, datosActualizados);
       toast.success("usuario actualizado con exito");
     } else {
@@ -61,7 +63,7 @@ export default function Formulario() {
 
   return (
     // no pude cargar los datos en el formulario asi que está vacio
-    // si no se cambian los datos o se deja el campo nombre vacio no pasará nada
+    // si no se cambian los datos o se deja el campo name vacio no pasará nada
     // se hace una validacion para saber que se está actualizando
     // no es necesario llenar todos los campos del form
     <div className="paginaActualizacionUsuarios">
@@ -74,21 +76,24 @@ export default function Formulario() {
         {/* formulario */}
         <form ref={form} onSubmit={enviarAlBackend}>
           <h3 className="titulo-3">Formulario Actualización</h3>
-          <label htmlFor="name">Nombre completo <i>(opcional)</i></label>
+          <label htmlFor="name">
+            Nombre completo <i>(opcional)</i>
+          </label>
           <input
             autoComplete="off"
             type="text"
             name="name"
             id="name"
             placeholder="actualizar nombre"
-            defaultValue={usuarioActual.name}
           />
-          <label htmlFor="estado">Estado  <i>(opcional)</i></label>
+          <label htmlFor="estado">
+            Estado <i>(opcional)</i>
+          </label>
           <select
             className="seleccionar"
             name="estado"
             id="estado"
-            defaultValue={usuarioActual.estado}
+            defaultValue="seleccionar"
           >
             <option value="seleccionar" disabled>
               seleccione una opción
@@ -97,12 +102,14 @@ export default function Formulario() {
             <option value="autorizado">Autorizado</option>
             <option value="no autorizado">No Autorizado</option>
           </select>
-          <label htmlFor="rol">Asignar rol  <i>(opcional)</i></label>
+          <label htmlFor="rol">
+            Asignar rol <i>(opcional)</i>
+          </label>
           <select
             className="seleccionar"
             name="rol"
             id="roles"
-            defaultValue={usuarioActual.rol}
+            defaultValue="seleccionar"
           >
             <option value="seleccionar" disabled>
               seleccione una opción

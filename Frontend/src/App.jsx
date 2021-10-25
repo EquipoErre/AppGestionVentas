@@ -8,7 +8,7 @@ import "styles/components/ventas/componentTablaDescripcionVenta.css";
 
 
 import VentasIndex from "pages/ventas/VentasIndex";
-import VentanaDescrpcionVenta from "pages/ventas/VentanaDescrpcionVenta";
+import DescripcionVenta from "pages/ventas/DescripcionVenta";
 import GestionUsuariosPage from "pages/usuarios/GestionUsuariosPage";
 import FormularioActualizarUsuario from "pages/usuarios/FormularioActualizacion";
 import Layout from "layouts/Layout";
@@ -24,7 +24,7 @@ import ListaVentas from "pages/ventas/ListaVentas"
 import { Auth0Provider } from "@auth0/auth0-react";
 import PrivateRoute from 'components/PrivateRoute';
 import React, { useState } from 'react';
-import { perfilUsuario } from 'context/UsuarioActual';
+import { UserContext } from 'context/UserContext';
 
 function App() {
   const [userData, setUserData] = useState({});
@@ -36,7 +36,7 @@ function App() {
       audience = "api-autenticacion-equipoerre"
     >
       <div className='App'>
-        <perfilUsuario.Provider value={{ userData, setUserData }}>
+        <UserContext.Provider value={{ userData, setUserData }}>
           <Router>
             <Switch>
               <Route
@@ -44,7 +44,7 @@ function App() {
                   "/usuarios",
                   "/usuarios/:id",
                   "/ventas",
-                  "/ventas:codigo/descripcionVenta",
+                  "/ventas:id/descripcionVenta",
                   "/ventas/listaVentas",
                   "/productos",
                   "/productoNuevo",
@@ -65,10 +65,10 @@ function App() {
                       {/* </PrivateRoute> */}
                     </Route>
 
-                    {["/ventas","/ventas/listaVentas", "/ventas:codigo/descripcionVenta"]}
-                    <Route path="/ventas:codigo/descripcionVenta">
+                    {["/ventas","/ventas/listaVentas", "/ventas:id/descripcionVenta"]}
+                    <Route path="/ventas:id/descripcionVenta">
                       {/* <PrivateRoute roleList={['vendedor']}> */}
-                        <VentanaDescrpcionVenta />
+                        <DescripcionVenta />
                       {/* </PrivateRoute> */}
                     </Route>
                     <Route path="/ventas/listaVentas">
@@ -127,7 +127,7 @@ function App() {
               </Route>
             </Switch>
           </Router>
-        </perfilUsuario.Provider>
+        </UserContext.Provider>
       </div>
     </Auth0Provider>
   );

@@ -31,6 +31,8 @@
     padding: 0.4em;
     background-color: var(--color-uno);
     padding: 1.65em;/* Pendiente de cambio, solo lo hice para completar el height al 100vh, la finalidad despues de hacer los cambios necesarios es qu la tabla tenga una barra de scroll para que la descripcion de una venta solo ocupe ell 100vh de la altura de la pantalla*/
+    bottom: 0;
+    position: sticky;
 }
 
 .contenedor-botones button{
@@ -50,8 +52,45 @@
     display: flex;
     align-items: flex-start;
     padding: 8px;
+    /* top: 100px;
+    left: 90%;
+    position: fixed; */
 }
 
 .contenedor-head{
     width: 90%;
 }
+
+.container-dialog{
+    font-family: var(--font);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color:var(--color-uno-b); */
+}
+
+.container-dialog h1{
+    /* width: 800px; */
+    font-size: 1.5rem;
+    font-weight: 700;
+    /* color: var(--color-tres); */
+    padding: 8px;
+    margin: 10px;
+}
+
+.contaqiner-buttons-Dialog{
+    /* background-color: teal; */
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    padding: 2px;
+    margin: 10px;
+}
+
+.btn-Dialog{
+    width: 80px;
+    padding: 4px;
+}
+
