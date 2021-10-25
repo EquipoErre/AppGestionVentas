@@ -53,43 +53,43 @@ function App() {
                   {/* rutas del modulo de usuarios */}
                   <Switch>
                     <Route path="/usuarios/:id">
-                      {/* <PrivateRoute roleList={['admin']}> */}
+                      <PrivateRoute roleList={['administrador']} stateList = {['autorizado']}>
                         <FormularioActualizarUsuario />
-                      {/* </PrivateRoute> */}
+                      </PrivateRoute>
                     </Route>
                     <Route path="/usuarios">
-                      {/* <PrivateRoute roleList={['admin']}> */}
+                      <PrivateRoute roleList={['administrador']} stateList = {['autorizado']}>
                         <GestionUsuariosPage />
-                      {/* </PrivateRoute> */}
+                      </PrivateRoute>
                     </Route>
 
                     {["/ventas","/ventas/listaVentas", "/ventas:codigo/descripcionVenta"]}
                     <Route path="/ventas:codigo/descripcionVenta">
-                      {/* <PrivateRoute roleList={['vendedor']}> */}
+                      <PrivateRoute roleList={['vendedor', 'administrador'] }stateList = {['autorizado']}>
                         <VentanaDescrpcionVenta />
-                      {/* </PrivateRoute> */}
+                      </PrivateRoute>
                     </Route>
                     <Route path="/ventas/listaVentas">
-                      {/* <PrivateRoute roleList={['vendedor']}> */}
+                      <PrivateRoute roleList={['vendedor', 'administrador'] }stateList = {['autorizado']}>
                         <ListaVentas/>
-                      {/* </PrivateRoute> */}
+                      </PrivateRoute>
                     </Route>
                     <Route path="/ventas">
-                      {/* <PrivateRoute roleList={['vendedor']}> */}
+                      <PrivateRoute roleList={['vendedor', 'administrador'] }stateList = {['autorizado']}>
                         <VentasIndex />
-                      {/* </PrivateRoute> */}
+                      </PrivateRoute>
                     </Route>
 
                     {/* rutas del modulo productos */}
                     <Route path="/productos">
-                      {/* <PrivateRoute roleList={['vendedor']}> */}
+                      <PrivateRoute roleList={['vendedor', 'administrador'] }stateList = {['autorizado']}>
                         <MaestroProductos />
-                      {/* </PrivateRoute> */}
+                      </PrivateRoute>
                     </Route>
                     <Route path="/productoNuevo">
-                      {/* <PrivateRoute roleList={['vendedor']}> */}
+                      <PrivateRoute roleList={['vendedor', 'administrador'] }stateList = {['autorizado']}>
                         <ProductoNuevo />
-                      {/* </PrivateRoute> */}
+                      </PrivateRoute>
                     </Route>
                   </Switch>
                 </Layout>
