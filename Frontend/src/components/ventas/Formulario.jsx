@@ -146,7 +146,7 @@ const Formulario = ({vendedores, productos, ventas}) => {
                                 <div>
                                     <label className='labelVendedor' htmlFor='vendedor'>Vendedor</label>
                                     <select required name='vendedor' id='vendedor' defaultValue='' >
-                                        <option disabled value=''>Elija unvendedor</option>
+                                        <option disabled value=''>Elija un vendedor</option>
                                         {vendedores.map((vendedor) => {
                                             return (
                                                 <option value={vendedor._id}>{vendedor.name}</option>
