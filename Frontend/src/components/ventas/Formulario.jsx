@@ -42,7 +42,7 @@ const Formulario = ({vendedores, productos}) => {
         const producto = productos.find(producto => (producto._id === idProducto && producto.estado === true))
         if (producto != undefined) {
             agregarProducto(producto, cantidadProducto);
-            toast.success('Producto añadido')
+            // toast.success('Producto añadido')
         } else {
             toast.error('No hay stock');
         }
