@@ -18,18 +18,7 @@ const Productos = () => {
   useEffect(() => {
     const fetchProductos = async () => {
       setLoading(true);
-      await obtenerProductos(
-        (response) => {
-          console.log('la respuesta fue', response);
-          setProductos(response.data);
-          setEjecutarConsulta(false);
-          setLoading(false);
-        },
-        (error) => {
-          console.error('Salio un error:', error);
-          setLoading(false);
-        }
-      );
+      await obtenerProductos(setProductos)
     };
     console.log('Consulta', ejecutarConsulta);
     if (ejecutarConsulta) {
@@ -276,8 +265,8 @@ const FormularioCreacionProductos = ({ setMostrarTabla, listaProductos, setProdu
             Estado
           </label>
           <select className="seleccion" name="estado" required>
-            <option value="true">Disponible</option>
-            <option value="false">No Disponible</option>
+            <option value={true}>Disponible</option>
+            <option value={false}>No Disponible</option>
           </select>
 
           <button type='submit' className="btn btn-primary btnguardar">

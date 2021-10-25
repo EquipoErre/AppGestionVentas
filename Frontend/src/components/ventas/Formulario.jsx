@@ -55,7 +55,7 @@ const Formulario = ({vendedores, productos, ventas}) => {
 
     //Se comprueba si el producto existe y esta disponible
     const comprobarStock = (productos, idProducto, cantidadProducto) => {
-        const producto = productos.find(producto => (producto._id === idProducto && producto.estado === true))
+        const producto = productos.find(producto => (producto._id === idProducto && producto.estado === "true"))
         if (producto != undefined) {
             agregarProducto(producto, cantidadProducto);
             // toast.success('Producto añadido')

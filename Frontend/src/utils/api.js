@@ -166,16 +166,25 @@ export const patchVentas = (id, data) => {
 //   };
 
 
-export const obtenerProductos = async (successCallback, errorCallback) => {
+export const obtenerProductos = async (setProductos) => {
   const options = {
-    method: 'GET',
-    url: 'http://localhost:5000/productos/',
-    headers: {
-      Authorization: getToken(),
-    },
-  };
-  await axios.request(options).then(successCallback).catch(errorCallback);
+    method: "GET", url: "http://localhost:5000/productos/", headers: {
+    Authorization: getToken(),
+  },
+ };
+
+  await axios
+    .request(options)
+    .then(function (response) {
+      // console.log(response.data)
+      setProductos(response.data);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
 };
+
+
 
 export const crearProducto = async (data, successCallback, errorCallback) => {
   const options = {
