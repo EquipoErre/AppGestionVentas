@@ -93,8 +93,19 @@ const TablaDescripcionventa = ({ unaVenta, unVendedor, productos }) => {
     const [ventaEditada, setVentaEditada] = useState(venta)
     const [vendedores, setVendedores] = useState([]);
     const [usuarios, setUsuarios] = useState([]);
+    const [campoEditado, setCampoEditado] = useState(false)
+    const [vendedorEditado, setVendedorEditado] = useState(unVendedor)
 
-
+    useEffect(() => {
+        if (ventaEditada !== undefined && venta !== undefined && vendedores.length > 0) {
+            if (ventaEditada.estado !== venta.estado || ventaEditada.fecha !== venta.fecha ||
+                ventaEditada.documento !== venta.documento || ventaEditada.cliente !== venta.cliente  || vendedor.name !== vendedores.filter((e)=>(e._id === vendedorEditado._id))[0].name) {
+                setCampoEditado(true)
+            } else {
+                setCampoEditado(false)
+            }
+        }
+    }, [ventaEditada])
 
     useEffect(() => {
         getUsuarios(setUsuarios);
@@ -109,6 +120,7 @@ const TablaDescripcionventa = ({ unaVenta, unVendedor, productos }) => {
     }, [usuarios])
 
     const editarVendedor = (id) => {
+        setVendedorEditado(vendedores.filter((v) => v._id === id)[0])
         setVentaEditada({ ...ventaEditada, vendedor: vendedores.filter((v) => v._id === id)[0] })
     }
 
@@ -238,7 +250,7 @@ const TablaDescripcionventa = ({ unaVenta, unVendedor, productos }) => {
                         editarCampos ? (
                             <div>
                                 <button type="button" class="btn btn-secondary" onClick={() => setEditarCampos(false)}>Cancelar</button>
-                                <button onClick={() => enviarEdicionAlBackend()} type="button" class="btn btn-primary"> Guardar </button>
+                                <button disabled={campoEditado ? (false) : (true)} onClick={() => enviarEdicionAlBackend()} type="button" class="btn btn-primary"> Guardar </button>
                             </div>
                         ) : (
                             <div>

@@ -18,6 +18,7 @@ const Tabla = ({ventas}) => {
                         <td>Nombre cliente</td>
                         <td>Vendedor</td>
                         <td>Valor total</td>
+                        {/* <td>Estado</td> */}
                     </tr>
                 </thead>
                 <tbody className="datos-centrados">
@@ -33,6 +34,7 @@ const Tabla = ({ventas}) => {
                                 <td>{venta.cliente}</td>
                                 <td>{venta.vendedor.name}</td>
                                 <td>{venta.total}</td>
+                                {/* <td>{venta.estado}</td> */}
                             </tr>
                             );
                         })
