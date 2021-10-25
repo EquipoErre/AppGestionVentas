@@ -468,7 +468,7 @@ const ListaVentas = () => {
                     </div>
                 </div>
                 <div className='contenedor-tabla'>
-                    <Tabla datos={ventasFiltradas}/>
+                    <Tabla ventas={ventasFiltradas}/>
                 </div>
             </section>
         </>

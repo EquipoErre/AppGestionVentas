@@ -1,10 +1,10 @@
 import React from 'react'
 import { useState } from 'react';
 import {Link} from "react-router-dom";
+import DescripcionVenta from 'pages/ventas/DescripcionVenta';
 
 
-
-const Tabla = ({datos}) => {
+const Tabla = ({ventas}) => {
 
 
     return (
@@ -18,21 +18,23 @@ const Tabla = ({datos}) => {
                         <td>Nombre cliente</td>
                         <td>Vendedor</td>
                         <td>Valor total</td>
+                        <td>Estado</td>
                     </tr>
                 </thead>
                 <tbody className="datos-centrados">
                     {
-                        datos.map((dato) => {
+                        ventas.map((venta) => {
                             return(
                             <tr>
-                                <Link to='/ventas:codigo/descripcionVenta'>
-                                    <td>{dato._id}</td>
+                                <Link to={`/ventas${venta._id}/descripcionVenta`}>
+                                    <td>{venta._id}</td>
                                 </Link>
-                                <td>{dato.fecha}</td>
-                                <td>{dato.documento}</td>
-                                <td>{dato.cliente}</td>
-                                <td>{dato.vendedor.name}</td>
-                                <td>{dato.total}</td>
+                                <td>{venta.fecha}</td>
+                                <td>{venta.documento}</td>
+                                <td>{venta.cliente}</td>
+                                <td>{venta.vendedor.name}</td>
+                                <td>{venta.total}</td>
+                                <td>{venta.estado}</td>
                             </tr>
                             );
                         })

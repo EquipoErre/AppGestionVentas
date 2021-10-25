@@ -8,7 +8,7 @@ import "styles/components/ventas/componentTablaDescripcionVenta.css";
 
 
 import VentasIndex from "pages/ventas/VentasIndex";
-import VentanaDescrpcionVenta from "pages/ventas/VentanaDescrpcionVenta";
+import DescripcionVenta from "pages/ventas/DescripcionVenta";
 import GestionUsuariosPage from "pages/usuarios/GestionUsuariosPage";
 import FormularioActualizarUsuario from "pages/usuarios/FormularioActualizacion";
 import Layout from "layouts/Layout";
@@ -18,6 +18,7 @@ import AuthLayout from "layouts/authLayout";
 import PublicLayout from "layouts/publicLayout";
 import MaestroProductos from "pages/productos/MaestroProductos";
 import ProductoNuevo from "pages/productos/ProductoNuevo";
+import Product from "pages/productos/Product"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ListaVentas from "pages/ventas/ListaVentas"
 import { Auth0Provider } from "@auth0/auth0-react";
@@ -43,10 +44,11 @@ function App() {
                   "/usuarios",
                   "/usuarios/:id",
                   "/ventas",
-                  "/ventas:codigo/descripcionVenta",
+                  "/ventas:id/descripcionVenta",
                   "/ventas/listaVentas",
                   "/productos",
-                  "/productoNuevo"
+                  "/productoNuevo",
+                  "/product"
                 ]}
               >
                  <Layout>
@@ -63,11 +65,11 @@ function App() {
                       </PrivateRoute>
                     </Route>
 
-                    {["/ventas","/ventas/listaVentas", "/ventas:codigo/descripcionVenta"]}
-                    <Route path="/ventas:codigo/descripcionVenta">
-                      <PrivateRoute roleList={['vendedor', 'administrador'] }stateList = {['autorizado']}>
-                        <VentanaDescrpcionVenta />
-                      </PrivateRoute>
+                    {["/ventas","/ventas/listaVentas", "/ventas:id/descripcionVenta"]}
+                    <Route path="/ventas:id/descripcionVenta">
+                      {/* <PrivateRoute roleList={['vendedor', 'administrador'] }stateList = {['autorizado']}> */}
+                        <DescripcionVenta />
+                      {/* </PrivateRoute> */}
                     </Route>
                     <Route path="/ventas/listaVentas">
                       <PrivateRoute roleList={['vendedor', 'administrador'] }stateList = {['autorizado']}>
@@ -80,16 +82,21 @@ function App() {
                       </PrivateRoute>
                     </Route>
 
-                    {/* rutas del modulo productos */}
+                    {/* rutas del modulo productos */}                
                     <Route path="/productos">
-                      <PrivateRoute roleList={['vendedor', 'administrador'] }stateList = {['autorizado']}>
-                        <MaestroProductos />
-                      </PrivateRoute>
+                      {/* <PrivateRoute roleList={['vendedor', 'administrador'] }stateList = {['autorizado']}> */}
+                        <Product />
+                      {/* </PrivateRoute> */}
                     </Route>
                     <Route path="/productoNuevo">
                       <PrivateRoute roleList={['vendedor', 'administrador'] }stateList = {['autorizado']}>
                         <ProductoNuevo />
                       </PrivateRoute>
+                    </Route>
+                    <Route path="/producto">
+                      {/* <PrivateRoute roleList={['vendedor']}> */}
+                        <Product />
+                      {/* </PrivateRoute> */}
                     </Route>
                   </Switch>
                 </Layout>

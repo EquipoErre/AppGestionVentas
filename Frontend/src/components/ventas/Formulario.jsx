@@ -6,8 +6,9 @@ import { getUsuarios } from 'utils/api'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { crearVenta } from 'utils/api'
+import { obtenerVentas } from 'utils/api'
 
-const Formulario = ({vendedores, productos}) => {
+const Formulario = ({vendedores, productos, ventas}) => {
 
     //Estados
     const [inputIdProducto, setInputIdProducto] = useState('');
@@ -17,6 +18,21 @@ const Formulario = ({vendedores, productos}) => {
     const [filasTabla, setFilasTabla] = useState([])
     const form = useRef(null);
     const [hayProductosFacturados, setHayProductosFacturados] = useState(false);
+    const [inputDocumento, setInputDocumento] = useState("");
+    const [nombreCliente, setNombreCliente] = useState("");
+
+    const filtrarNombreCliente = ()=> {
+        if (ventas.find((e)=> e.documento === inputDocumento) !== undefined) {
+            return ventas.find((e)=> e.documento === inputDocumento).cliente
+        }else{
+            return ("");
+        }
+        
+    }
+
+    useEffect(() => {
+        setNombreCliente(filtrarNombreCliente())
+    }, [inputDocumento])
 
 
     //Se validan condiciones para activar el boton de añadir producto a la venta
@@ -42,7 +58,7 @@ const Formulario = ({vendedores, productos}) => {
         const producto = productos.find(producto => (producto._id === idProducto && producto.estado === true))
         if (producto != undefined) {
             agregarProducto(producto, cantidadProducto);
-            toast.success('Producto añadido')
+            // toast.success('Producto añadido')
         } else {
             toast.error('No hay stock');
         }
@@ -98,6 +114,8 @@ const Formulario = ({vendedores, productos}) => {
             (response) => {
                 console.log(response);
                 toast.success("Venta agragada con éxito")
+                setFilasTabla([])
+                setTotal(0)
             },
             (error) => {
                 toast.error("Error al agregar venta")
@@ -128,10 +146,10 @@ const Formulario = ({vendedores, productos}) => {
                                 <div>
                                     <label className='labelVendedor' htmlFor='vendedor'>Vendedor</label>
                                     <select required name='vendedor' id='vendedor' defaultValue='' >
-                                        <option disabled value=''>Elija unvendedor</option>
+                                        <option disabled value=''>Elija un vendedor</option>
                                         {vendedores.map((vendedor) => {
                                             return (
-                                                <option value={vendedor._id} key={nanoid()}>{vendedor.name}</option>
+                                                <option value={vendedor._id}>{vendedor.name}</option>
                                             )
                                         })
                                         }
@@ -141,11 +159,11 @@ const Formulario = ({vendedores, productos}) => {
                             <div className='form-registro-venta_section-head_item-dos_section'>
                                 <div>
                                     <label className='font-color' htmlFor='cliente'>Cliente</label>
-                                    <input required type='text' id='cliente' name='nombreCliente' />
+                                    <input required type='text' id='cliente' name='nombreCliente' defaultValue={nombreCliente}/>
                                 </div>
                                 <div>
                                     <label className='font-color' htmlFor='documento'>Documento</label>
-                                    <input required type='text' id='documento' name='documentoCliente' pattern='[0-9]*' />
+                                    <input onChange={(e)=> setInputDocumento(e.target.value)} required type='text' id='documento' name='documentoCliente' pattern='[0-9]*' />
                                 </div>
                                 <div>
                                     <label htmlFor="estado">Estado:</label>
@@ -163,7 +181,7 @@ const Formulario = ({vendedores, productos}) => {
                         <div className='form-registro-venta_section-body_item-uno'>
                             <div >
                                 <label htmlFor='codigoProducto'>Id producto</label>
-                                <input required onChange={(e) => { setInputIdProducto(e.target.value) }} type='text' id='codigoProducto' name='codigoProducto ' />
+                                <input required onChange={(e) => { setInputIdProducto(e.target.value) }} type='text' id='codigoProducto' name='codigoProducto ' autoFocus/>
                             </div>
                             <div>
                                 <label htmlFor='inputCantidadProducto'>Cantidad</label>

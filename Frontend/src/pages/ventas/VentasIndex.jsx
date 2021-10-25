@@ -7,6 +7,8 @@ import {Link} from "react-router-dom";
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { getUsuarios } from 'utils/api';
+import { obtenerVentas } from 'utils/api'
+
 
 
 
@@ -98,13 +100,16 @@ const VentasIndex = () => {
     const [usuarios, setUsuarios] = useState([]);
     const [vendedores, setVendedores] = useState([]);
     const [productos, setProductos] = useState([]);
+    const [ventas, setVentas] = useState([]);
+
     
     useEffect(() => {
         // obtener vendedores
         getUsuarios(setUsuarios);        
         // obtener productos
         //getProductos(setProductos);
-        setProductos(productosBack)
+        setProductos(productosBack);
+        obtenerVentas(setVentas)
     }, [])
     
     useEffect(() => {
@@ -115,7 +120,7 @@ const VentasIndex = () => {
         <div>
             <div className='contenedor-padre'>
                 <section className='contenedor-formulario'>
-                    <Formulario vendedores={vendedores} productos={productos}/>
+                    <Formulario vendedores={vendedores} productos={productos} ventas={ventas}/>
                 </section>                
             </div>
         </div>

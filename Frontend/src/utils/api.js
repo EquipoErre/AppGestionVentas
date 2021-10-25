@@ -119,6 +119,41 @@ export const obtenerVentas = async (setVentas) => {
 };
 
 
+export const getOneSale = async (id, setSale) => {
+  const options = {
+    method: "GET",
+    url: `http://localhost:5000/ventas/${id}`, 
+    headers: {
+      Authorization: getToken(),
+    },
+  };
+
+  await axios
+    .request(options)
+    .then(function (response) {
+      setSale(response.data);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+};
+
+export const patchVentas = (id, data) => {
+  var options = {
+    method: "PATCH",
+    url: `http://localhost:5000/ventas/${id}`,
+    headers: { "Content-Type": "application/json", Authorization: getToken()  },
+    data: data,
+  };
+
+  axios
+    .request(options)
+    .then(function (response) {})
+    .catch(function (error) {
+      console.error(error);
+    });
+};
+
 // export const obtenerVentas = async (successCallback, errorCallback) => {
 //   const options = {
 //     method: 'GET',
@@ -129,3 +164,35 @@ export const obtenerVentas = async (setVentas) => {
 //   };
 //   await axios.request(options).then(successCallback).catch(errorCallback);
 //   };
+
+
+export const obtenerProductos = async (successCallback, errorCallback) => {
+  const options = {
+    method: 'GET',
+    url: 'http://localhost:5000/productos/',
+    headers: {
+      Authorization: getToken(),
+    },
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+export const crearProducto = async (data, successCallback, errorCallback) => {
+  const options = {
+    method: 'POST',
+    url: 'http://localhost:5000/productos/nuevo/',
+    headers: { 'Content-Type': 'application/json', Authorization: getToken() },
+    data,
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+export const editarProducto= async (id, data, successCallback, errorCallback) => {
+  const options = {
+    method: 'PATCH',
+    url: `http://localhost:5000/productos/${id}/`,
+    headers: { 'Content-Type': 'application/json', Authorization: getToken() },
+    data,
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
