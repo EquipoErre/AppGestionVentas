@@ -165,7 +165,7 @@ const Formulario = ({vendedores, productos}) => {
                         <div className='form-registro-venta_section-body_item-uno'>
                             <div >
                                 <label htmlFor='codigoProducto'>Id producto</label>
-                                <input required onChange={(e) => { setInputIdProducto(e.target.value) }} type='text' id='codigoProducto' name='codigoProducto ' />
+                                <input required onChange={(e) => { setInputIdProducto(e.target.value) }} type='text' id='codigoProducto' name='codigoProducto ' autoFocus/>
                             </div>
                             <div>
                                 <label htmlFor='inputCantidadProducto'>Cantidad</label>
