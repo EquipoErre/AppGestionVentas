@@ -10,13 +10,11 @@
     margin-inline-start: 10%; 
     margin-top: 0px;
     margin-bottom: 0px;
-    overflow: auto;
 }
 .buscador-producto{
     margin-inline-end: 10%; 
     margin-top: 0px;
     margin-bottom: 15px;
-    overflow: visible;
 }
 .contenedor-maestro-productos{
     width: 85%;
@@ -24,7 +22,8 @@
     margin: auto;
 }
 .tabla-productos {
-    overflow: auto;
+   top: 0;
+    position: sticky;
 }
 .tabla-productos button{
     border-radius: 8px;
@@ -37,6 +36,8 @@
     color: white;
     text-align: center;
     font-size: var(--tamaño-fuente);
+    top: 0px; 
+    position: sticky;    
 }
 .form-productoNuevo {   
     text-align: left;

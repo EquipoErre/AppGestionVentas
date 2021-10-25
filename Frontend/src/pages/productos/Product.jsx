@@ -101,7 +101,7 @@ const TablaProductos = ({ loading, listaProductos, setEjecutarConsulta }) => {
       <div>
         <section className="contenedor-maestro-productos tabla-productos">
           <table className="table table-striped ">
-            <thead className="thead-dark">
+            <thead className="thead-dark ">
               <th className="col-1">Id Producto</th>
               <th className="col-3">Descripción</th>
               <th className="col-2">Valor Unitario</th>
