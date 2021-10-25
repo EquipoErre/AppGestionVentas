@@ -22,8 +22,8 @@ const Formulario = ({vendedores, productos, ventas}) => {
     const [nombreCliente, setNombreCliente] = useState("");
 
     const filtrarNombreCliente = ()=> {
-        if (ventas.filter((e)=> e.documento === inputDocumento)[0] !== undefined) {
-            return ventas.filter((e)=> e.documento === inputDocumento)[0].cliente
+        if (ventas.find((e)=> e.documento === inputDocumento) !== undefined) {
+            return ventas.find((e)=> e.documento === inputDocumento).cliente
         }else{
             return ("");
         }
