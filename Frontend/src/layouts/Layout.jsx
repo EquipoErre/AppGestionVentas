@@ -3,7 +3,7 @@ import { useLocation } from "react-router";
 import "styles/layoutPrivado.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { obtenerDatosUsuario } from "utils/api";
-
+import ReactLoading from "react-loading";
 import React, { useEffect, useState } from "react";
 import { useUser } from "context/UserContext";
 
@@ -52,6 +52,10 @@ const Layout = ({ children }) => {
   if (!isAuthenticated) {
     return loginWithRedirect();
   }
+  if (isLoading || loadingUserInformation)
+    return (
+      <ReactLoading type="cylon" color="#abc123" height={667} width={375} />
+    );
 
   return (
     <div className="contenedorPrincipal">

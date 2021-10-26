@@ -6,7 +6,7 @@ import "styles/menu.css";
 // este componente se usa en los layouts
 
 // modulosYrutas es una lista de objetos
-export default function Menu({ paginaActual, onChange }) {
+export default function Menu({ paginaActual = "/", onChange }) {
   // modulos y es una lista de objetos con informacion para cargar
   // se encuentra en la carpeta la info que se carga está en la carpeta json
 
@@ -23,17 +23,18 @@ export default function Menu({ paginaActual, onChange }) {
       <ul className="menu">
         {isAuthenticated && (
           <>
-            {/* <PrivateComponent roleList={["administrador"]}> */}
-            <li key={nanoid()}>
-              <Link
-                to="/usuarios"
-                className={paginaActual === "/usuarios" ? "active" : "ruta"}
-                onClick={() => onChange("/usuarios")}
-              >
-                Usuarios
-              </Link>
-            </li>
-            {/* </PrivateComponent> */}
+            <PrivateComponent roleList={["administrador"]}>
+              <li key={nanoid()}>
+                <Link
+                  to="/usuarios"
+                  className={paginaActual === "/usuarios" ? "active" : "ruta"}
+                  onClick={() => onChange("/usuarios")}
+                >
+                  Usuarios
+                </Link>
+              </li>
+            </PrivateComponent>
+            <PrivateComponent roleList={["administrador", "vendedor"]}>
             <li key={nanoid()}>
               <Link
                 to="/ventas"
@@ -43,6 +44,8 @@ export default function Menu({ paginaActual, onChange }) {
                 Ventas
               </Link>
             </li>
+            </PrivateComponent>
+            <PrivateComponent roleList={["administrador", "vendedor"]}>
             <li key={nanoid()}>
               <Link
                 to="/productos"
@@ -52,10 +55,12 @@ export default function Menu({ paginaActual, onChange }) {
                 Productos
               </Link>
             </li>
+            </PrivateComponent>
           </>
         )}
-        <li key={nanoid()}>
-          {isAuthenticated ? (
+
+        {isAuthenticated ? (
+          <li key={nanoid()}>
             <Link
               to="#!"
               className={`login ruta`}
@@ -63,16 +68,29 @@ export default function Menu({ paginaActual, onChange }) {
             >
               Cerrar Sesión
             </Link>
-          ) : (
-            <Link
-              to="#!"
-              className={`login ruta`}
-              onClick={() => loginWithRedirect()}
-            >
-              Iniciar Sesión
-            </Link>
-          )}
-        </li>
+          </li>
+        ) : (
+          <>
+            <li key={nanoid()}>
+              <Link
+                to="/productos"
+                className={paginaActual === "/productos" ? "active" : "ruta"}
+                onClick={() => onChange("/productos")}
+              >
+                modulos
+              </Link>
+            </li>
+            <li key={nanoid()}>
+              <Link
+                to="#!"
+                className={`login ruta`}
+                onClick={() => loginWithRedirect()}
+              >
+                Iniciar Sesión
+              </Link>
+            </li>
+          </>
+        )}
       </ul>
     </nav>
   );
