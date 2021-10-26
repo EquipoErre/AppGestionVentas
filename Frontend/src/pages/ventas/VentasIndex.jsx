@@ -115,10 +115,6 @@ const VentasIndex = () => {
     }, [])
 
     useEffect(() => {
-        console.log("Productos → ",  productos);
-    }, [productos])
-
-    useEffect(() => {
         setVendedores(usuarios.filter((u) => u.rol === "vendedor"))
     }, [usuarios])
 
