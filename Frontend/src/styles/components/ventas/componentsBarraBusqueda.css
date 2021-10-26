@@ -24,3 +24,7 @@
 .bi-search:hover{
     transform: scale(1.4,1.4);
 }
+
+.barra{
+    height: 30px;
+}

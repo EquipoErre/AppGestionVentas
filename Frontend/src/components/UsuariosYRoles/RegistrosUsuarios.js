@@ -1,13 +1,21 @@
-
+import { nanoid } from "nanoid";
 import { Link } from "react-router-dom";
+import { deleteUser } from "utils/api";
 
-export default function RegistrosUsuarios(props) {
+export default function RegistrosUsuarios({
+  id,
+  rol,
+  estado,
+  nombre,
+  onChange,
+}) {
+  // cada ves que se usa un map hay que poner un key
   return (
-    <tr>
-      <td>{props.id}</td>
-      <td>{props.rol}</td>
-      <td>{props.estado}</td>
-      <td>{props.nombre}</td>
+    <tr key={nanoid()}>
+      <td>{id.slice(-5)}</td>
+      <td>{rol}</td>
+      <td>{estado}</td>
+      <td>{nombre}</td>
       <td>
         <div className="dropdown text-center">
           <button
@@ -24,16 +32,27 @@ export default function RegistrosUsuarios(props) {
             className="dropdown-menu text-center p-2 rounded-lg"
             aria-labelledby="dropdownMenu2"
           >
-            <div className="pb-2">
-              {/* hay que tener en cuenta las commillas invertidas en este caso */}
-              <Link to={`/usuarios/${props.id}`} className="btn btn-success btn-block">
-                Editar
-              </Link>
-            </div>
+            {/* hay que tener en cuenta las commillas invertidas en este caso */}
+            <Link
+              to={`/usuarios/${id}`}
+              className="btn btn-success btn-block mb-2"
+            >
+              Editar
+            </Link>
 
-            <a href="#!" className="btn btn-danger btn-block">
+            <button
+              // debo pasarle la funcion on change para que se cambie la variable
+              // la pagina de la tabla y se actualicen los datos,
+              type="button"
+              onClick={() => {
+                deleteUser(id, onChange);
+                //onChange(true);aqui y se quita el parametro de la
+                // funcion anterior, tambien en el archivo api.js.
+              }}
+              className="btn btn-danger btn-block mb-2"
+            >
               Eliminar
-            </a>
+            </button>
           </div>
         </div>
       </td>
