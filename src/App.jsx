@@ -25,6 +25,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import PrivateRoute from 'components/PrivateRoute';
 import React, { useState } from 'react';
 import { UserContext } from 'context/UserContext';
+import PgPublic from 'pages/PgPublic';
 
 function App() {
   const [userData, setUserData] = useState({});
@@ -120,7 +121,7 @@ function App() {
                 <PublicLayout>
                   <Switch>
                     <Route exact path="/">
-                      <h1>Inicio</h1>
+                      <PgPublic/>
                     </Route>
                   </Switch>
                 </PublicLayout>
