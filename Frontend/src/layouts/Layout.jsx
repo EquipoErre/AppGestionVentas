@@ -1,5 +1,4 @@
 import Menu from "components/NavBar/Menu";
-import ListaModulos from "json/menuModuleNames.json";
 import { useLocation } from "react-router";
 import "styles/layoutPrivado.css";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -61,7 +60,6 @@ const Layout = ({ children }) => {
         {/* tambien se puede definirla directamente en esta funcion, 
                 esto se hace en publicLayout */}
         <Menu
-          ModulosYRutas={ListaModulos}
           paginaActual={paginaActual}
           onChange={(pagina) => setPaginaActual(pagina)}
         />
