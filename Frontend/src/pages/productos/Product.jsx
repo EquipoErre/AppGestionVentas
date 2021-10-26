@@ -15,10 +15,13 @@ const Productos = () => {
   const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
   const [loading, setLoading] = useState(false);
 
+  
+
   useEffect(() => {
     const fetchProductos = async () => {
       setLoading(true);
       await obtenerProductos(setProductos)
+      setEjecutarConsulta(false)
     };
     console.log('Consulta', ejecutarConsulta);
     if (ejecutarConsulta) {
@@ -146,6 +149,7 @@ const FilaProducto = ({ producto, setEjecutarConsulta }) => {
         console.error(error);
       }
     );
+
   };
 
 
