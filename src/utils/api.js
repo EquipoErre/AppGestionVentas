@@ -1,4 +1,6 @@
 import axios from "axios";
+const apiURL = 'http://localhost:5000';
+const apiURL = 'https://sheltered-anchorage-37436.herokuapp.com';
 
 const getToken = () => {
   return `Bearer ${localStorage.getItem("token")}`;
@@ -8,7 +10,7 @@ export const obtenerDatosUsuario = async (successCallback, errorCallback) => {
   // obtener el dato del usuario actual
   const options = {
     method: "GET",
-    url: "http://localhost:5000/usuarios/self",
+    url: `${apiURL}/usuarios/self`,
     headers: {
       Authorization: getToken(),
     },
@@ -17,7 +19,7 @@ export const obtenerDatosUsuario = async (successCallback, errorCallback) => {
 };
 
 export const getUsuarios = async (setUsuarios) => {
-  const options = { method: "GET", url: "http://localhost:5000/usuarios/",
+  const options = { method: "GET", url: `${apiURL}/usuarios/`,
   headers: {
     Authorization: getToken(),
   }, };
@@ -36,7 +38,7 @@ export const getUsuarios = async (setUsuarios) => {
 export const patchUsuarios = (id, data) => {
   var options = {
     method: "PATCH",
-    url: `http://localhost:5000/usuarios/${id}`,
+    url: `${apiURL}/usuarios/${id}`,
     headers: { "Content-Type": "application/json", Authorization: getToken()  },
     data: data,
   };
@@ -52,7 +54,7 @@ export const patchUsuarios = (id, data) => {
 export const getOneUser = async (id, setUser) => {
   const options = {
     method: "GET",
-    url: `http://localhost:5000/usuarios/${id}`, 
+    url: `${apiURL}/usuarios/${id}`, 
     headers: {
       Authorization: getToken(),
     },
@@ -71,7 +73,7 @@ export const getOneUser = async (id, setUser) => {
 export const deleteUser = (id, onChange) => {
   var options = {
     method: "DELETE",
-    url: `http://localhost:5000/usuarios/${id}`,  
+    url: `${apiURL}/usuarios/${id}`,  
     headers: {
       Authorization: getToken(),
     },
@@ -93,7 +95,7 @@ export const deleteUser = (id, onChange) => {
 export const crearVenta = async (data, successCallback, errorCallback) => {
   const options = {
     method: 'POST',
-    url: 'http://localhost:5000/ventas/nuevo',
+    url: `${apiURL}/ventas/nuevo`,
     headers: { 'Content-Type': 'application/json', Authorization: getToken() },
     data,
   };
@@ -102,7 +104,7 @@ export const crearVenta = async (data, successCallback, errorCallback) => {
 
 export const obtenerVentas = async (setVentas) => {
   const options = {
-    method: "GET", url: "http://localhost:5000/ventas/", headers: {
+    method: "GET", url: `${apiURL}/ventas/`, headers: {
     Authorization: getToken(),
   },
  };
@@ -122,7 +124,7 @@ export const obtenerVentas = async (setVentas) => {
 export const getOneSale = async (id, setSale) => {
   const options = {
     method: "GET",
-    url: `http://localhost:5000/ventas/${id}`, 
+    url: `${apiURL}/ventas/${id}`, 
     headers: {
       Authorization: getToken(),
     },
@@ -141,7 +143,7 @@ export const getOneSale = async (id, setSale) => {
 export const patchVentas = (id, data) => {
   var options = {
     method: "PATCH",
-    url: `http://localhost:5000/ventas/${id}`,
+    url: `${apiURL}/ventas/${id}`,
     headers: { "Content-Type": "application/json", Authorization: getToken()  },
     data: data,
   };
@@ -157,7 +159,7 @@ export const patchVentas = (id, data) => {
 // export const obtenerVentas = async (successCallback, errorCallback) => {
 //   const options = {
 //     method: 'GET',
-//     url: 'http://localhost:5000/ventas/',
+//     url: `${apiURL}/ventas/',
 //     headers: {
 //       Authorization: getToken(),
 //     },
@@ -168,7 +170,7 @@ export const patchVentas = (id, data) => {
 
 export const obtenerProductos = async (setProductos) => {
   const options = {
-    method: "GET", url: "http://localhost:5000/productos/", headers: {
+    method: "GET", url: `${apiURL}/productos/`, headers: {
     Authorization: getToken(),
   },
  };
@@ -189,7 +191,7 @@ export const obtenerProductos = async (setProductos) => {
 export const crearProducto = async (data, successCallback, errorCallback) => {
   const options = {
     method: 'POST',
-    url: 'http://localhost:5000/productos/nuevo/',
+    url: `${apiURL}/productos/nuevo/`,
     headers: { 'Content-Type': 'application/json', Authorization: getToken() },
     data,
   };
@@ -199,7 +201,7 @@ export const crearProducto = async (data, successCallback, errorCallback) => {
 export const editarProducto= async (id, data, successCallback, errorCallback) => {
   const options = {
     method: 'PATCH',
-    url: `http://localhost:5000/productos/${id}/`,
+    url: `${apiURL}/productos/${id}/`,
     headers: { 'Content-Type': 'application/json', Authorization: getToken() },
     data,
   };
