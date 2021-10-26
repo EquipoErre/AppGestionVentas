@@ -1,5 +1,4 @@
 import { Dialog } from '@material-ui/core';
-import { nanoid } from 'nanoid';
 import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -8,86 +7,8 @@ import { getOneSale } from 'utils/api';
 import { patchVentas } from 'utils/api';
 import { getUsuarios } from 'utils/api';
 
-const datos = [
-    {
-
-        "codigoVenta": "01",
-        "fecha": '01/02/2021',
-        "documentoCliente": '10025232654',
-        "nombreCliente": 'Eduardo Rincon',
-        "vendedor": "02",
-        "valorTotal": "600253",
-        "codigoProducto": "01",
-        "precioUnitario": '6100',
-        "descripcion": 'producto1',
-        "cantidad": '6',
-        "subtotal": "30500",
-        "estado": "En proceso"
-    },
-    {
-
-        "codigoVenta": "01",
-        "fecha": '01/02/2021',
-        "documentoCliente": '10025232654',
-        "nombreCliente": 'Eduardo Rincon',
-        "vendedor": "02",
-        "valorTotal": "600253",
-        "codigoProducto": "01",
-        "precioUnitario": '6100',
-        "descripcion": 'producto1',
-        "cantidad": '6',
-        "subtotal": "30500",
-        "estado": "En proceso"
-    },
-    {
-
-        "codigoVenta": "01",
-        "fecha": '01/02/2021',
-        "documentoCliente": '10025232654',
-        "nombreCliente": 'Eduardo Rincon',
-        "vendedor": "02",
-        "valorTotal": "600253",
-        "codigoProducto": "01",
-        "precioUnitario": '6100',
-        "descripcion": 'producto1',
-        "cantidad": '6',
-        "subtotal": "30500",
-        "estado": "En proceso"
-    },
-    {
-
-        "codigoVenta": "01",
-        "fecha": '01/02/2021',
-        "documentoCliente": '10025232654',
-        "nombreCliente": 'Eduardo Rincon',
-        "vendedor": "02",
-        "valorTotal": "600253",
-        "codigoProducto": "01",
-        "precioUnitario": '6100',
-        "descripcion": 'producto1',
-        "cantidad": '6',
-        "subtotal": "30500",
-        "estado": "En proceso"
-    },
-    {
-
-        "codigoVenta": "01",
-        "fecha": '01/02/2021',
-        "documentoCliente": '10025232654',
-        "nombreCliente": 'Eduardo Rincon',
-        "vendedor": "02",
-        "valorTotal": "600253",
-        "codigoProducto": "01",
-        "precioUnitario": '6100',
-        "descripcion": 'producto1',
-        "cantidad": '6',
-        "subtotal": "30500",
-        "estado": "En proceso"
-    },
-];
 
 const TablaDescripcionventa = ({ unaVenta, unVendedor, productos }) => {
-    // console.log(venta.productos);
     const [venta, setVenta] = useState(unaVenta)
     const [vendedor, setVendedor] = useState(unVendedor)
     const [editarCampos, setEditarCampos] = useState(false);

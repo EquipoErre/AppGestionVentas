@@ -2,13 +2,11 @@ import { nanoid } from 'nanoid'
 import React from 'react'
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { getUsuarios } from 'utils/api'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { crearVenta } from 'utils/api'
-import { obtenerVentas } from 'utils/api'
 
-const Formulario = ({vendedores, productos, ventas}) => {
+const Formulario = ({ vendedores, productos, ventas}) => {
 
     //Estados
     const [inputIdProducto, setInputIdProducto] = useState('');
@@ -21,13 +19,15 @@ const Formulario = ({vendedores, productos, ventas}) => {
     const [inputDocumento, setInputDocumento] = useState("");
     const [nombreCliente, setNombreCliente] = useState("");
 
-    const filtrarNombreCliente = ()=> {
-        if (ventas.find((e)=> e.documento === inputDocumento) !== undefined) {
-            return ventas.find((e)=> e.documento === inputDocumento).cliente
-        }else{
+    
+
+    const filtrarNombreCliente = () => {
+        if (ventas.find((e) => e.documento === inputDocumento) !== undefined) {
+            return ventas.find((e) => e.documento === inputDocumento).cliente
+        } else {
             return ("");
         }
-        
+
     }
 
     useEffect(() => {
@@ -37,7 +37,7 @@ const Formulario = ({vendedores, productos, ventas}) => {
 
     //Se validan condiciones para activar el boton de añadir producto a la venta
     useEffect(() => {
-        if (inputIdProducto !== '' && inputCantidadProducto > 0 && filasTabla.find((p) => (p._id === inputIdProducto)) === undefined ) {
+        if (inputIdProducto !== '' && inputCantidadProducto > 0 && filasTabla.find((p) => (p._id === inputIdProducto)) === undefined) {
             setCamposProductoLlenos(true)
         } else {
             setCamposProductoLlenos(false)
@@ -46,9 +46,9 @@ const Formulario = ({vendedores, productos, ventas}) => {
 
     //Se comprueba que sea facturado por lo menos un producto para activar el boton que envía el form al back
     useEffect(() => {
-        if(filasTabla.length > 0){
+        if (filasTabla.length > 0) {
             setHayProductosFacturados(true)
-        }else{
+        } else {
             setHayProductosFacturados(false)
         }
     }, [filasTabla])
@@ -86,8 +86,6 @@ const Formulario = ({vendedores, productos, ventas}) => {
             formData[key] = value;
         });
 
-        console.log('form data', formData);
-
         const listaProductos = Object.keys(formData)
             .map((k) => {
                 if (k.includes('producto')) {
@@ -108,11 +106,9 @@ const Formulario = ({vendedores, productos, ventas}) => {
 
         }
 
-        console.log("DATOS VENTA → ", datosVenta)
         await crearVenta(
             datosVenta,
             (response) => {
-                console.log(response);
                 toast.success("Venta agragada con éxito")
                 setFilasTabla([])
                 setTotal(0)
@@ -159,11 +155,11 @@ const Formulario = ({vendedores, productos, ventas}) => {
                             <div className='form-registro-venta_section-head_item-dos_section'>
                                 <div>
                                     <label className='font-color' htmlFor='cliente'>Cliente</label>
-                                    <input required type='text' id='cliente' name='nombreCliente' defaultValue={nombreCliente}/>
+                                    <input required type='text' id='cliente' name='nombreCliente' defaultValue={nombreCliente} />
                                 </div>
                                 <div>
                                     <label className='font-color' htmlFor='documento'>Documento</label>
-                                    <input onChange={(e)=> setInputDocumento(e.target.value)} required type='text' id='documento' name='documentoCliente' pattern='[0-9]*' />
+                                    <input autoFocus onChange={(e) => setInputDocumento(e.target.value)} required type='text' id='documento' name='documentoCliente' pattern='[0-9]*' />
                                 </div>
                                 <div>
                                     <label htmlFor="estado">Estado:</label>
@@ -179,9 +175,21 @@ const Formulario = ({vendedores, productos, ventas}) => {
                     {/* *******************************************************************************************/}
                     <div className='contenedor-registro-venta'>
                         <div className='form-registro-venta_section-body_item-uno'>
-                            <div >
+                            {/* <div >
                                 <label htmlFor='codigoProducto'>Id producto</label>
                                 <input required onChange={(e) => { setInputIdProducto(e.target.value) }} type='text' id='codigoProducto' name='codigoProducto ' autoFocus/>
+                            </div> */}
+                            <div>
+                                <label htmlFor='codigoProducto'>Id producto</label>
+                                <select onChange={(e) => { setInputIdProducto(e.target.value) }} required name='codigoProducto' id='codigoProducto' defaultValue='' >
+                                    <option disabled value=''>Elija un producto</option>
+                                    {productos.map((producto) => {
+                                        return (
+                                            <option value={producto._id}>{producto.descripcion}</option>
+                                        )
+                                    })
+                                    }
+                                </select>
                             </div>
                             <div>
                                 <label htmlFor='inputCantidadProducto'>Cantidad</label>
@@ -212,7 +220,7 @@ const Formulario = ({vendedores, productos, ventas}) => {
                         <div className='form-registro-venta-buttons'>
                             <div>
                                 <button type='reset' class='btn btn-secondary'>Cancelar</button>
-                                <button disabled= {hayProductosFacturados ? (false) : (true)} type='submit' class='btn btn-primary'>Finalizar</button>
+                                <button disabled={hayProductosFacturados ? (false) : (true)} type='submit' class='btn btn-primary'>Finalizar</button>
                             </div>
                         </div>
                     </div>
