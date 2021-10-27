@@ -40,7 +40,7 @@ const Layout = ({ children }) => {
         (err) => {
           console.log("err", err);
           setLoadingUserInformation(false);
-          logout({ returnTo: "http://localhost:3000/" });
+          logout({ returnTo: window.location.origin });
         }
       );
     };
