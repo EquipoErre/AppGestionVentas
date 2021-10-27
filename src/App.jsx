@@ -85,17 +85,17 @@ function App() {
 
                     {/* rutas del modulo productos */}                
                     <Route path="/productos">
-                      <PrivateRoute roleList={['vendedor', 'administrador'] }stateList = {['autorizado']}>
+                      <PrivateRoute roleList={['administrador'] }stateList = {['autorizado']}>
                         <Product />
                       </PrivateRoute>
                     </Route>
                     <Route path="/productoNuevo">
-                      <PrivateRoute roleList={['vendedor', 'administrador'] }stateList = {['autorizado']}>
+                      <PrivateRoute roleList={['administrador'] }stateList = {['autorizado']}>
                         <ProductoNuevo />
                       </PrivateRoute>
                     </Route>
                     <Route path="/producto">
-                      <PrivateRoute roleList={['vendedor', 'administrador'] }stateList = {['autorizado']}>
+                      <PrivateRoute roleList={['administrador'] }stateList = {['autorizado']}>
                         <Product />
                       </PrivateRoute>
                     </Route>
