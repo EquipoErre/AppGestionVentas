@@ -26,7 +26,7 @@ import PrivateRoute from 'components/PrivateRoute';
 import React, { useState } from 'react';
 import { UserContext } from 'context/UserContext';
 import PgPublic from 'pages/PgPublic';
-import PgNosotros from 'pages/ventas/PgNosotros';
+import PgNosotros from 'pages/PgNosotros';
 
 function App() {
   const [userData, setUserData] = useState({});
