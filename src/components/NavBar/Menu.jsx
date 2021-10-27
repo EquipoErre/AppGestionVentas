@@ -45,7 +45,7 @@ export default function Menu({ paginaActual = "/", onChange }) {
               </Link>
             </li>
             </PrivateComponent>
-            <PrivateComponent roleList={["administrador", "vendedor"]}>
+            <PrivateComponent roleList={["administrador"]}>
             <li key={nanoid()}>
               <Link
                 to="/productos"
