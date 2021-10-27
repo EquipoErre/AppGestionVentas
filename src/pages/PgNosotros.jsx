@@ -77,7 +77,6 @@ const PgNosotros = () => {
                     <span className='name'>Rosmy Lorena Gaviria</span>
                     <p className='description'>
                         <div>
-                            Rosmy Lorena Gaviria Rodríguez
                             Psicologa de la ciudad de popayán y estudiante de desarrollo de software de la universidad de antioquia (Udea) bajo el programa Mision Tic 2022. <br /><br />
                         </div>
                         <div>
