@@ -26,6 +26,7 @@ import PrivateRoute from 'components/PrivateRoute';
 import React, { useState } from 'react';
 import { UserContext } from 'context/UserContext';
 import PgPublic from 'pages/PgPublic';
+import PgNosotros from 'pages/ventas/PgNosotros';
 
 function App() {
   const [userData, setUserData] = useState({});
@@ -117,9 +118,12 @@ function App() {
                 </AuthLayout>
               </Route>
 
-              <Route path={["/"]}>
+              <Route path={["/nosotros", "/"]}>
                 <PublicLayout>
                   <Switch>
+                  <Route path="/nosotros">
+                        <PgNosotros/>
+                    </Route>
                     <Route exact path="/">
                       <PgPublic/>
                     </Route>
